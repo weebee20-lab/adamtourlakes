@@ -140,13 +140,16 @@ export async function sendContactEmails(lead: {
               </p>
               <table role="presentation" cellpadding="0" cellspacing="0">
                 <tr>
-                  <td style="background:#c9a44a;">
-                    <a href="${COMPANY.phoneHref}" style="display:inline-block;padding:12px 22px;font-family:Outfit,system-ui,sans-serif;font-size:14px;font-weight:500;letter-spacing:0.04em;color:#16120a;text-decoration:none;">
-                      Call ${COMPANY.phoneDisplay}
+                  <td>
+                    <a href="tel:+1-239-994-2100" clicktracking="off" style="display:inline-block;background:#c9a44a;padding:12px 22px;font-family:Outfit,system-ui,sans-serif;font-size:14px;font-weight:500;letter-spacing:0.04em;color:#16120a;text-decoration:none;">
+                      Call (239) 994-2100
                     </a>
                   </td>
                 </tr>
               </table>
+              <p style="margin:12px 0 0;font-family:Outfit,system-ui,sans-serif;font-size:14px;line-height:1.6;color:#9a958a;">
+                Or tap <a href="tel:+12399942100" clicktracking="off" style="color:#c9a44a;text-decoration:underline;">(239) 994-2100</a>
+              </p>
               <p style="margin:32px 0 0;font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-style:italic;color:#c9a44a;">
                 — Adam
               </p>
