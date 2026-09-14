@@ -106,7 +106,7 @@ function Home() {
       <section className="relative z-20 mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <p className="text-xs font-medium tracking-[0.2em] text-gold uppercase">How I work</p>
         <h2 className="mt-3 max-w-xl font-display text-4xl font-semibold tracking-tight">
-          A solar conversation should feel like a briefing, not a pitch.
+          A solar conversation should be educational and fun, not pushy and rushed.
         </h2>
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {STEPS.map((step) => (
