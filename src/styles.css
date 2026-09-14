@@ -143,6 +143,75 @@
   display: none;
 }
 
+.sun-mark-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  animation: sun-glow 2.6s ease-in-out infinite;
+}
+
+.sun-mark {
+  position: relative;
+  display: inline-flex;
+  overflow: hidden;
+  border-radius: 999px;
+  padding: 0.15rem;
+}
+
+.sun-mark-flare {
+  position: absolute;
+  inset: -50% -30%;
+  z-index: 20;
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    color-mix(in oklab, var(--color-gold) 18%, transparent) 46%,
+    color-mix(in oklab, #fff8e6 82%, transparent) 50%,
+    color-mix(in oklab, var(--color-gold) 18%, transparent) 54%,
+    transparent 62%
+  );
+  animation: sun-scan 3.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.sun-mark-spark {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 21;
+  width: 0.42rem;
+  height: 0.42rem;
+  margin-top: -0.21rem;
+  border-radius: 999px;
+  background: #fff6e4;
+  box-shadow: 0 0 10px 3px color-mix(in oklab, var(--color-gold) 75%, transparent);
+  animation: sun-scan 3.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes sun-scan {
+  0% {
+    transform: translateX(-140%) rotate(18deg);
+  }
+  100% {
+    transform: translateX(240%) rotate(18deg);
+  }
+}
+
+@keyframes sun-glow {
+  0%,
+  100% {
+    filter:
+      drop-shadow(0 0 4px color-mix(in oklab, var(--color-gold) 45%, transparent))
+      drop-shadow(0 0 10px color-mix(in oklab, var(--color-gold) 28%, transparent));
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 8px color-mix(in oklab, var(--color-gold) 70%, transparent))
+      drop-shadow(0 0 18px color-mix(in oklab, var(--color-gold) 42%, transparent));
+  }
+}
+
 .hairline {
   background: linear-gradient(
     90deg,

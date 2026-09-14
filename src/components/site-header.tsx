@@ -44,7 +44,13 @@ export function SiteHeader() {
           className="flex min-h-11 items-center text-gold"
           aria-label={`${SITE_NAME} home`}
         >
-          <SiteMark className="size-7" />
+          <span className="sun-mark-wrap">
+            <span className="sun-mark">
+              <span className="sun-mark-flare" aria-hidden />
+              <span className="sun-mark-spark" aria-hidden />
+              <SiteMark className="relative z-10 size-7" />
+            </span>
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">

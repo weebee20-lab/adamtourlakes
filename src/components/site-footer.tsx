@@ -13,6 +13,9 @@ export function SiteFooter() {
             width={2533}
             height={883}
           />
+          <p className="mt-2 text-xs tracking-[0.14em] text-gold/80 uppercase">
+            © {new Date().getFullYear()} {SITE_NAME}
+          </p>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted">
             Sales Manager at {COMPANY.name}. Cape Coral office. Honest numbers,
             in-house installs, Southwest Florida roofs.
