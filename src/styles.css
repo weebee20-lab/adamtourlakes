@@ -352,6 +352,16 @@
   box-shadow: 0 0 10px color-mix(in oklab, var(--color-gold) 40%, transparent);
 }
 
+.hero-cutline-from-left {
+  background: linear-gradient(
+    90deg,
+    var(--color-gold) 0%,
+    color-mix(in oklab, var(--color-gold) 85%, transparent) 28%,
+    color-mix(in oklab, var(--color-gold) 18%, transparent) 62%,
+    transparent 100%
+  );
+}
+
 @media (max-width: 639px) {
   html,
   body {
