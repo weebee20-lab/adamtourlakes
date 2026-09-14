@@ -130,24 +130,22 @@ export function HomePage() {
           <div>
             <p className="text-xs font-medium tracking-[0.2em] text-gold uppercase">About</p>
             <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight">
-              Local, licensed, and on the job after the handshake.
+              Your point of contact — from the first call on.
             </h2>
             <div className="mt-6 space-y-4 text-sm leading-relaxed text-muted">
               <p>
-                I sell solar for a Cape Coral company that actually builds what it sells.{" "}
-                {COMPANY.name} was founded in 2018. It is veteran-owned. The technicians are
-                employees — not a rotating list of subcontractors.
+                I have been designing solar systems since 2023 and have overseen hundreds of
+                installations. The roof, the usage, the bill math — that is my work, and I stay
+                with it.
               </p>
               <p>
-                That matters on this coast. Roofs here take sun, salt, and storm season. The
-                equipment has to be specified for Florida, the racking has to be permitted
-                correctly, and someone has to pick up the phone when a homeowner has a question
-                in month fourteen.
+                I am the main point of contact for all of my clients, from the very first phone
+                call to months after the installation. There is no handoff to a closer, a project
+                manager you have never met, or a voicemail tree.
               </p>
               <p>
-                My job is the front of that process: walk the usage, size the array, explain the
-                bill math in 2026 (including the fact that the federal residential tax credit
-                closed at the end of 2025), and keep the timeline honest.
+                I am known for going in depth with every install, and I never really have a day
+                off. Whenever my clients need me, I am available.
               </p>
             </div>
             <Button asChild variant="outline" className="mt-6">
