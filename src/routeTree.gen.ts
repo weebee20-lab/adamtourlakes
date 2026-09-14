@@ -14,7 +14,11 @@ import { Route as BatteriesRouteImport } from './routes/batteries'
 import { Route as CalculatorRouteImport } from './routes/calculator'
 import { Route as CompanyRouteImport } from './routes/company'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as FloridaRouteImport } from './routes/florida'
 import { Route as SolarRouteImport } from './routes/solar'
+import { Route as FloridaCharlotteCountyRouteImport } from './routes/florida.charlotte-county'
+import { Route as FloridaCollierCountyRouteImport } from './routes/florida.collier-county'
+import { Route as FloridaLeeCountyRouteImport } from './routes/florida.lee-county'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -41,10 +45,30 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FloridaRoute = FloridaRouteImport.update({
+  id: '/florida',
+  path: '/florida',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SolarRoute = SolarRouteImport.update({
   id: '/solar',
   path: '/solar',
   getParentRoute: () => rootRouteImport,
+} as any)
+const FloridaCharlotteCountyRoute = FloridaCharlotteCountyRouteImport.update({
+  id: '/charlotte-county',
+  path: '/charlotte-county',
+  getParentRoute: () => FloridaRoute,
+} as any)
+const FloridaCollierCountyRoute = FloridaCollierCountyRouteImport.update({
+  id: '/collier-county',
+  path: '/collier-county',
+  getParentRoute: () => FloridaRoute,
+} as any)
+const FloridaLeeCountyRoute = FloridaLeeCountyRouteImport.update({
+  id: '/lee-county',
+  path: '/lee-county',
+  getParentRoute: () => FloridaRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -53,7 +77,11 @@ export interface FileRoutesByFullPath {
   '/calculator': typeof CalculatorRoute
   '/company': typeof CompanyRoute
   '/contact': typeof ContactRoute
+  '/florida': typeof FloridaRouteWithChildren
   '/solar': typeof SolarRoute
+  '/florida/charlotte-county': typeof FloridaCharlotteCountyRoute
+  '/florida/collier-county': typeof FloridaCollierCountyRoute
+  '/florida/lee-county': typeof FloridaLeeCountyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -61,7 +89,11 @@ export interface FileRoutesByTo {
   '/calculator': typeof CalculatorRoute
   '/company': typeof CompanyRoute
   '/contact': typeof ContactRoute
+  '/florida': typeof FloridaRouteWithChildren
   '/solar': typeof SolarRoute
+  '/florida/charlotte-county': typeof FloridaCharlotteCountyRoute
+  '/florida/collier-county': typeof FloridaCollierCountyRoute
+  '/florida/lee-county': typeof FloridaLeeCountyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -70,14 +102,37 @@ export interface FileRoutesById {
   '/calculator': typeof CalculatorRoute
   '/company': typeof CompanyRoute
   '/contact': typeof ContactRoute
+  '/florida': typeof FloridaRouteWithChildren
   '/solar': typeof SolarRoute
+  '/florida/charlotte-county': typeof FloridaCharlotteCountyRoute
+  '/florida/collier-county': typeof FloridaCollierCountyRoute
+  '/florida/lee-county': typeof FloridaLeeCountyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/batteries' | '/calculator' | '/company' | '/contact' | '/solar'
+    | '/'
+    | '/batteries'
+    | '/calculator'
+    | '/company'
+    | '/contact'
+    | '/florida'
+    | '/solar'
+    | '/florida/charlotte-county'
+    | '/florida/collier-county'
+    | '/florida/lee-county'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/batteries' | '/calculator' | '/company' | '/contact' | '/solar'
+  to:
+    | '/'
+    | '/batteries'
+    | '/calculator'
+    | '/company'
+    | '/contact'
+    | '/florida'
+    | '/solar'
+    | '/florida/charlotte-county'
+    | '/florida/collier-county'
+    | '/florida/lee-county'
   id:
     | '__root__'
     | '/'
@@ -85,7 +140,11 @@ export interface FileRouteTypes {
     | '/calculator'
     | '/company'
     | '/contact'
+    | '/florida'
     | '/solar'
+    | '/florida/charlotte-county'
+    | '/florida/collier-county'
+    | '/florida/lee-county'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -94,6 +153,7 @@ export interface RootRouteChildren {
   CalculatorRoute: typeof CalculatorRoute
   CompanyRoute: typeof CompanyRoute
   ContactRoute: typeof ContactRoute
+  FloridaRoute: typeof FloridaRouteWithChildren
   SolarRoute: typeof SolarRoute
 }
 
@@ -134,6 +194,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/florida': {
+      id: '/florida'
+      path: '/florida'
+      fullPath: '/florida'
+      preLoaderRoute: typeof FloridaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/solar': {
       id: '/solar'
       path: '/solar'
@@ -141,8 +208,44 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SolarRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/florida/charlotte-county': {
+      id: '/florida/charlotte-county'
+      path: '/charlotte-county'
+      fullPath: '/florida/charlotte-county'
+      preLoaderRoute: typeof FloridaCharlotteCountyRouteImport
+      parentRoute: typeof FloridaRoute
+    }
+    '/florida/collier-county': {
+      id: '/florida/collier-county'
+      path: '/collier-county'
+      fullPath: '/florida/collier-county'
+      preLoaderRoute: typeof FloridaCollierCountyRouteImport
+      parentRoute: typeof FloridaRoute
+    }
+    '/florida/lee-county': {
+      id: '/florida/lee-county'
+      path: '/lee-county'
+      fullPath: '/florida/lee-county'
+      preLoaderRoute: typeof FloridaLeeCountyRouteImport
+      parentRoute: typeof FloridaRoute
+    }
   }
 }
+
+interface FloridaRouteChildren {
+  FloridaCharlotteCountyRoute: typeof FloridaCharlotteCountyRoute
+  FloridaCollierCountyRoute: typeof FloridaCollierCountyRoute
+  FloridaLeeCountyRoute: typeof FloridaLeeCountyRoute
+}
+
+const FloridaRouteChildren: FloridaRouteChildren = {
+  FloridaCharlotteCountyRoute: FloridaCharlotteCountyRoute,
+  FloridaCollierCountyRoute: FloridaCollierCountyRoute,
+  FloridaLeeCountyRoute: FloridaLeeCountyRoute,
+}
+
+const FloridaRouteWithChildren =
+  FloridaRoute._addFileChildren(FloridaRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -150,6 +253,7 @@ const rootRouteChildren: RootRouteChildren = {
   CalculatorRoute: CalculatorRoute,
   CompanyRoute: CompanyRoute,
   ContactRoute: ContactRoute,
+  FloridaRoute: FloridaRouteWithChildren,
   SolarRoute: SolarRoute,
 }
 export const routeTree = rootRouteImport

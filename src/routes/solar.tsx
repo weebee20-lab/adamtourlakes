@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { BatteryCharging, PanelsTopLeft, Sun, UtilityPole } from "lucide-react";
 import { CtaBand } from "@/components/cta-band";
 import { seoHead } from "@/lib/seo";
@@ -197,6 +197,26 @@ function SolarPage() {
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+        <p className="text-xs font-medium tracking-[0.2em] text-gold uppercase">Florida solar</p>
+        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">
+          Local pages for the roofs I actually work:{" "}
+          <Link to="/florida" className="text-gold hover:text-fg">
+            Florida
+          </Link>
+          {", "}
+          <Link to="/florida/lee-county" className="text-gold hover:text-fg">
+            Lee County
+          </Link>
+          {", "}
+          <Link to="/florida/collier-county" className="text-gold hover:text-fg">
+            Collier County
+          </Link>
+          {", "}
+          <Link to="/florida/charlotte-county" className="text-gold hover:text-fg">
+            Charlotte County
+          </Link>
+          .
+        </p>
         <CtaBand
           heading="If this briefing clicked, the next step is your bill."
           body="Call the Cape Coral office, ask for Adam, and we will look at twelve months of usage before anyone talks modules."

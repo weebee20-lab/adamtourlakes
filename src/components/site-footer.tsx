@@ -37,6 +37,26 @@ export function SiteFooter() {
                 Contact Adam
               </Link>
             </li>
+            <li>
+              <Link to="/florida" className="text-muted transition-colors hover:text-fg">
+                Florida solar
+              </Link>
+            </li>
+            <li>
+              <Link to="/florida/lee-county" className="text-muted transition-colors hover:text-fg">
+                Lee County
+              </Link>
+            </li>
+            <li>
+              <Link to="/florida/collier-county" className="text-muted transition-colors hover:text-fg">
+                Collier County
+              </Link>
+            </li>
+            <li>
+              <Link to="/florida/charlotte-county" className="text-muted transition-colors hover:text-fg">
+                Charlotte County
+              </Link>
+            </li>
           </ul>
         </div>
 
