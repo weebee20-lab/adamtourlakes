@@ -82,8 +82,10 @@ export function ExampleBill() {
             A <span className="font-num">$250</span> average current bill, with and without solar.
           </h2>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">
-            Same home, same FPL rate, sized to a {Math.round(OFFSET * 100)}% offset. This is an example from the same
-            math as the calculator — not a quote. Hover over each bar on the graph to see the savings and bill change.
+            Same home, same FPL rate, sized to a {Math.round(OFFSET * 100)}% offset with a{" "}
+            {formatNumber(SAVINGS.systemKw, 2)} kW system ({SAVINGS.panelCount} panels). This is an example from the
+            same math as the calculator — not a quote. Hover over each bar on the graphs to see the savings and bill
+            change.
           </p>
         </div>
         <Button asChild>
