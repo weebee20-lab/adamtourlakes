@@ -24,7 +24,7 @@ const STEPS = [
   {
     icon: PenTool,
     title: "Personalized Design",
-    body: "We build your system from the ground up using your usage history, hand-modeling your home in our software, and applying the most up-to-date irradiance information.",
+    body: "We build your system from the ground up using your usage history. We hand-model your home in our software and apply the most up-to-date irradiance information.",
   },
   {
     icon: Timer,
