@@ -15,6 +15,7 @@ export const saveContactLead = createServerFn({ method: "POST" })
     bill: text(d?.bill, 20),
     backup: Boolean(d?.backup),
     message: text(d?.message, 2000),
+    captchaToken: text(d?.captchaToken, 4096),
   }))
   .handler(async ({ data }) => {
     if (!data.name || !data.email) return { ok: false as const, error: "Name and email are required." };
@@ -24,6 +25,9 @@ export const saveContactLead = createServerFn({ method: "POST" })
     if (!allowRateLimit("contact-lead", 8, 15 * 60 * 1000)) {
       return { ok: false as const, error: "Too many tries. Call the office or wait a few minutes." };
     }
+    const { verifyRecaptchaToken } = await import("@/lib/recaptcha.server");
+    const captcha = await verifyRecaptchaToken(data.captchaToken, "contact_lead");
+    if (!captcha.ok) return { ok: false as const, error: captcha.error };
     try {
       const { insertLead } = await import("@/lib/leads.server");
       await insertLead({

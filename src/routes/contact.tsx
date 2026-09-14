@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { OutOfAreaDialog } from "@/components/out-of-area-dialog";
 import { saveContactLead } from "@/lib/leads-rpc";
+import { getRecaptchaToken } from "@/lib/recaptcha-client";
 import { seoHead } from "@/lib/seo";
 import { COMPANY, JOB_TITLE, SITE_NAME } from "@/lib/site";
 import { isSwflZip, zipFromText } from "@/lib/swfl";
@@ -45,6 +46,11 @@ function ContactPage() {
     setBusy(true);
     setError(null);
     try {
+      const captchaToken = await getRecaptchaToken("contact_lead");
+      if (!captchaToken) {
+        setError("Security check failed. Refresh and try again.");
+        return;
+      }
       const res = await saveContactLead({
         data: {
           name,
@@ -54,6 +60,7 @@ function ContactPage() {
           bill,
           backup,
           message,
+          captchaToken,
         },
       });
       if (!res.ok) {
