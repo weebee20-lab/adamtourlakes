@@ -864,7 +864,7 @@ export function RoofCanvas() {
         </div>
         {hint ? (
           <div
-            className="pointer-events-none absolute z-10 w-max max-w-[14rem] -translate-x-1/2 -translate-y-[120%] rounded-md bg-ink px-2.5 py-1.5 text-center text-[11px] leading-snug text-primary-foreground shadow-md"
+            className="pointer-events-none absolute z-10 w-max max-w-[14rem] -translate-x-1/2 -translate-y-[120%] rounded-md bg-bg px-2.5 py-1.5 text-center text-[11px] leading-snug text-fg shadow-md ring-1 ring-gold/50"
             style={{ left: `${hint.x}%`, top: `${hint.y}%` }}
             role="status"
           >
