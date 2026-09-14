@@ -122,7 +122,7 @@
 
 .site-signature-hero {
   display: block;
-  width: min(22rem, 82vw);
+  width: min(27.5rem, 92vw);
   height: auto;
   outline: none;
   filter: drop-shadow(0 0 16px color-mix(in oklab, var(--color-gold) 28%, transparent));
