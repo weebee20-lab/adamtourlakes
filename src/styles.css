@@ -501,6 +501,10 @@
     max-height: 100svh;
   }
 
+  .hero-copy-nudge {
+    margin-left: 2.75rem;
+  }
+
   .hero-veil {
     background: linear-gradient(
       to right,
