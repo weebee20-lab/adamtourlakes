@@ -8,7 +8,7 @@ export const Route = createFileRoute("/solar")({
   head: () =>
     seoHead(
       "How Home Solar Systems Work | Adam Tourlakes, Southwest Florida",
-      "A plain-language guide to rooftop solar: panels, inverters, batteries, Florida heat, and what changed after the 2025 federal tax credit.",
+      "A plain-language guide to rooftop solar: panels, inverters, batteries, Florida heat, and how to size from your electric bill.",
       "/solar",
     ),
   component: SolarPage,
@@ -42,10 +42,6 @@ const STEPS = [
 ];
 
 const FAQS = [
-  {
-    q: "Is the 30% federal tax credit still available?",
-    a: "Not for a homeowner buying their own system in 2026. The Residential Clean Energy Credit (Section 25D) stopped applying to expenditures after December 31, 2025. Solar can still pencil on this coast because of the sun hours and utility rates — but I will not quote a federal credit that is gone. If you installed in 2025 and have unused carryforward, that is a different conversation with your tax person.",
-  },
   {
     q: "Will solar work through a Southwest Florida summer?",
     a: "Yes — and the heat is a real design input, not a footnote. More sun means more kilowatt-hours; hotter cells mean slightly less efficiency per module. We size for both, and we spec equipment that is rated for this climate and for wind.",

@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+Disallow: /admin1776
+Sitemap: https://adamtourlakes.com/sitemap.xml
