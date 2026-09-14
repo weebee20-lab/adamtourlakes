@@ -49,6 +49,7 @@ export function SiteHeader() {
               <Link
                 key={item.to}
                 to={item.to}
+                preload="intent"
                 aria-current={active ? "page" : undefined}
                 className={cn(
                   "inline-flex h-11 items-center px-1.5 text-[11px] font-medium whitespace-nowrap transition-colors duration-150 md:px-2 md:text-xs xl:px-2.5 xl:text-sm",
