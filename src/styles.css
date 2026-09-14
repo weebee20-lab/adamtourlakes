@@ -117,6 +117,7 @@
   width: min(16.5rem, 58vw);
   height: auto;
   outline: none;
+  image-rendering: auto;
   filter: drop-shadow(0 0 14px color-mix(in oklab, var(--color-gold) 30%, transparent));
 }
 
@@ -125,6 +126,7 @@
   width: min(27.5rem, 92vw);
   height: auto;
   outline: none;
+  image-rendering: auto;
   filter: drop-shadow(0 0 16px color-mix(in oklab, var(--color-gold) 28%, transparent));
 }
 
