@@ -65,7 +65,16 @@ export function LocationCard() {
               <MapPin className="size-4 text-muted" aria-hidden />
               Location
             </span>
-            <span className="text-xs font-normal text-muted">We use NASA sun hours for system accuracy.</span>
+            <span className="text-xs font-normal text-muted">
+              Only FL addresses accepted here. Use{" "}
+              <a
+                href="https://heliosolarcalculator.com"
+                className="text-gold underline decoration-gold/50 underline-offset-2 hover:text-fg"
+              >
+                HelioSolarCalculator.com
+              </a>{" "}
+              if outside of FL.
+            </span>
           </p>
           <div className="inline-flex rounded-lg bg-surface-2 p-0.5 ring-1 ring-border">
             <button
