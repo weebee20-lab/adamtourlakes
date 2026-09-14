@@ -118,34 +118,38 @@ function SolarPage() {
         <div className="hero-cutline hero-cutline-from-left" aria-hidden />
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <p className="text-xs font-medium tracking-[0.2em] text-gold uppercase">The system</p>
-        <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight">
-          Four pieces. Nothing mystical.
-        </h2>
-        <div className="mt-10 grid gap-4 sm:grid-cols-2">
-          {STEPS.map((step) => (
-            <article
-              key={step.n}
-              className="rounded-lg bg-surface p-5 shadow-[var(--shadow-border)]"
-            >
-              <div className="flex items-center justify-between">
-                <step.icon className="size-5 text-gold" />
-                <span className="text-xs font-medium tracking-[0.16em] text-blue uppercase">
-                  {step.n}
-                </span>
-              </div>
-              <h3 className="mt-4 font-display text-2xl font-semibold">{step.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{step.body}</p>
-            </article>
-          ))}
+      <section className="relative">
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+          <p className="text-xs font-medium tracking-[0.2em] text-gold uppercase">The system</p>
+          <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight">
+            Four pieces. Nothing mystical.
+          </h2>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2">
+            {STEPS.map((step) => (
+              <article
+                key={step.n}
+                className="rounded-lg bg-surface p-5 shadow-[var(--shadow-border)]"
+              >
+                <div className="flex items-center justify-between">
+                  <step.icon className="size-5 text-gold" />
+                  <span className="text-xs font-medium tracking-[0.16em] text-blue uppercase">
+                    {step.n}
+                  </span>
+                </div>
+                <h3 className="mt-4 font-display text-2xl font-semibold">{step.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{step.body}</p>
+              </article>
+            ))}
+          </div>
         </div>
+        <div className="hero-cutline" aria-hidden />
       </section>
 
-      <section className="border-y border-border bg-surface">
+      <section className="relative bg-surface">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
           <ExampleBill />
         </div>
+        <div className="hero-cutline hero-cutline-from-left" aria-hidden />
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
