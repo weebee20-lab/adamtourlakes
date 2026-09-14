@@ -14,29 +14,34 @@ export function InstallReel() {
   }, []);
 
   return (
-    <div className="relative mt-auto min-h-[10.5rem] flex-1 overflow-hidden rounded-lg ring-1 ring-border">
-      <img
-        src="/videos/swfl-installs.jpg"
-        alt=""
-        className="absolute inset-0 h-full w-full object-cover"
-        aria-hidden
-      />
-      <video
-        ref={ref}
-        className="absolute inset-0 h-full w-full object-cover"
-        poster="/videos/swfl-installs.jpg"
-        muted
-        loop
-        playsInline
-        autoPlay
-        preload="none"
-        disablePictureInPicture
-        disableRemotePlayback
-        controls={false}
-        aria-label="Southwest Florida solar installs"
-      >
-        <source src="/videos/swfl-installs.mp4" type="video/mp4" />
-      </video>
+    <div className="mt-auto flex flex-col gap-2">
+      <p className="text-[10px] font-semibold tracking-[0.16em] text-gold uppercase">
+        A few of our many installations
+      </p>
+      <div className="relative aspect-[720/424] w-full overflow-hidden rounded-lg ring-1 ring-border">
+        <img
+          src="/videos/swfl-installs.jpg?v=2"
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover"
+          aria-hidden
+        />
+        <video
+          ref={ref}
+          className="absolute inset-0 h-full w-full object-cover"
+          poster="/videos/swfl-installs.jpg?v=2"
+          muted
+          loop
+          playsInline
+          autoPlay
+          preload="none"
+          disablePictureInPicture
+          disableRemotePlayback
+          controls={false}
+          aria-label="A few of our many installations"
+        >
+          <source src="/videos/swfl-installs.mp4?v=2" type="video/mp4" />
+        </video>
+      </div>
     </div>
   );
 }
