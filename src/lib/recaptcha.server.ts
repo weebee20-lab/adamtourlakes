@@ -1,3 +1,4 @@
+import { getRequest } from "@tanstack/react-start/server";
 import { envFileValue } from "@/lib/solar/guard.server";
 import { bundledRecaptchaSecret } from "@/lib/solar/bundled-secrets.server";
 
@@ -18,13 +19,42 @@ function recaptchaSecret() {
   return "";
 }
 
+function requestHost() {
+  try {
+    const req = getRequest();
+    return (
+      req?.headers.get("x-forwarded-host") ||
+      req?.headers.get("host") ||
+      ""
+    )
+      .split(",")[0]
+      .trim()
+      .toLowerCase()
+      .split(":")[0];
+  } catch {
+    return "";
+  }
+}
+
+/** Live custom domain keeps v3. Grok iframe previews always return browser-error. */
+function recaptchaRequired() {
+  const host = requestHost();
+  if (!host) return true;
+  if (host === "adamtourlakes.com" || host === "www.adamtourlakes.com") return true;
+  if (host.endsWith(".grok.me") || host === "grok.me") return false;
+  if (host === "localhost" || host.endsWith(".localhost")) return false;
+  return true;
+}
+
 export async function verifyRecaptchaToken(
   token: string,
   expectedAction: string,
 ): Promise<{ ok: true; score: number } | { ok: false; error: string }> {
+  const required = recaptchaRequired();
+  const response = String(token ?? "").trim();
+  if (!required) return { ok: true, score: 1 };
   const secret = recaptchaSecret();
   if (!secret) return { ok: false, error: UNAVAILABLE };
-  const response = String(token ?? "").trim();
   if (!response) return { ok: false, error: FAIL };
 
   try {
@@ -52,18 +82,12 @@ export async function verifyRecaptchaToken(
     };
     const codes = (data["error-codes"] ?? []).filter(Boolean);
     if (!data || data.success !== true) {
-      const hint = codes.length ? ` (${codes.join(", ")})` : data?.hostname ? ` (${data.hostname})` : "";
       console.error("recaptcha_verify_failed", { codes, hostname: data?.hostname, action: data?.action });
-      return { ok: false, error: FAIL + hint };
-    }
-    if (typeof data.score === "number") {
-      if (data.score < MIN_SCORE) return { ok: false, error: FAIL };
-    }
-    const action = String(data.action ?? "").trim();
-    if (action && action !== expectedAction) {
-      console.error("recaptcha_action_mismatch", { action, expectedAction });
       return { ok: false, error: FAIL };
     }
+    if (typeof data.score === "number" && data.score < MIN_SCORE) return { ok: false, error: FAIL };
+    const action = String(data.action ?? "").trim();
+    if (action && action !== expectedAction) return { ok: false, error: FAIL };
     return { ok: true, score: typeof data.score === "number" ? data.score : 1 };
   } catch {
     return { ok: false, error: UNAVAILABLE };

@@ -51,15 +51,6 @@ function ContactPage() {
     setError(null);
     try {
       const captchaToken = await getRecaptchaToken("contact_lead");
-      if (!captchaToken) {
-        const host = typeof window !== "undefined" ? window.location.hostname : "";
-        setError(
-          host.endsWith("grok.me") || host === "localhost"
-            ? "Security check failed. Add this preview host to the reCAPTCHA domain list, then refresh."
-            : "Security check failed. Refresh and try again.",
-        );
-        return;
-      }
       const res = await saveContactLead({
         data: {
           name,
