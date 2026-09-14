@@ -47,7 +47,6 @@ export function SiteHeader() {
           <span className="sun-mark-wrap">
             <span className="sun-mark">
               <span className="sun-mark-flare" aria-hidden />
-              <span className="sun-mark-spark" aria-hidden />
               <SiteMark className="relative z-10 size-7" />
             </span>
           </span>

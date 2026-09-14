@@ -174,21 +174,6 @@
   pointer-events: none;
 }
 
-.sun-mark-spark {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 21;
-  width: 0.42rem;
-  height: 0.42rem;
-  border-radius: 999px;
-  background: #fff6e4;
-  box-shadow: 0 0 10px 3px color-mix(in oklab, var(--color-gold) 75%, transparent);
-  transform: translate(-50%, -50%);
-  animation: none;
-  pointer-events: none;
-}
-
 @keyframes sun-scan {
   0% {
     transform: translateX(-140%) rotate(18deg);
