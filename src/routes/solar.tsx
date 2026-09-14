@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { BatteryCharging, PanelsTopLeft, Sun, UtilityPole } from "lucide-react";
+import { BatteryCharging, PanelsTopLeft, Play, Sun, UtilityPole } from "lucide-react";
 import { CtaBand } from "@/components/cta-band";
 import { ExampleBill } from "@/components/example-bill";
 import { seoHead } from "@/lib/seo";
@@ -66,6 +66,15 @@ const FAQS = [
     q: "What about solar pool heating?",
     a: "Different technology from photovoltaic. Pool solar circulates water through collectors on the roof to extend the swim season. SES of America is also a licensed pool contractor, so that job does not get split across two companies.",
   },
+];
+
+const VIDEOS = [
+  { n: "01", title: "Intro" },
+  { n: "02", title: "Solar Basics" },
+  { n: "03", title: "Solar Cost" },
+  { n: "04", title: "Solar on Different Roof Types" },
+  { n: "05", title: "Solar is a Scam?" },
+  { n: "06", title: "Solar With Batteries" },
 ];
 
 function SolarPage() {
@@ -146,6 +155,27 @@ function SolarPage() {
           I am filming my own explainers for this page — how a system works, what heat does on a
           Cape Coral roof, and what a battery actually buys you. Nothing third-party. Check back.
         </p>
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {VIDEOS.map((item) => (
+            <article
+              key={item.n}
+              className="overflow-hidden rounded-lg bg-surface shadow-[var(--shadow-border)]"
+            >
+              <div className="relative flex aspect-video items-center justify-center bg-bg">
+                <Play className="size-10 text-gold" strokeWidth={1.5} aria-hidden />
+                <span className="absolute top-3 left-3 text-[10px] font-semibold tracking-[0.16em] text-gold uppercase">
+                  {item.n}
+                </span>
+                <span className="absolute right-3 bottom-3 text-[10px] font-medium tracking-wide text-muted uppercase">
+                  Coming soon
+                </span>
+              </div>
+              <div className="px-4 py-3">
+                <h3 className="font-display text-xl font-semibold tracking-tight">{item.title}</h3>
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="border-t border-border bg-surface">
