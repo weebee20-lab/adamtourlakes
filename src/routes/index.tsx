@@ -72,7 +72,7 @@ function Home() {
               height={305}
             />
             <p className="mt-6 text-xs font-medium tracking-[0.2em] text-gold uppercase">
-              Cape Coral · Southwest Florida
+              Solar Expert
             </p>
             <h1 className="mt-4 font-display text-5xl font-semibold tracking-tight text-fg sm:text-6xl lg:text-7xl">
               Honest solar.
