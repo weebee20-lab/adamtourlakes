@@ -74,7 +74,7 @@ export function HomePage() {
               width={2533}
               height={883}
             />
-            <p className="relative z-10 mt-2 text-xs font-medium tracking-[0.2em] text-gold uppercase">
+            <p className="relative z-10 mt-2 text-xs font-medium tracking-[0.2em] text-gold uppercase lg:text-[0.975rem]">
               Solar Expert · Southwest Florida
             </p>
             <h1 className="relative z-10 mt-4 font-display text-5xl font-semibold tracking-tight text-fg sm:text-6xl lg:text-7xl">
