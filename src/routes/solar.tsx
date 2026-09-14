@@ -18,7 +18,7 @@ const STEPS = [
     n: "01",
     icon: Sun,
     title: "Panels catch photons",
-    body: "Each module is a grid of silicon cells. Light knocks electrons loose and that current is DC — the same kind as a battery. That is the raw power the roof makes.",
+    body: "Each module is a grid of silicon cells. Sunlight knocks electrons loose and therefore creates DC power (same kind as a battery).",
   },
   {
     n: "02",
