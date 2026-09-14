@@ -95,8 +95,9 @@ function ContactPage() {
             Contact Adam
           </h1>
           <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted sm:text-base">
-            Send the roof you just sized — or just a name and a bill. I will follow up from the{" "}
-            {COMPANY.short} shop in Cape Coral.
+            If you'd like to send me the design you created using the Free Solar Calculator on this
+            website, use the contact form at the end of that page. If you don't want to use that,
+            just fill out this form and send it off.
           </p>
 
           {sent ? (
