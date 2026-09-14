@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Adam Tourlakes">
+  <rect width="32" height="32" rx="7" fill="#0a0b0d"/>
+  <g fill="#c9a44a" transform="translate(16 16)">
+    <circle r="6"/>
+    <rect x="-1.2" y="-13.4" width="2.4" height="4.6" rx="1.2"/>
+    <rect x="-1.2" y="-13.4" width="2.4" height="4.6" rx="1.2" transform="rotate(45)"/>
+    <rect x="-1.2" y="-13.4" width="2.4" height="4.6" rx="1.2" transform="rotate(90)"/>
+    <rect x="-1.2" y="-13.4" width="2.4" height="4.6" rx="1.2" transform="rotate(135)"/>
+    <rect x="-1.2" y="-13.4" width="2.4" height="4.6" rx="1.2" transform="rotate(180)"/>
+    <rect x="-1.2" y="-13.4" width="2.4" height="4.6" rx="1.2" transform="rotate(225)"/>
+    <rect x="-1.2" y="-13.4" width="2.4" height="4.6" rx="1.2" transform="rotate(270)"/>
+    <rect x="-1.2" y="-13.4" width="2.4" height="4.6" rx="1.2" transform="rotate(315)"/>
+  </g>
+</svg>
