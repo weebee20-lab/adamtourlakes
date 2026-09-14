@@ -263,6 +263,16 @@
     overflow-x: hidden;
   }
 
+  .hero-stage .hero-aura {
+    top: 4.5rem;
+    left: 50%;
+    right: auto;
+    width: min(19rem, 88vw);
+    height: min(22rem, 38svh);
+    transform: translateX(-50%);
+    background-position: 50% 35%, 50% 70%;
+  }
+
   .hero-stage .hero-portrait {
     position: relative;
     top: auto;
@@ -273,7 +283,10 @@
     max-width: min(18.5rem, 82vw);
     margin: 4.35rem auto 0.35rem;
     object-position: top center;
-    filter: drop-shadow(0 16px 22px color-mix(in oklab, var(--color-bg) 78%, transparent));
+    filter:
+      drop-shadow(0 14px 18px color-mix(in oklab, var(--color-bg) 70%, transparent))
+      drop-shadow(-10px 6px 20px color-mix(in oklab, var(--color-blue) 40%, transparent))
+      drop-shadow(10px 8px 18px color-mix(in oklab, var(--color-gold) 34%, transparent));
   }
 
   .hero-stage .hero-veil {
