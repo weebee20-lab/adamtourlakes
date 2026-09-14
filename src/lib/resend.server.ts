@@ -65,24 +65,47 @@ export async function sendContactEmails(lead: {
   bill: string;
   backup: boolean;
   message: string;
+  fromCalculator?: boolean;
+  systemKw?: string;
+  panelCount?: string;
+  batteryName?: string;
+  batteryCount?: string;
 }) {
   const first = lead.name.trim().split(/\s+/)[0] || "there";
   const bill = lead.bill ? `$${lead.bill}` : "—";
   const backup = lead.backup ? "Yes" : "No";
-  const rows = [
+  const rows: [string, string][] = [
     ["Name", lead.name],
     ["Email", lead.email],
     ["Phone", lead.phone || "—"],
     ["Address / ZIP", lead.address || lead.zip || "—"],
     ["Average bill", bill],
-    ["Backup batteries", backup],
-    ["Note", lead.message || "—"],
   ];
+  if (lead.fromCalculator) {
+    const kw = lead.systemKw ? `${lead.systemKw} kW` : "—";
+    const panels = lead.panelCount ? `${lead.panelCount} panels` : "";
+    rows.push(["Source", "Free Solar Calculator"]);
+    rows.push(["System sized", panels ? `${kw} (${panels})` : kw]);
+    rows.push(["Wants batteries", backup]);
+    if (lead.backup) {
+      const count = lead.batteryCount && lead.batteryCount !== "1" ? `${lead.batteryCount}× ` : "";
+      rows.push(["Battery", lead.batteryName ? `${count}${lead.batteryName}` : "Yes"]);
+    }
+  } else {
+    rows.push(["Source", "Contact form"]);
+    rows.push(["Backup batteries", backup]);
+  }
+  rows.push(["Note", lead.message || "—"]);
+
+  const heading = lead.fromCalculator ? "New calculator design" : "New contact form";
+  const blurb = lead.fromCalculator
+    ? "Someone sized a system on the Free Solar Calculator and sent it to you."
+    : "Someone used the contact form on adamtourlakes.com.";
 
   const notifyHtml = `
-    <p style="font-family:Georgia,serif;font-size:20px;color:#c9a227;margin:0 0 12px">New contact form</p>
+    <p style="font-family:Georgia,serif;font-size:20px;color:#c9a227;margin:0 0 12px">${heading}</p>
     <p style="font-family:system-ui,sans-serif;font-size:14px;color:#111;line-height:1.5">
-      Someone used the form on adamtourlakes.com.
+      ${blurb}
     </p>
     <table style="font-family:system-ui,sans-serif;font-size:14px;color:#111;border-collapse:collapse">
       ${rows
@@ -96,7 +119,7 @@ export async function sendContactEmails(lead: {
       Inbox: adamtourlakes.com/admin1776
     </p>
   `;
-  const notifyText = `New contact form\n\n${rows.map(([k, v]) => `${k}: ${v}`).join("\n")}\n`;
+  const notifyText = `${heading}\n\n${rows.map(([k, v]) => `${k}: ${v}`).join("\n")}\n`;
 
   const thanksHtml = `<!DOCTYPE html>
 <html lang="en">
@@ -174,7 +197,9 @@ export async function sendContactEmails(lead: {
   const results = await Promise.allSettled([
     sendEmail({
       to: notifyTo(),
-      subject: `New solar inquiry — ${lead.name || "contact form"}`,
+      subject: lead.fromCalculator
+        ? `New calculator design — ${lead.name || "contact form"}`
+        : `New solar inquiry — ${lead.name || "contact form"}`,
       html: notifyHtml,
       text: notifyText,
       replyTo: lead.email,

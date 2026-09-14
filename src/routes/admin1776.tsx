@@ -80,6 +80,8 @@ function AdminInbox() {
     if (filter === "all") return leads.filter((row) => row.status !== "deleted");
     return leads.filter((row) => row.status === filter);
   }, [leads, filter]);
+  const calcLeads = visible.filter((row) => row.fromCalculator);
+  const formLeads = visible.filter((row) => !row.fromCalculator);
 
   if (!unlocked) {
     return (
@@ -152,7 +154,50 @@ function AdminInbox() {
         ))}
       </div>
 
-      <div className="mt-6 overflow-x-auto rounded-xl border border-border bg-surface">
+      <LeadCard
+        title="Free Solar Calculator"
+        hint="Sized a system on this site"
+        rows={calcLeads}
+        design
+        onStatus={setStatus}
+        onRemove={removeLead}
+      />
+      <LeadCard
+        title="Contact form"
+        hint="Filled the form without a calculator design"
+        rows={formLeads}
+        onStatus={setStatus}
+        onRemove={removeLead}
+      />
+    </main>
+  );
+}
+
+function LeadCard({
+  title,
+  hint,
+  rows,
+  design,
+  onStatus,
+  onRemove,
+}: {
+  title: string;
+  hint: string;
+  rows: ContactLead[];
+  design?: boolean;
+  onStatus: (id: string, status: LeadStatus) => void;
+  onRemove: (id: string) => void;
+}) {
+  const cols = design ? 11 : 9;
+  return (
+    <section className="mt-8 rounded-xl border border-border bg-surface">
+      <div className="border-b border-border px-4 py-4 sm:px-5">
+        <h2 className="font-display text-2xl font-semibold tracking-tight">{title}</h2>
+        <p className="mt-1 text-sm text-muted">
+          {hint} · {rows.length}
+        </p>
+      </div>
+      <div className="overflow-x-auto">
         <table className="w-full min-w-[56rem] text-left text-sm">
           <thead className="border-b border-border text-xs tracking-[0.12em] text-gold uppercase">
             <tr>
@@ -162,24 +207,24 @@ function AdminInbox() {
               <th className="px-4 py-3 font-medium">Phone</th>
               <th className="px-4 py-3 font-medium">Address</th>
               <th className="px-4 py-3 font-medium">Bill</th>
+              {design ? <th className="px-4 py-3 font-medium">System</th> : null}
+              {design ? <th className="px-4 py-3 font-medium">Batteries</th> : null}
               <th className="px-4 py-3 font-medium">Note</th>
               <th className="px-4 py-3 font-medium">Status</th>
               <th className="px-4 py-3 font-medium"> </th>
             </tr>
           </thead>
           <tbody>
-            {visible.length === 0 ? (
+            {rows.length === 0 ? (
               <tr>
-                <td colSpan={9} className="px-4 py-8 text-muted">
-                  No forms in this view yet.
+                <td colSpan={cols} className="px-4 py-8 text-muted">
+                  None in this view.
                 </td>
               </tr>
             ) : (
-              visible.map((lead) => (
+              rows.map((lead) => (
                 <tr key={lead.id} className="border-b border-border/70 align-top last:border-0">
-                  <td className="px-4 py-3 whitespace-nowrap text-muted">
-                    {formatWhen(lead.createdAt)}
-                  </td>
+                  <td className="px-4 py-3 whitespace-nowrap text-muted">{formatWhen(lead.createdAt)}</td>
                   <td className="px-4 py-3 font-medium">{lead.name}</td>
                   <td className="px-4 py-3">
                     <a className="text-gold hover:text-fg" href={`mailto:${lead.email}`}>
@@ -195,21 +240,30 @@ function AdminInbox() {
                       "—"
                     )}
                   </td>
-                  <td className="px-4 py-3">
-                    {lead.address || lead.zip || "—"}
-                    {lead.backup ? (
-                      <span className="mt-1 block text-xs text-gold">Wants batteries</span>
-                    ) : null}
-                  </td>
-                  <td className="font-num px-4 py-3 whitespace-nowrap">
-                    {lead.bill ? `$${lead.bill}` : "—"}
-                  </td>
+                  <td className="px-4 py-3">{lead.address || lead.zip || "—"}</td>
+                  <td className="font-num px-4 py-3 whitespace-nowrap">{lead.bill ? `$${lead.bill}` : "—"}</td>
+                  {design ? (
+                    <td className="px-4 py-3 whitespace-nowrap">
+                      {lead.systemKw
+                        ? `${lead.systemKw} kW${lead.panelCount ? ` (${lead.panelCount} panels)` : ""}`
+                        : "—"}
+                    </td>
+                  ) : null}
+                  {design ? (
+                    <td className="px-4 py-3">
+                      {lead.backup
+                        ? lead.batteryName
+                          ? `${lead.batteryCount && lead.batteryCount !== "1" ? `${lead.batteryCount}× ` : ""}${lead.batteryName}`
+                          : "Yes"
+                        : "No"}
+                    </td>
+                  ) : null}
                   <td className="max-w-[16rem] px-4 py-3 text-muted">{lead.message || "—"}</td>
                   <td className="px-4 py-3">
                     {lead.status === "deleted" ? (
                       <div className="flex flex-col gap-1">
                         <p className="text-xs text-muted">Wipes in 30 days</p>
-                        <StatusBtn active={false} onClick={() => void setStatus(lead.id, "new")}>
+                        <StatusBtn active={false} onClick={() => onStatus(lead.id, "new")}>
                           Restore
                         </StatusBtn>
                       </div>
@@ -217,19 +271,14 @@ function AdminInbox() {
                       <div className="flex flex-col gap-1">
                         <StatusBtn
                           active={lead.status === "contacted"}
-                          onClick={() =>
-                            void setStatus(lead.id, lead.status === "contacted" ? "new" : "contacted")
-                          }
+                          onClick={() => onStatus(lead.id, lead.status === "contacted" ? "new" : "contacted")}
                         >
                           Contacted
                         </StatusBtn>
                         <StatusBtn
                           active={lead.status === "no_response"}
                           onClick={() =>
-                            void setStatus(
-                              lead.id,
-                              lead.status === "no_response" ? "new" : "no_response",
-                            )
+                            onStatus(lead.id, lead.status === "no_response" ? "new" : "no_response")
                           }
                         >
                           No Response
@@ -242,7 +291,7 @@ function AdminInbox() {
                       <button
                         type="button"
                         className="rounded-md px-2 py-1 text-xs font-semibold text-muted hover:bg-surface-2 hover:text-gold"
-                        onClick={() => void removeLead(lead.id)}
+                        onClick={() => onRemove(lead.id)}
                       >
                         Delete
                       </button>
@@ -254,7 +303,7 @@ function AdminInbox() {
           </tbody>
         </table>
       </div>
-    </main>
+    </section>
   );
 }
 

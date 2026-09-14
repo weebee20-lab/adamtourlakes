@@ -12,4 +12,9 @@ export type ContactLead = {
   backup: boolean;
   message: string;
   status: LeadStatus;
+  fromCalculator: boolean;
+  systemKw: string;
+  panelCount: string;
+  batteryName: string;
+  batteryCount: string;
 };

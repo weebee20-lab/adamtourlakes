@@ -86,6 +86,11 @@ function asLead(row: Record<string, unknown>): ContactLead {
     bill: String(row.bill ?? ""),
     backup: Boolean(row.backup),
     message: String(row.message ?? ""),
+    fromCalculator: Boolean(row.from_calculator),
+    systemKw: String(row.system_kw ?? ""),
+    panelCount: String(row.panel_count ?? ""),
+    batteryName: String(row.battery_name ?? ""),
+    batteryCount: String(row.battery_count ?? ""),
     status:
       status === "contacted" || status === "no_response" || status === "deleted" ? status : "new",
   };
@@ -100,11 +105,19 @@ export async function insertLead(input: {
   bill: string;
   backup: boolean;
   message: string;
+  fromCalculator?: boolean;
+  systemKw?: string;
+  panelCount?: string;
+  batteryName?: string;
+  batteryCount?: string;
 }) {
   const sql = await getSql();
   const id = randomUUID();
   await sql`
-    insert into contact_leads (id, name, email, phone, address, zip, bill, backup, message, status)
+    insert into contact_leads (
+      id, name, email, phone, address, zip, bill, backup, message, status,
+      from_calculator, system_kw, panel_count, battery_name, battery_count
+    )
     values (
       ${id},
       ${input.name},
@@ -115,7 +128,12 @@ export async function insertLead(input: {
       ${input.bill},
       ${input.backup},
       ${input.message},
-      ${"new"}
+      ${"new"},
+      ${Boolean(input.fromCalculator)},
+      ${input.systemKw ?? ""},
+      ${input.panelCount ?? ""},
+      ${input.batteryName ?? ""},
+      ${input.batteryCount ?? ""}
     )
   `;
   return id;
@@ -129,7 +147,8 @@ export async function listLeads() {
       and deleted_at < now() - interval '30 days'
   `;
   const rows = await sql<Record<string, unknown>>`
-    select id, created_at, name, email, phone, address, zip, bill, backup, message, status
+    select id, created_at, name, email, phone, address, zip, bill, backup, message, status,
+           from_calculator, system_kw, panel_count, battery_name, battery_count
     from contact_leads
     order by created_at desc
   `;

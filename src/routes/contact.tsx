@@ -9,7 +9,7 @@ import { getRecaptchaToken, loadRecaptcha } from "@/lib/recaptcha-client";
 import { seoHead } from "@/lib/seo";
 import { COMPANY, JOB_TITLE, SITE_NAME } from "@/lib/site";
 import { isSwflZip, zipFromText } from "@/lib/swfl";
-import { readQuoteHandoff } from "@/lib/quote-handoff";
+import { clearQuoteHandoff, readQuoteHandoff } from "@/lib/quote-handoff";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/contact")({
@@ -51,6 +51,8 @@ function ContactPage() {
     setBusy(true);
     setError(null);
     try {
+      const design = readQuoteHandoff();
+      const fromCalculator = Boolean(design?.fromCalculator && design.panelCount > 0);
       const captchaToken = await getRecaptchaToken("contact_lead");
       const res = await saveContactLead({
         data: {
@@ -62,6 +64,13 @@ function ContactPage() {
           backup,
           message,
           captchaToken,
+          fromCalculator,
+          systemKw: fromCalculator && design?.systemKw
+            ? (Math.round(design.systemKw * 100) / 100).toFixed(2)
+            : "",
+          panelCount: fromCalculator ? String(design?.panelCount || "") : "",
+          batteryName: fromCalculator && backup ? design?.batteryName || "" : "",
+          batteryCount: fromCalculator && backup ? String(design?.batteryCount || "") : "",
         },
       });
       if (!res.ok) {
@@ -70,6 +79,7 @@ function ContactPage() {
         return;
       }
       setSent(true);
+      clearQuoteHandoff();
     } catch {
       setError("Could not send just now. Call the office and ask for Adam.");
     } finally {

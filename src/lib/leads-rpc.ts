@@ -16,6 +16,11 @@ export const saveContactLead = createServerFn({ method: "POST" })
     backup: Boolean(d?.backup),
     message: text(d?.message, 2000),
     captchaToken: text(d?.captchaToken, 8192),
+    fromCalculator: Boolean(d?.fromCalculator),
+    systemKw: text(d?.systemKw, 20),
+    panelCount: text(d?.panelCount, 10),
+    batteryName: text(d?.batteryName, 80),
+    batteryCount: text(d?.batteryCount, 10),
   }))
   .handler(async ({ data }) => {
     if (!data.name || !data.email) return { ok: false as const, error: "Name and email are required." };
@@ -39,6 +44,11 @@ export const saveContactLead = createServerFn({ method: "POST" })
         bill: data.bill,
         backup: data.backup,
         message: data.message,
+        fromCalculator: data.fromCalculator,
+        systemKw: data.systemKw,
+        panelCount: data.panelCount,
+        batteryName: data.backup ? data.batteryName : "",
+        batteryCount: data.backup ? data.batteryCount : "",
       });
       try {
         const { sendContactEmails } = await import("@/lib/resend.server");
@@ -51,6 +61,11 @@ export const saveContactLead = createServerFn({ method: "POST" })
           bill: data.bill,
           backup: data.backup,
           message: data.message,
+          fromCalculator: data.fromCalculator,
+          systemKw: data.systemKw,
+          panelCount: data.panelCount,
+          batteryName: data.backup ? data.batteryName : "",
+          batteryCount: data.backup ? data.batteryCount : "",
         });
       } catch (err) {
         console.error("contact_email_failed", err);

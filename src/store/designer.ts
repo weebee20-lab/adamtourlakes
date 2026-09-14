@@ -6,18 +6,60 @@ import { canPlacePanel, roofSpec, seedCells } from "@/lib/solar/roof";
 import type { BillMode, HouseSize, LocationInfo, RoofKind, Rotation } from "@/lib/solar/types";
 import { utilityFor, usageKwhFromBill } from "@/lib/solar/utility";
 import { solarStrength } from "@/lib/solar/zip";
+import { batteryById } from "@/lib/solar/batteries";
 import { writeQuoteHandoff } from "@/lib/quote-handoff";
 
 function persistHandoff(state: {
   location: LocationInfo | null;
   monthlyBill: number;
+  billMode: BillMode;
+  monthlyKwhInput: Array<number | null>;
+  cells: Record<string, boolean>;
+  house: HouseSize;
+  roof: RoofKind;
+  rotation: Rotation;
+  pitch: number;
+  brandId: string;
+  wattage: number;
+  chimney: boolean;
   wantBackup: boolean;
+  batteryId: string;
+  batteryCount: number;
 }) {
+  const monthlyUsageKwh =
+    state.billMode === "kwh"
+      ? completeMonthlyKwh(
+          state.monthlyKwhInput,
+          state.location?.lat ?? 27,
+          state.location?.climate ?? "hot",
+          usageKwhFromBill(state.monthlyBill, state.location?.rate ?? 0.15, state.location?.customerCharge ?? 0),
+        )
+      : undefined;
+  const savings = calculateSavings({
+    cells: state.cells,
+    house: state.house,
+    roof: state.roof,
+    rotation: state.rotation,
+    pitch: state.pitch,
+    brandId: state.brandId,
+    wattage: state.wattage,
+    monthlyBill: state.monthlyBill,
+    monthlyUsageKwh,
+    chimney: state.chimney,
+    location: state.location,
+  });
+  const batt = batteryById(state.batteryId);
   writeQuoteHandoff({
+    fromCalculator: savings.panelCount > 0,
     label: state.location?.label || state.location?.zip || "",
     zip: state.location?.zip || "",
     monthlyBill: state.monthlyBill,
+    systemKw: savings.systemKw,
+    panelCount: savings.panelCount,
     wantBackup: state.wantBackup,
+    batteryId: state.batteryId,
+    batteryName: batt.name,
+    batteryCount: state.batteryCount,
   });
 }
 
@@ -102,17 +144,23 @@ export const useDesigner = create<DesignerState>((set, get) => ({
   wantBackup: false,
   batteryId: "pw3",
   batteryCount: 1,
-  setHouse: (house) =>
-    set({ house, pitch: roofSpec(house, get().roof).defaultPitch, cells: seedCells(house, get().roof) }),
-  setRoof: (roof) =>
-    set({ roof, pitch: roofSpec(get().house, roof).defaultPitch, cells: seedCells(get().house, roof) }),
+  setHouse: (house) => {
+    set({ house, pitch: roofSpec(house, get().roof).defaultPitch, cells: seedCells(house, get().roof) });
+    persistHandoff(get());
+  },
+  setRoof: (roof) => {
+    set({ roof, pitch: roofSpec(get().house, roof).defaultPitch, cells: seedCells(get().house, roof) });
+    persistHandoff(get());
+  },
   rotate: (dir) =>
     set((s) => ({ rotation: ((((s.rotation + dir * 90) % 360) + 360) % 360) as Rotation })),
-  setWattage: (n) =>
-    set({ wattage: Math.min(WATTAGE_MAX, Math.max(WATTAGE_MIN, Math.round(n))) }),
+  setWattage: (n) => {
+    set({ wattage: Math.min(WATTAGE_MAX, Math.max(WATTAGE_MIN, Math.round(n))) });
+    persistHandoff(get());
+  },
   setMonthlyBill: (n) => {
     set({ monthlyBill: n, billMode: "bill" });
-    persistHandoff({ ...get(), monthlyBill: n });
+    persistHandoff(get());
   },
   setBillMode: (billMode) => set({ billMode }),
   setMonthlyKwhMonth: (index, value) => {
@@ -126,15 +174,17 @@ export const useDesigner = create<DesignerState>((set, get) => ({
       monthlyBill: billFromKwh(next, location) || get().monthlyBill,
     });
   },
-  setCell: (key, on) =>
+  setCell: (key, on) => {
     set((s) => {
       if (on && !canPlacePanel(key, s.cells, roofSpec(s.house, s.roof), s.roof)) return s;
       const next = { ...s.cells };
       if (on) next[key] = true;
       else delete next[key];
       return { cells: next };
-    }),
-  toggleCell: (key) =>
+    });
+    persistHandoff(get());
+  },
+  toggleCell: (key) => {
     set((s) => {
       if (s.cells[key]) {
         const next = { ...s.cells };
@@ -143,9 +193,14 @@ export const useDesigner = create<DesignerState>((set, get) => ({
       }
       if (!canPlacePanel(key, s.cells, roofSpec(s.house, s.roof), s.roof)) return s;
       return { cells: { ...s.cells, [key]: true } };
-    }),
+    });
+    persistHandoff(get());
+  },
   setHover: (key) => set({ hoverKey: key }),
-  clearRoof: () => set({ cells: {} }),
+  clearRoof: () => {
+    set({ cells: {} });
+    persistHandoff(get());
+  },
   sizeToBill: () => {
     const state = get();
     const monthlyUsageKwh =
@@ -172,18 +227,25 @@ export const useDesigner = create<DesignerState>((set, get) => ({
         location: state.location,
       }),
     });
+    persistHandoff(get());
   },
   setLocation: (location) => {
     set({ location });
-    persistHandoff({ ...get(), location });
+    persistHandoff(get());
   },
   setAddressQuery: (addressQuery) => set({ addressQuery }),
   setWantBackup: (wantBackup) => {
     set({ wantBackup });
-    persistHandoff({ ...get(), wantBackup });
+    persistHandoff(get());
   },
-  setBatteryId: (batteryId) => set({ batteryId, batteryCount: 1 }),
-  setBatteryCount: (n) => set({ batteryCount: Math.max(1, Math.round(n)) }),
+  setBatteryId: (batteryId) => {
+    set({ batteryId, batteryCount: 1 });
+    persistHandoff(get());
+  },
+  setBatteryCount: (n) => {
+    set({ batteryCount: Math.max(1, Math.round(n)) });
+    persistHandoff(get());
+  },
   setChimney: (chimney) => set({ chimney }),
   reset: () =>
     set({
