@@ -113,7 +113,6 @@ export function SiteHeader() {
               <Phone className="size-4" />
               Get a quote
             </Link>
-            </a>
           </nav>
         </div>
       ) : null}

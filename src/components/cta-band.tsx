@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { COMPANY } from "@/lib/site";
 
 export function CtaBand({
   heading,
