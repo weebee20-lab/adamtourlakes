@@ -36,14 +36,10 @@ function requestHost() {
   }
 }
 
-/** Live custom domain keeps v3. Grok iframe previews always return browser-error. */
+/** Live custom domain keeps v3. Grok iframe / preview hosts always return browser-error. */
 function recaptchaRequired() {
   const host = requestHost();
-  if (!host) return true;
-  if (host === "adamtourlakes.com" || host === "www.adamtourlakes.com") return true;
-  if (host.endsWith(".grok.me") || host === "grok.me") return false;
-  if (host === "localhost" || host.endsWith(".localhost")) return false;
-  return true;
+  return host === "adamtourlakes.com" || host === "www.adamtourlakes.com";
 }
 
 export async function verifyRecaptchaToken(
