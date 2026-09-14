@@ -4,10 +4,17 @@ import { getSql } from "@/lib/db";
 import type { ContactLead, LeadStatus } from "@/lib/leads-types";
 
 const COOKIE = "adam_admin";
-const PASSWORD = "PaneLz4DayZ1990$";
+
+// Set in project env only — never commit values:
+// ADAM_ADMIN_PASSWORD  inbox login
+// ADAM_ADMIN_SECRET    long random HMAC key for the session cookie (not the password)
 
 function adminSecret() {
-  return String(process.env.ADAM_ADMIN_SECRET ?? "").trim() || `adam-admin:${PASSWORD}`;
+  return String(process.env.ADAM_ADMIN_SECRET ?? "").trim();
+}
+
+function adminPassword() {
+  return String(process.env.ADAM_ADMIN_PASSWORD ?? "").trim();
 }
 
 function sign(exp: number) {
@@ -24,6 +31,7 @@ function safeEqual(a: string, b: string) {
 }
 
 export function isAdmin() {
+  if (!adminSecret()) return false;
   const raw = getCookie(COOKIE) ?? "";
   const [expRaw, sig] = raw.split(".");
   const exp = Number(expRaw);
@@ -32,7 +40,10 @@ export function isAdmin() {
 }
 
 export function loginAdmin(password: string) {
-  if (!safeEqual(password, PASSWORD)) return false;
+  const expected = adminPassword();
+  const secret = adminSecret();
+  if (!expected || !secret) return false;
+  if (!safeEqual(password, expected)) return false;
   const exp = Math.floor(Date.now() / 1000) + 12 * 60 * 60;
   let proto = "";
   let host = "";
