@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Menu, Phone, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { SiteMark } from "@/components/site-mark";
@@ -68,7 +68,6 @@ export function SiteHeader() {
         <div className="flex items-center gap-2">
           <Button asChild size="sm" className="hidden sm:inline-flex">
             <Link to="/contact">
-              <Phone className="size-4" />
               Get a quote
             </Link>
           </Button>
@@ -108,9 +107,8 @@ export function SiteHeader() {
             })}
             <Link
               to="/contact"
-              className="mt-4 inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-gold px-4 text-sm font-medium text-gold-fg"
+              className="mt-4 inline-flex min-h-12 items-center justify-center rounded-md bg-gold px-4 text-sm font-medium text-gold-fg"
             >
-              <Phone className="size-4" />
               Get a quote
             </Link>
           </nav>
