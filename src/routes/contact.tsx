@@ -3,6 +3,7 @@ import { useState, type FormEvent, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { OutOfAreaDialog } from "@/components/out-of-area-dialog";
+import { saveContactLead } from "@/lib/leads-rpc";
 import { seoHead } from "@/lib/seo";
 import { COMPANY, JOB_TITLE, SITE_NAME } from "@/lib/site";
 import { isSwflZip, zipFromText } from "@/lib/swfl";
@@ -33,12 +34,33 @@ function ContactPage() {
   const [message, setMessage] = useState("");
   const [sent, setSent] = useState(false);
   const [outOfArea, setOutOfArea] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  function onSubmit(e: FormEvent) {
+  async function onSubmit(e: FormEvent) {
     e.preventDefault();
     const zip = zipFromText(place) || location?.zip || "";
     if (isSwflZip(zip) === false) {
       setOutOfArea(true);
+      return;
+    }
+    setBusy(true);
+    setError(null);
+    const res = await saveContactLead({
+      data: {
+        name,
+        email,
+        phone,
+        address: place,
+        bill,
+        backup,
+        message,
+      },
+    });
+    setBusy(false);
+    if (!res.ok) {
+      if (res.error === "out_of_area") setOutOfArea(true);
+      else setError(res.error || "Could not send. Try the office line.");
       return;
     }
     setSent(true);
@@ -157,9 +179,10 @@ function ContactPage() {
                   )}
                 />
               </Field>
-              <Button type="submit" size="lg">
-                Send to Adam
+              <Button type="submit" size="lg" disabled={busy}>
+                {busy ? "Sending…" : "Send to Adam"}
               </Button>
+              {error ? <p className="text-sm text-gold">{error}</p> : null}
               <p className="text-xs text-muted">
                 Or call the office {COMPANY.phoneDisplay} and ask for Adam.
               </p>

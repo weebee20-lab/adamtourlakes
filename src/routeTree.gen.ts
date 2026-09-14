@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as Admin1776RouteImport } from './routes/admin1776'
 import { Route as BatteriesRouteImport } from './routes/batteries'
 import { Route as CalculatorRouteImport } from './routes/calculator'
 import { Route as CompanyRouteImport } from './routes/company'
@@ -23,6 +24,11 @@ import { Route as FloridaLeeCountyRouteImport } from './routes/florida.lee-count
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Admin1776Route = Admin1776RouteImport.update({
+  id: '/admin1776',
+  path: '/admin1776',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BatteriesRoute = BatteriesRouteImport.update({
@@ -73,6 +79,7 @@ const FloridaLeeCountyRoute = FloridaLeeCountyRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin1776': typeof Admin1776Route
   '/batteries': typeof BatteriesRoute
   '/calculator': typeof CalculatorRoute
   '/company': typeof CompanyRoute
@@ -85,6 +92,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin1776': typeof Admin1776Route
   '/batteries': typeof BatteriesRoute
   '/calculator': typeof CalculatorRoute
   '/company': typeof CompanyRoute
@@ -98,6 +106,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin1776': typeof Admin1776Route
   '/batteries': typeof BatteriesRoute
   '/calculator': typeof CalculatorRoute
   '/company': typeof CompanyRoute
@@ -112,6 +121,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin1776'
     | '/batteries'
     | '/calculator'
     | '/company'
@@ -124,6 +134,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin1776'
     | '/batteries'
     | '/calculator'
     | '/company'
@@ -136,6 +147,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/admin1776'
     | '/batteries'
     | '/calculator'
     | '/company'
@@ -149,6 +161,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  Admin1776Route: typeof Admin1776Route
   BatteriesRoute: typeof BatteriesRoute
   CalculatorRoute: typeof CalculatorRoute
   CompanyRoute: typeof CompanyRoute
@@ -164,6 +177,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin1776': {
+      id: '/admin1776'
+      path: '/admin1776'
+      fullPath: '/admin1776'
+      preLoaderRoute: typeof Admin1776RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/batteries': {
@@ -249,6 +269,7 @@ const FloridaRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  Admin1776Route: Admin1776Route,
   BatteriesRoute: BatteriesRoute,
   CalculatorRoute: CalculatorRoute,
   CompanyRoute: CompanyRoute,
