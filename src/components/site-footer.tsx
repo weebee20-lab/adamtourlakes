@@ -7,11 +7,11 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <img
-            src="/brand/signature-gold.png"
+            src="/brand/signature-gold.png?v=2"
             alt={SITE_NAME}
             className="site-signature"
-            width={855}
-            height={305}
+            width={2533}
+            height={883}
           />
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted">
             Sales Manager at {COMPANY.name}. Cape Coral office. Honest numbers,

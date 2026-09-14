@@ -62,11 +62,11 @@ function Home() {
         <div className="hero-copy relative z-30 mx-auto flex min-h-svh max-w-7xl flex-col justify-end gap-8 px-4 pt-28 pb-16 sm:px-6 lg:justify-between lg:pt-32 lg:pb-16">
           <div className="max-w-2xl lg:max-w-3xl">
             <img
-              src="/brand/signature-gold.png"
+              src="/brand/signature-gold.png?v=2"
               alt={SITE_NAME}
               className="site-signature-hero"
-              width={855}
-              height={305}
+              width={2533}
+              height={883}
             />
             <p className="mt-6 text-xs font-medium tracking-[0.2em] text-gold uppercase">
               Solar Expert · Southwest Florida
