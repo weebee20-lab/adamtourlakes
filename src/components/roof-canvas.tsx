@@ -399,9 +399,9 @@ export function RoofCanvas() {
       });
     const bushes: { pts: Pt[]; fill: string }[] = [];
     const plant = (x: number, y: number, s: number) => {
-      bushes.push({ pts: bushLobe(x, y + 0.04, 0.72 * s, 0.5 * s, 0.12), fill: "#1f4a18" });
-      bushes.push({ pts: bushLobe(x - 0.28 * s, y, 0.55 * s, 0.4 * s, 0.42 * s), fill: "#2d6a22" });
-      bushes.push({ pts: bushLobe(x + 0.3 * s, y + 0.08, 0.5 * s, 0.38 * s, 0.5 * s), fill: "#3c822c" });
+      bushes.push({ pts: bushLobe(x, y + 0.04, 0.72 * s, 0.5 * s, 0.12), fill: "#163214" });
+      bushes.push({ pts: bushLobe(x - 0.28 * s, y, 0.55 * s, 0.4 * s, 0.42 * s), fill: "#1f3f1a" });
+      bushes.push({ pts: bushLobe(x + 0.3 * s, y + 0.08, 0.5 * s, 0.38 * s, 0.5 * s), fill: "#274b1e" });
     };
     plant(1.15, D + 0.55, 1.15);
     plant(W * 0.28, D + 0.42, 0.78);
@@ -725,7 +725,7 @@ export function RoofCanvas() {
         </div>
       </div>
 
-      <div className="relative bg-[#5b9a3d]">
+      <div className="relative bg-[#2c3d26]">
         <svg
           ref={svgRef}
           viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
@@ -748,13 +748,13 @@ export function RoofCanvas() {
               <stop offset="100%" stopColor="#a07d4e" />
             </linearGradient>
           </defs>
-          <rect width={VIEW_W} height={VIEW_H} fill="#5b9a3d" pointerEvents="none" />
+          <rect width={VIEW_W} height={VIEW_H} fill="#2c3d26" pointerEvents="none" />
           {GRASS_TUFTS.map((t, i) => (
             <path
               key={i}
               d={grassSquiggle(t)}
               fill="none"
-              stroke="#3f7a2c"
+              stroke="#1f2e1b"
               strokeWidth={1.8}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -763,7 +763,7 @@ export function RoofCanvas() {
             />
           ))}
           <g transform={`translate(${model.ox} ${model.oy}) scale(${model.scale})`} pointerEvents="none">
-            {model.lawnPath ? <path d={model.lawnPath} fill="#478536" opacity="0.85" /> : null}
+            {model.lawnPath ? <path d={model.lawnPath} fill="#33462c" opacity="0.85" /> : null}
             <polygon points={poly(model.walk)} fill="#c5b79a" />
             <polygon points={poly(model.step)} fill="#d2c6ad" />
             <polygon points={poly(model.stoop)} fill="#ddd3bf" />
@@ -782,7 +782,7 @@ export function RoofCanvas() {
             {model.frontWindows.map((win, i) => (
               <g key={i}>
                 {win.shutters.map((sh, si) => (
-                  <polygon key={si} points={poly(sh)} fill="#6e8f55" />
+                  <polygon key={si} points={poly(sh)} fill="#3a4d32" />
                 ))}
                 <polygon points={poly(win.sill)} fill="#cfc3af" />
                 <polygon points={poly(win.frame)} fill="#f3ece1" />
