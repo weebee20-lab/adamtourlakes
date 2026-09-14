@@ -75,6 +75,7 @@ const VIDEOS = [
   { n: "04", title: "Solar on Different Roof Types" },
   { n: "05", title: "Solar is a Scam?" },
   { n: "06", title: "Solar With Batteries" },
+  { n: "07", title: "Solar Installer Red Flags" },
 ];
 
 function SolarPage() {
