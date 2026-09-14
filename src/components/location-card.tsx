@@ -60,9 +60,12 @@ export function LocationCard() {
     <Card className="flex h-full w-full flex-col">
       <CardContent className="flex h-full flex-1 flex-col gap-4 pt-5">
         <div className="flex flex-wrap items-center justify-between gap-2">
-          <p className="flex items-center gap-2 text-sm font-semibold">
-            <MapPin className="size-4 text-muted" aria-hidden />
-            Location
+          <p className="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-0.5">
+            <span className="inline-flex items-center gap-2 text-sm font-semibold">
+              <MapPin className="size-4 text-muted" aria-hidden />
+              Location
+            </span>
+            <span className="text-xs font-normal text-muted">We use NASA sun hours for system accuracy.</span>
           </p>
           <div className="inline-flex rounded-lg bg-surface-2 p-0.5 ring-1 ring-border">
             <button
@@ -140,21 +143,11 @@ export function LocationCard() {
                 <p className="text-[10px] text-muted">for this ZIP</p>
               </div>
             </div>
-            <p className="text-xs text-muted">
-              {busy
-                ? "Looking up this location…"
-                : location.nasa
-                  ? `NASA sun hours: ${formatNumber(location.ghi, 2)} kWh/m²/day.`
-                  : "Street address or ZIP — NASA sun hours for that home."}
-            </p>
+            {busy ? <p className="text-xs text-muted">Looking up this location…</p> : null}
           </div>
-        ) : (
-          <p className="text-sm text-muted">
-            {busy
-              ? "Looking up this location…"
-              : "Street address or ZIP — NASA sun hours for that home."}
-          </p>
-        )}
+        ) : busy ? (
+          <p className="text-sm text-muted">Looking up this location…</p>
+        ) : null}
       </CardContent>
     </Card>
     <OutOfAreaDialog open={outOfArea} onClose={() => setOutOfArea(false)} />
