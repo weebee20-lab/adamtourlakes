@@ -130,10 +130,13 @@ export async function sendContactEmails(lead: {
                 Hi ${escapeHtml(first)},
               </p>
               <p style="margin:0 0 16px;font-family:Outfit,system-ui,Segoe UI,sans-serif;font-size:16px;line-height:1.65;color:#c4bfb4;">
-                I have your inquiry. I will review what you sent and reach out to you within 24 hours — you will hear from me personally.
+                I've received your inquiry. I will review what you sent over and will reach out to you within 24 hours. You will hear from me personally.
+              </p>
+              <p style="margin:0 0 16px;font-family:Outfit,system-ui,Segoe UI,sans-serif;font-size:16px;line-height:1.65;color:#c4bfb4;">
+                I'll be your main point of contact from our first conversation through the whole process. If you'd like to reach out sooner, call our Cape Coral office and ask for Adam.
               </p>
               <p style="margin:0 0 28px;font-family:Outfit,system-ui,Segoe UI,sans-serif;font-size:16px;line-height:1.65;color:#c4bfb4;">
-                I stay the point of contact from the first conversation through months after the install. If you would rather talk sooner, call the Cape Coral office and ask for Adam.
+                Thank you, and I look forward to working with you!
               </p>
               <table role="presentation" cellpadding="0" cellspacing="0">
                 <tr>
@@ -163,7 +166,7 @@ export async function sendContactEmails(lead: {
   </table>
 </body>
 </html>`;
-  const thanksText = `Thank you for your inquiry.\n\nHi ${first},\n\nI have your inquiry. I will review what you sent and reach out to you within 24 hours — you will hear from me personally.\n\nI stay the point of contact from the first conversation through months after the install. If you would rather talk sooner, call the Cape Coral office at ${COMPANY.phoneDisplay} and ask for Adam.\n\n— Adam\nSales Manager\n${COMPANY.name}\n${COMPANY.addressLine}, ${COMPANY.cityStateZip}\n`;
+  const thanksText = `Thank you for your inquiry.\n\nHi ${first},\n\nI've received your inquiry. I will review what you sent over and will reach out to you within 24 hours. You will hear from me personally.\n\nI'll be your main point of contact from our first conversation through the whole process. If you'd like to reach out sooner, call our Cape Coral office at ${COMPANY.phoneDisplay} and ask for Adam.\n\nThank you, and I look forward to working with you!\n\n— Adam\nSales Manager\n${COMPANY.name}\n${COMPANY.addressLine}, ${COMPANY.cityStateZip}\n`;
 
   const results = await Promise.allSettled([
     sendEmail({
