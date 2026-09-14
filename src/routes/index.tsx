@@ -49,7 +49,7 @@ const QUOTES = [
 function Home() {
   return (
     <main>
-      <section className="relative isolate min-h-svh overflow-hidden">
+      <section className="hero-stage relative isolate min-h-svh overflow-hidden">
         <div className="hero-aura" aria-hidden />
         <p className="hero-word" aria-hidden>
           Solar
@@ -62,7 +62,7 @@ function Home() {
           height={1800}
         />
         <div className="hero-veil" aria-hidden />
-        <div className="relative z-30 mx-auto flex min-h-svh max-w-7xl flex-col justify-end gap-8 px-4 pt-28 pb-16 sm:px-6 lg:justify-between lg:pt-32 lg:pb-16">
+        <div className="hero-copy relative z-30 mx-auto flex min-h-0 max-w-7xl flex-col justify-start gap-8 px-4 pt-4 pb-16 sm:px-6 lg:min-h-svh lg:justify-between lg:pt-32 lg:pb-16">
           <div className="max-w-2xl lg:max-w-3xl">
             <img
               src="/brand/signature-gold.png"

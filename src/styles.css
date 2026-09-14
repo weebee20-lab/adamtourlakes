@@ -195,32 +195,48 @@
 }
 
 .hero-portrait {
-  position: absolute;
+  position: relative;
   z-index: 10;
-  top: 3.25rem;
+  top: auto;
+  right: auto;
   left: auto;
-  right: 0.35rem;
+  display: block;
   height: auto;
-  max-height: 62svh;
   width: auto;
-  max-width: calc(100% - 0.7rem);
+  max-height: 28svh;
+  max-width: min(18.5rem, 82vw);
+  margin: 4.35rem auto 0.35rem;
   transform: none;
   object-fit: contain;
-  object-position: top right;
+  object-position: top center;
   pointer-events: none;
 }
 
 .hero-veil {
-  position: absolute;
-  inset: 0;
-  z-index: 20;
+  display: none;
   pointer-events: none;
-  background: linear-gradient(
-    to top,
-    var(--color-bg) 10%,
-    color-mix(in oklab, var(--color-bg) 82%, transparent) 38%,
-    transparent 64%
-  );
+}
+
+.hero-copy h1 {
+  font-size: 2.35rem;
+  line-height: 1.05;
+}
+
+@media (max-width: 1023px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  .hero-portrait {
+    filter: drop-shadow(0 16px 22px color-mix(in oklab, var(--color-bg) 78%, transparent));
+  }
+}
+
+@media (min-width: 640px) {
+  .hero-copy h1 {
+    font-size: 3.75rem;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -229,6 +245,9 @@
   }
 
   .hero-portrait {
+    position: absolute;
+    z-index: 10;
+    display: block;
     top: 0;
     left: auto;
     right: 0.5rem;
@@ -236,15 +255,28 @@
     max-height: 100svh;
     max-width: calc(100% - 0.5rem);
     width: auto;
+    margin: 0;
     transform: none;
+    object-fit: contain;
+    object-position: top right;
+    pointer-events: none;
   }
 
   .hero-veil {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    pointer-events: none;
     background: linear-gradient(
       to right,
       var(--color-bg) 12%,
       color-mix(in oklab, var(--color-bg) 58%, transparent) 38%,
       transparent 72%
     );
+  }
+
+  .hero-copy h1 {
+    font-size: 4.5rem;
   }
 }
