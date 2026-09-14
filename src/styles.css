@@ -121,6 +121,23 @@
   filter: drop-shadow(0 0 14px color-mix(in oklab, var(--color-gold) 30%, transparent));
 }
 
+.site-signature-header {
+  display: block;
+  height: 1.85rem;
+  width: auto;
+  max-width: min(10.5rem, 42vw);
+  outline: none;
+  image-rendering: auto;
+  filter: drop-shadow(0 0 10px color-mix(in oklab, var(--color-gold) 28%, transparent));
+}
+
+@media (min-width: 640px) {
+  .site-signature-header {
+    height: 2.15rem;
+    max-width: 12rem;
+  }
+}
+
 .site-signature-hero {
   display: block;
   position: relative;

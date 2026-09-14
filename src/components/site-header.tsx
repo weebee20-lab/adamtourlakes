@@ -32,7 +32,7 @@ export function SiteHeader() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link
           to="/"
-          className="flex min-h-11 items-center text-gold"
+          className="flex min-h-11 min-w-0 shrink-0 items-center gap-2 text-gold"
           aria-label={`${SITE_NAME} home`}
         >
           <span className="sun-mark-wrap">
@@ -40,6 +40,13 @@ export function SiteHeader() {
               <SiteMark className="relative z-10 size-7" />
             </span>
           </span>
+          <img
+            src="/brand/signature-gold.png?v=3"
+            alt=""
+            className="site-signature-header"
+            width={2533}
+            height={883}
+          />
         </Link>
 
         <nav className="hidden min-w-0 flex-1 items-center justify-end gap-0.5 sm:flex" aria-label="Primary">
