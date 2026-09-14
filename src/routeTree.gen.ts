@@ -10,13 +10,20 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BatteriesRouteImport } from './routes/batteries'
 import { Route as CalculatorRouteImport } from './routes/calculator'
 import { Route as CompanyRouteImport } from './routes/company'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as SolarRouteImport } from './routes/solar'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BatteriesRoute = BatteriesRouteImport.update({
+  id: '/batteries',
+  path: '/batteries',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CalculatorRoute = CalculatorRouteImport.update({
@@ -29,6 +36,11 @@ const CompanyRoute = CompanyRouteImport.update({
   path: '/company',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SolarRoute = SolarRouteImport.update({
   id: '/solar',
   path: '/solar',
@@ -37,35 +49,51 @@ const SolarRoute = SolarRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/batteries': typeof BatteriesRoute
   '/calculator': typeof CalculatorRoute
   '/company': typeof CompanyRoute
+  '/contact': typeof ContactRoute
   '/solar': typeof SolarRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/batteries': typeof BatteriesRoute
   '/calculator': typeof CalculatorRoute
   '/company': typeof CompanyRoute
+  '/contact': typeof ContactRoute
   '/solar': typeof SolarRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/batteries': typeof BatteriesRoute
   '/calculator': typeof CalculatorRoute
   '/company': typeof CompanyRoute
+  '/contact': typeof ContactRoute
   '/solar': typeof SolarRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/calculator' | '/company' | '/solar'
+  fullPaths:
+    '/' | '/batteries' | '/calculator' | '/company' | '/contact' | '/solar'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/calculator' | '/company' | '/solar'
-  id: '__root__' | '/' | '/calculator' | '/company' | '/solar'
+  to: '/' | '/batteries' | '/calculator' | '/company' | '/contact' | '/solar'
+  id:
+    | '__root__'
+    | '/'
+    | '/batteries'
+    | '/calculator'
+    | '/company'
+    | '/contact'
+    | '/solar'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BatteriesRoute: typeof BatteriesRoute
   CalculatorRoute: typeof CalculatorRoute
   CompanyRoute: typeof CompanyRoute
+  ContactRoute: typeof ContactRoute
   SolarRoute: typeof SolarRoute
 }
 
@@ -76,6 +104,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/batteries': {
+      id: '/batteries'
+      path: '/batteries'
+      fullPath: '/batteries'
+      preLoaderRoute: typeof BatteriesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/calculator': {
@@ -92,6 +127,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CompanyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/solar': {
       id: '/solar'
       path: '/solar'
@@ -104,8 +146,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BatteriesRoute: BatteriesRoute,
   CalculatorRoute: CalculatorRoute,
   CompanyRoute: CompanyRoute,
+  ContactRoute: ContactRoute,
   SolarRoute: SolarRoute,
 }
 export const routeTree = rootRouteImport

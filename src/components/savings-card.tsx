@@ -1,12 +1,12 @@
-import { ArrowRight, Phone } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { lazy, Suspense, useEffect, useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { completeMonthlyKwh } from "@/lib/solar/calc";
 import { LIFETIME, UTILITY_INFLATION } from "@/lib/solar/panels";
-import { COMPANY } from "@/lib/site";
 import { usageKwhFromBill } from "@/lib/solar/utility";
 import { cn, formatKwh, formatNumber, formatUsd } from "@/lib/utils";
 import { useDesigner, useSavings } from "@/store/designer";
@@ -24,7 +24,9 @@ export function SavingsCard() {
   const setMonthlyKwhMonth = useDesigner((s) => s.setMonthlyKwhMonth);
   const location = useDesigner((s) => s.location);
   const sizeToBill = useDesigner((s) => s.sizeToBill);
+  const setWantBackup = useDesigner((s) => s.setWantBackup);
   const s = useSavings();
+  const navigate = useNavigate();
   const hasSystem = s.panelCount > 0;
   const ready = hasSystem && !!location;
   const [billDraft, setBillDraft] = useState(String(monthlyBill || ""));
@@ -208,15 +210,38 @@ export function SavingsCard() {
         </p>
 
         {ready ? (
-          <Button asChild size="lg" className="w-full">
-            <a href={COMPANY.phoneHref}>
-              Talk to Adam
-              <Phone className="size-4" />
-            </a>
-          </Button>
+          <div className="flex flex-col gap-3">
+            <p className="text-center text-sm font-medium">Want backup batteries with this system?</p>
+            <div className="grid gap-2 sm:grid-cols-2">
+              <Button
+                type="button"
+                size="lg"
+                className="w-full"
+                onClick={() => {
+                  setWantBackup(true);
+                  void navigate({ to: "/batteries" });
+                }}
+              >
+                Yes, size batteries
+                <ArrowRight className="size-4" />
+              </Button>
+              <Button
+                type="button"
+                size="lg"
+                variant="outline"
+                className="w-full"
+                onClick={() => {
+                  setWantBackup(false);
+                  void navigate({ to: "/contact" });
+                }}
+              >
+                No — contact Adam
+              </Button>
+            </div>
+          </div>
         ) : (
           <Button size="lg" className="w-full" disabled>
-            Talk to Adam
+            Size a system to continue
             <ArrowRight />
           </Button>
         )}

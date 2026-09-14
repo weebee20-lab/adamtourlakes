@@ -29,6 +29,11 @@ export function SiteFooter() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link to="/contact" className="text-muted transition-colors hover:text-fg">
+                Contact Adam
+              </Link>
+            </li>
           </ul>
         </div>
 
