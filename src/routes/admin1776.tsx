@@ -69,17 +69,17 @@ function AdminInbox() {
     setLeads((rows) => rows.map((row) => (row.id === id ? { ...row, status } : row)));
   }
 
-  async function removeLead(id: string, label: string) {
-    if (!window.confirm(`Delete the form from ${label}? This cannot be undone.`)) return;
+  async function removeLead(id: string) {
     const res = await adminDeleteLead({ data: { id } });
     if (!res.ok) return;
-    setLeads((rows) => rows.filter((row) => row.id !== id));
+    setLeads((rows) => rows.map((row) => (row.id === id ? { ...row, status: "deleted" } : row)));
+    if (filter !== "deleted") setFilter("deleted");
   }
 
-  const visible = useMemo(
-    () => (filter === "all" ? leads : leads.filter((row) => row.status === filter)),
-    [leads, filter],
-  );
+  const visible = useMemo(() => {
+    if (filter === "all") return leads.filter((row) => row.status !== "deleted");
+    return leads.filter((row) => row.status === filter);
+  }, [leads, filter]);
 
   if (!unlocked) {
     return (
@@ -110,7 +110,10 @@ function AdminInbox() {
         <div>
           <p className="text-xs font-medium tracking-[0.2em] text-gold uppercase">Private</p>
           <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight">Contact forms</h1>
-          <p className="mt-1 text-sm text-muted">{leads.length} total</p>
+          <p className="mt-1 text-sm text-muted">
+            {leads.filter((row) => row.status !== "deleted").length} active ·{" "}
+            {leads.filter((row) => row.status === "deleted").length} in deleted
+          </p>
         </div>
         <Button
           type="button"
@@ -132,6 +135,7 @@ function AdminInbox() {
             ["new", "New"],
             ["contacted", "Contacted"],
             ["no_response", "No Response"],
+            ["deleted", "Deleted"],
           ] as const
         ).map(([key, label]) => (
           <button
@@ -202,36 +206,48 @@ function AdminInbox() {
                   </td>
                   <td className="max-w-[16rem] px-4 py-3 text-muted">{lead.message || "—"}</td>
                   <td className="px-4 py-3">
-                    <div className="flex flex-col gap-1">
-                      <StatusBtn
-                        active={lead.status === "contacted"}
-                        onClick={() =>
-                          void setStatus(lead.id, lead.status === "contacted" ? "new" : "contacted")
-                        }
-                      >
-                        Contacted
-                      </StatusBtn>
-                      <StatusBtn
-                        active={lead.status === "no_response"}
-                        onClick={() =>
-                          void setStatus(
-                            lead.id,
-                            lead.status === "no_response" ? "new" : "no_response",
-                          )
-                        }
-                      >
-                        No Response
-                      </StatusBtn>
-                    </div>
+                  <td className="px-4 py-3">
+                    {lead.status === "deleted" ? (
+                      <div className="flex flex-col gap-1">
+                        <p className="text-xs text-muted">Wipes in 30 days</p>
+                        <StatusBtn active={false} onClick={() => void setStatus(lead.id, "new")}>
+                          Restore
+                        </StatusBtn>
+                      </div>
+                    ) : (
+                      <div className="flex flex-col gap-1">
+                        <StatusBtn
+                          active={lead.status === "contacted"}
+                          onClick={() =>
+                            void setStatus(lead.id, lead.status === "contacted" ? "new" : "contacted")
+                          }
+                        >
+                          Contacted
+                        </StatusBtn>
+                        <StatusBtn
+                          active={lead.status === "no_response"}
+                          onClick={() =>
+                            void setStatus(
+                              lead.id,
+                              lead.status === "no_response" ? "new" : "no_response",
+                            )
+                          }
+                        >
+                          No Response
+                        </StatusBtn>
+                      </div>
+                    )}
                   </td>
                   <td className="px-4 py-3">
-                    <button
-                      type="button"
-                      className="rounded-md px-2 py-1 text-xs font-semibold text-muted hover:bg-surface-2 hover:text-gold"
-                      onClick={() => void removeLead(lead.id, lead.name || lead.email)}
-                    >
-                      Delete
-                    </button>
+                    {lead.status === "deleted" ? null : (
+                      <button
+                        type="button"
+                        className="rounded-md px-2 py-1 text-xs font-semibold text-muted hover:bg-surface-2 hover:text-gold"
+                        onClick={() => void removeLead(lead.id)}
+                      >
+                        Delete
+                      </button>
+                    )}
                   </td>
                 </tr>
               ))

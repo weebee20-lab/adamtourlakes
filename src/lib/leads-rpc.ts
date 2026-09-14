@@ -94,7 +94,9 @@ export const adminListLeads = createServerFn({ method: "POST" }).handler(async (
 export const adminSetLeadStatus = createServerFn({ method: "POST" })
   .validator((d: { id: string; status: LeadStatus }) => ({
     id: text(d?.id, 80),
-    status: (["new", "contacted", "no_response"].includes(d?.status) ? d.status : "new") as LeadStatus,
+    status: (["new", "contacted", "no_response", "deleted"].includes(d?.status)
+      ? d.status
+      : "new") as LeadStatus,
   }))
   .handler(async ({ data }) => {
     const mod = await import("@/lib/leads.server");

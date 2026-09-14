@@ -1,4 +1,4 @@
-export type LeadStatus = "new" | "contacted" | "no_response";
+export type LeadStatus = "new" | "contacted" | "no_response" | "deleted";
 
 export type ContactLead = {
   id: string;

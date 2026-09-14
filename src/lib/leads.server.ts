@@ -86,7 +86,8 @@ function asLead(row: Record<string, unknown>): ContactLead {
     bill: String(row.bill ?? ""),
     backup: Boolean(row.backup),
     message: String(row.message ?? ""),
-    status: status === "contacted" || status === "no_response" ? status : "new",
+    status:
+      status === "contacted" || status === "no_response" || status === "deleted" ? status : "new",
   };
 }
 
@@ -122,6 +123,11 @@ export async function insertLead(input: {
 
 export async function listLeads() {
   const sql = await getSql();
+  await sql`
+    delete from contact_leads
+    where deleted_at is not null
+      and deleted_at < now() - interval '30 days'
+  `;
   const rows = await sql<Record<string, unknown>>`
     select id, created_at, name, email, phone, address, zip, bill, backup, message, status
     from contact_leads
@@ -132,10 +138,13 @@ export async function listLeads() {
 
 export async function setLeadStatus(id: string, status: LeadStatus) {
   const sql = await getSql();
-  await sql`update contact_leads set status = ${status} where id = ${id}`;
+  if (status === "deleted") {
+    await sql`update contact_leads set status = ${"deleted"}, deleted_at = now() where id = ${id}`;
+    return;
+  }
+  await sql`update contact_leads set status = ${status}, deleted_at = null where id = ${id}`;
 }
 
 export async function deleteLead(id: string) {
-  const sql = await getSql();
-  await sql`delete from contact_leads where id = ${id}`;
+  await setLeadStatus(id, "deleted");
 }
