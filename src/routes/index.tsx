@@ -50,8 +50,8 @@ export function HomePage() {
   return (
     <main>
       <section className="hero-stage relative isolate min-h-svh overflow-hidden">
-        <div className="hero-aura" aria-hidden />
         <div className="hero-portrait-wrap">
+          <div className="hero-aura" aria-hidden />
           <img
             src="/portraits/adam-user.png"
             alt="Adam Tourlakes, Sales Manager at Solar Energy Solutions of America"
