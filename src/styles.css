@@ -176,24 +176,6 @@
   background-repeat: no-repeat;
 }
 
-.hero-word {
-  display: none;
-  position: absolute;
-  top: 12%;
-  right: -4%;
-  z-index: 0;
-  margin: 0;
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 600;
-  font-size: clamp(5.5rem, 16vw, 13rem);
-  line-height: 0.78;
-  color: color-mix(in oklab, var(--color-gold) 16%, transparent);
-  letter-spacing: -0.05em;
-  pointer-events: none;
-  user-select: none;
-}
-
 .hero-portrait {
   position: absolute;
   z-index: 10;
@@ -259,10 +241,6 @@
 }
 
 @media (min-width: 1024px) {
-  .hero-word {
-    display: block;
-  }
-
   .hero-portrait {
     top: 0;
     left: auto;

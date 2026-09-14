@@ -51,9 +51,6 @@ function Home() {
     <main>
       <section className="hero-stage relative isolate min-h-svh overflow-hidden">
         <div className="hero-aura" aria-hidden />
-        <p className="hero-word" aria-hidden>
-          Solar
-        </p>
         <img
           src="/portraits/adam-user.png"
           alt="Adam Tourlakes, Sales Manager at Solar Energy Solutions of America"
