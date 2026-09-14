@@ -79,7 +79,7 @@ export function ExampleBill() {
         <div>
           <p className="text-xs font-medium tracking-[0.2em] text-gold uppercase">Fort Myers · ZIP {ZIP}</p>
           <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight">
-            A ${BILL} bill, with and without solar.
+            A <span className="font-num">$250</span> average current bill, with and without solar.
           </h2>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">
             Same home, same FPL rate, sized to a {Math.round(OFFSET * 100)}% offset. This is an example from the same
@@ -99,7 +99,7 @@ export function ExampleBill() {
           <p className="text-[10px] font-medium tracking-wide text-muted uppercase">
             25-Year Electric Cost Without Solar
           </p>
-          <p className="font-display text-3xl font-semibold tabular-nums">{formatUsd(SAVINGS.withoutSolar25)}</p>
+          <p className="font-num text-3xl font-semibold tabular-nums">{formatUsd(SAVINGS.withoutSolar25)}</p>
           <p className="mt-2 text-xs leading-relaxed text-muted">
             What this home would pay FPL over 25 years at ${BILL}/mo, with bills rising{" "}
             {Math.round(UTILITY_INFLATION * 100)}% each year.
@@ -107,7 +107,7 @@ export function ExampleBill() {
         </div>
         <div className="helio-with-solar-glow rounded-xl border border-gold/40 bg-bg p-4">
           <p className="text-[10px] font-medium tracking-wide text-gold uppercase">25-Year Lifetime Savings</p>
-          <p className="font-display text-3xl font-semibold tabular-nums text-gold">{formatUsd(SAVINGS.lifetimeNet)}</p>
+          <p className="font-num text-3xl font-semibold tabular-nums text-gold">{formatUsd(SAVINGS.lifetimeNet)}</p>
           <p className="mt-2 text-xs leading-relaxed text-muted">
             Energy value over 25 years minus the midpoint installed price ({formatUsd(SAVINGS.costMid)}), with 0.4%
             degradation and {Math.round(UTILITY_INFLATION * 100)}% utility inflation.
@@ -211,7 +211,7 @@ function Statement({
         <div className="flex flex-wrap items-end justify-between gap-2">
           <div>
             <p className="text-[10px] font-semibold tracking-wide text-muted uppercase">Amount Due · {month}</p>
-            <p className="font-display text-4xl font-semibold tabular-nums">
+            <p className="font-num text-4xl font-semibold tabular-nums">
               {formatUsd(due)}
               {solar ? (
                 <span className="ml-2 text-lg font-medium text-gold">(Savings of {formatUsd(save)})</span>
