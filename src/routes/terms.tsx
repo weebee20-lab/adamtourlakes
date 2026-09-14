@@ -37,10 +37,6 @@ function TermsPage() {
             <strong className="font-medium text-fg">not</strong> the official Solar Energy Solutions
             of America corporate website.
           </p>
-          <p>
-            <strong className="font-medium text-fg">Plain English.</strong> Not a substitute for
-            counsel-drafted terms. Florida law flavor; counsel should confirm before go-live.
-          </p>
         </div>
 
         <Section title="What you get">
@@ -85,8 +81,8 @@ function TermsPage() {
 
         <Section title="Acceptable use">
           <p>
-            Don’t break the site, probe admin tools, flood the form, or use the site for unlawful
-            activity. I may ignore or block abusive traffic.
+            Don’t break the site, flood the form, or use the site for unlawful activity. I may
+            ignore or block abusive traffic.
           </p>
         </Section>
 
@@ -132,7 +128,7 @@ function TermsPage() {
         </Section>
 
         <p className="mt-10 max-w-3xl text-xs leading-relaxed text-muted italic">
-          Last updated: September 2026. Pending Adam / legal review before go-live.
+          Last updated: September 2026.
         </p>
       </section>
     </main>

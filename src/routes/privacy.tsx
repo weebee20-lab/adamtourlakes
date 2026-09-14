@@ -6,7 +6,7 @@ export const Route = createFileRoute("/privacy")({
   head: () =>
     seoHead(
       "Privacy Policy | Adam Tourlakes",
-      "How this personal site handles contact form details, the free calculator, and cookies. Plain English from Adam Tourlakes in Cape Coral.",
+      "How this personal site handles contact form details, the free calculator, and cookies. From Adam Tourlakes in Cape Coral.",
       "/privacy",
     ),
   component: PrivacyPage,
@@ -37,11 +37,6 @@ function PrivacyPage() {
               adamtourlakes.com
             </a>
             , and what I do with it.
-          </p>
-          <p>
-            <strong className="font-medium text-fg">Plain English for a personal solar site.</strong>{" "}
-            Not a substitute for a lawyer-reviewed policy. I will update it if anything material
-            changes.
           </p>
         </div>
 
@@ -125,13 +120,6 @@ function PrivacyPage() {
           </p>
         </Section>
 
-        <Section title="Admin tools">
-          <p>
-            A private admin area exists only so I can see contact submissions. It is not a public
-            product. Access is restricted; do not attempt to use it.
-          </p>
-        </Section>
-
         <Section title="Questions">
           <p>
             Privacy questions: use the{" "}
@@ -150,7 +138,7 @@ function PrivacyPage() {
         </Section>
 
         <p className="mt-10 max-w-3xl text-xs leading-relaxed text-muted italic">
-          Last updated: September 2026. Pending Adam / legal review before go-live.
+          Last updated: September 2026.
         </p>
       </section>
     </main>
