@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
+  adminDeleteLead,
   adminLeadLogin,
   adminLeadLogout,
   adminLeadStatus,
@@ -66,6 +67,13 @@ function AdminInbox() {
   async function setStatus(id: string, status: LeadStatus) {
     await adminSetLeadStatus({ data: { id, status } });
     setLeads((rows) => rows.map((row) => (row.id === id ? { ...row, status } : row)));
+  }
+
+  async function removeLead(id: string, label: string) {
+    if (!window.confirm(`Delete the form from ${label}? This cannot be undone.`)) return;
+    const res = await adminDeleteLead({ data: { id } });
+    if (!res.ok) return;
+    setLeads((rows) => rows.filter((row) => row.id !== id));
   }
 
   const visible = useMemo(
@@ -152,12 +160,13 @@ function AdminInbox() {
               <th className="px-4 py-3 font-medium">Bill</th>
               <th className="px-4 py-3 font-medium">Note</th>
               <th className="px-4 py-3 font-medium">Status</th>
+              <th className="px-4 py-3 font-medium"> </th>
             </tr>
           </thead>
           <tbody>
             {visible.length === 0 ? (
               <tr>
-                <td colSpan={8} className="px-4 py-8 text-muted">
+                <td colSpan={9} className="px-4 py-8 text-muted">
                   No forms in this view yet.
                 </td>
               </tr>
@@ -214,6 +223,15 @@ function AdminInbox() {
                         No Response
                       </StatusBtn>
                     </div>
+                  </td>
+                  <td className="px-4 py-3">
+                    <button
+                      type="button"
+                      className="rounded-md px-2 py-1 text-xs font-semibold text-muted hover:bg-surface-2 hover:text-gold"
+                      onClick={() => void removeLead(lead.id, lead.name || lead.email)}
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               ))

@@ -102,3 +102,13 @@ export const adminSetLeadStatus = createServerFn({ method: "POST" })
     await mod.setLeadStatus(data.id, data.status);
     return { ok: true as const };
   });
+
+export const adminDeleteLead = createServerFn({ method: "POST" })
+  .validator((d: { id: string }) => ({ id: text(d?.id, 80) }))
+  .handler(async ({ data }) => {
+    if (!data.id) return { ok: false as const };
+    const mod = await import("@/lib/leads.server");
+    if (!mod.isAdmin()) return { ok: false as const };
+    await mod.deleteLead(data.id);
+    return { ok: true as const };
+  });

@@ -134,3 +134,8 @@ export async function setLeadStatus(id: string, status: LeadStatus) {
   const sql = await getSql();
   await sql`update contact_leads set status = ${status} where id = ${id}`;
 }
+
+export async function deleteLead(id: string) {
+  const sql = await getSql();
+  await sql`delete from contact_leads where id = ${id}`;
+}
