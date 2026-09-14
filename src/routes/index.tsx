@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, BarChart3, PenTool, Phone, Timer } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { CtaBand } from "@/components/cta-band";
 import { seoHead } from "@/lib/seo";
 import { COMPANY, SITE_NAME } from "@/lib/site";
 
@@ -185,10 +184,54 @@ export function HomePage() {
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <CtaBand
-          heading="Want a straight answer on your roof?"
-          body="Call the Cape Coral office and ask for Adam. Bring a recent electric bill if you have one — that is the fastest way to see whether solar actually pays on your house."
-        />
+        <div className="grid gap-4 lg:grid-cols-2">
+          <article className="flex flex-col justify-between rounded-xl bg-surface px-6 py-8 shadow-[var(--shadow-border)] sm:px-8">
+            <div>
+              <h2 className="font-display text-3xl font-semibold tracking-tight text-fg">
+                Want a straight answer on your system?
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-muted">
+                Call the Cape Coral office and ask for Adam. Bring a recent electric bill if you have
+                one — that is the fastest way to see whether solar actually pays on your house.
+              </p>
+            </div>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button asChild size="lg">
+                <a href={COMPANY.phoneHref}>
+                  <Phone className="size-4" />
+                  Call {COMPANY.phoneDisplay}
+                </a>
+              </Button>
+              <Button asChild size="lg" variant="outline">
+                <a href={COMPANY.contactUrl} target="_blank" rel="noreferrer">
+                  Company estimate form
+                </a>
+              </Button>
+            </div>
+            <p className="mt-4 text-xs text-muted">
+              Ask for Adam Tourlakes at the Cape Coral office.
+            </p>
+          </article>
+          <article className="flex flex-col justify-between rounded-xl bg-surface px-6 py-8 shadow-[var(--shadow-border)] sm:px-8">
+            <div>
+              <h2 className="font-display text-3xl font-semibold tracking-tight text-fg">
+                Just here for solar information?
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-muted">
+                How a system works, what it does to a bill, and what a battery actually buys you —
+                no sales call required.
+              </p>
+            </div>
+            <div className="mt-6">
+              <Button asChild size="lg">
+                <Link to="/solar">
+                  Solar Education
+                  <ArrowRight className="size-4" />
+                </Link>
+              </Button>
+            </div>
+          </article>
+        </div>
       </section>
     </main>
   );
