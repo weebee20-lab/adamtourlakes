@@ -66,8 +66,15 @@ export function HomePage() {
         <div className="hero-dither" aria-hidden />
         <div className="hero-cutline" aria-hidden />
         <div className="hero-copy relative z-30 mx-auto flex min-h-svh max-w-7xl flex-col justify-end gap-8 px-4 pt-28 pb-16 sm:px-6 lg:justify-between lg:pt-32 lg:pb-16">
-          <div className="hero-lede max-w-2xl lg:max-w-3xl">
-            <p className="hero-kicker relative z-10 mt-2 text-xs font-medium tracking-[0.2em] text-gold uppercase lg:text-[0.975rem]">
+          <div className="max-w-2xl lg:max-w-3xl">
+            <img
+              src="/brand/signature-gold.png?v=3"
+              alt={SITE_NAME}
+              className="site-signature-hero"
+              width={2533}
+              height={883}
+            />
+            <p className="relative z-10 mt-2 text-xs font-medium tracking-[0.2em] text-gold uppercase lg:text-[0.975rem]">
               Solar Expert · Southwest Florida
             </p>
             <h1 className="relative z-10 mt-4 font-display text-5xl font-semibold tracking-tight text-fg sm:text-6xl lg:text-7xl">
@@ -79,14 +86,6 @@ export function HomePage() {
               homeowners in Southwest Florida own their power — with a veteran-ran and operated
               crew that designs, permits, and installs in-house.
             </p>
-            {/* TRIAL: signature after copy on desktop. Mobile CSS keeps it first. Revert: move img above kicker. */}
-            <img
-              src="/brand/signature-gold.png?v=3"
-              alt={SITE_NAME}
-              className="site-signature-hero"
-              width={2533}
-              height={883}
-            />
           </div>
           <div className="max-w-2xl lg:max-w-3xl">
             <div className="flex flex-wrap gap-3">

@@ -137,15 +137,6 @@
   filter: drop-shadow(0 0 16px color-mix(in oklab, var(--color-gold) 28%, transparent));
 }
 
-.hero-lede {
-  display: flex;
-  flex-direction: column;
-}
-
-.hero-lede .site-signature-hero {
-  order: -1;
-}
-
 @media (min-width: 640px) {
   .site-signature-hero {
     width: min(39.5rem, 115%);
@@ -161,13 +152,6 @@
     max-width: calc(100vw - 3rem);
     margin-left: -1rem;
     margin-bottom: -2.7rem;
-  }
-
-  /* TRIAL: signature under copy, left of portrait. Revert this block + HTML img move. */
-  .hero-lede .site-signature-hero {
-    order: 2;
-    margin-top: 1.75rem;
-    margin-bottom: 0;
   }
 }
 
