@@ -347,13 +347,7 @@
   }
 
   .hero-stage .hero-aura {
-    top: 4.5rem;
-    left: 50%;
-    right: auto;
-    width: min(19rem, 88vw);
-    height: min(22rem, 38svh);
-    transform: translateX(-50%);
-    background-position: 50% 35%, 50% 70%;
+    display: none;
   }
 
   .hero-stage .hero-portrait-wrap {
@@ -362,9 +356,27 @@
     right: auto;
     left: auto;
     display: block;
-    max-height: 28svh;
+    width: fit-content;
     max-width: min(18.5rem, 82vw);
+    max-height: none;
     margin: 4.35rem auto 0.35rem;
+  }
+
+  .hero-stage .hero-portrait-wrap::before {
+    content: "";
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    z-index: -1;
+    width: 140%;
+    height: 95%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    background:
+      radial-gradient(closest-side, color-mix(in oklab, var(--color-gold) 20%, transparent), transparent 72%),
+      radial-gradient(closest-side, color-mix(in oklab, var(--color-blue) 26%, transparent), transparent 70%);
+    background-position: 50% 35%, 50% 70%;
+    background-repeat: no-repeat;
   }
 
   .hero-stage .hero-portrait {
@@ -373,9 +385,11 @@
     right: auto;
     left: auto;
     display: block;
+    width: auto;
+    height: auto;
     max-height: 28svh;
-    max-width: 100%;
-    margin: 0;
+    max-width: min(18.5rem, 82vw);
+    margin: 0 auto;
     object-position: top center;
     filter:
       drop-shadow(0 14px 18px color-mix(in oklab, var(--color-bg) 70%, transparent))
