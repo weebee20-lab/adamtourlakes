@@ -24,7 +24,7 @@ const STEPS = [
     n: "02",
     icon: PanelsTopLeft,
     title: "An inverter makes it usable",
-    body: "The house runs on AC. A string inverter or microinverters (Enphase is what we install most) turn DC into the power your panel, outlets, and air conditioner already understand.",
+    body: "The house runs on AC (alternating current). A string inverter or microinverters turn the panels' DC power into the AC power your home needs to run all the loads.",
   },
   {
     n: "03",
@@ -36,7 +36,7 @@ const STEPS = [
     n: "04",
     icon: BatteryCharging,
     title: "A battery is optional — and useful",
-    body: "Storage does not make more sun. It holds daytime production so lights, refrigeration, and a slice of the house can run when the grid drops. On this coast, that is the hurricane case.",
+    body: "Storage does not make more sun. It holds daytime excess production and can dispense it every day at nighttime, or more importantly, during grid outages so your home stays up and running.",
   },
 ];
 
