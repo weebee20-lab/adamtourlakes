@@ -147,7 +147,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  animation: sun-glow 2.6s ease-in-out infinite;
+  animation: sun-breathe 2.2s ease-in-out infinite;
 }
 
 .sun-mark {
@@ -158,32 +158,38 @@
   padding: 0.15rem;
 }
 
-@keyframes sun-glow {
-  0%,
-  100% {
-    filter:
-      drop-shadow(0 0 3px color-mix(in oklab, var(--color-gold) 35%, transparent))
-      drop-shadow(0 0 8px color-mix(in oklab, var(--color-gold) 18%, transparent));
-  }
-  50% {
-    filter:
-      drop-shadow(0 0 12px color-mix(in oklab, var(--color-gold) 90%, transparent))
-      drop-shadow(0 0 28px color-mix(in oklab, var(--color-gold) 65%, transparent));
-  }
-}
-
-.sun-ray {
+.sun-halo {
   transform-origin: 16px 16px;
-  animation: sun-ray-pulse 1.8s ease-in-out infinite;
+  transform-box: fill-box;
+  fill: color-mix(in oklab, var(--color-gold) 28%, transparent);
+  animation: sun-halo 2.2s ease-in-out infinite;
 }
 
-@keyframes sun-ray-pulse {
+@keyframes sun-breathe {
   0%,
   100% {
-    opacity: 0.28;
+    transform: scale(1);
+    filter:
+      drop-shadow(0 0 3px color-mix(in oklab, var(--color-gold) 40%, transparent))
+      drop-shadow(0 0 8px color-mix(in oklab, var(--color-gold) 22%, transparent));
   }
   50% {
-    opacity: 1;
+    transform: scale(1.1);
+    filter:
+      drop-shadow(0 0 10px color-mix(in oklab, var(--color-gold) 85%, transparent))
+      drop-shadow(0 0 24px color-mix(in oklab, var(--color-gold) 55%, transparent));
+  }
+}
+
+@keyframes sun-halo {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.86);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.08);
   }
 }
 
