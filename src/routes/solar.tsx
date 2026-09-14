@@ -98,9 +98,10 @@ function SolarPage() {
           <h1 className="mt-3 max-w-3xl font-display text-4xl font-semibold tracking-tight sm:text-6xl">
             How a home solar system actually works.
           </h1>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-fg/85">
-            The physics is simple. The bill math is local. This page is the briefing I walk
-            homeowners through before anyone talks modules — with room for videos I film myself.
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-fg/85">
+            Solar is remarkably simple and straightforward. It's not a scam, and it doesn't take 20
+            years to reach a net-zero payback. This page is what I talk about with my clients, as
+            well as some helpful videos on topics I'm asked about a lot.
           </p>
         </div>
       </section>
