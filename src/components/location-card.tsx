@@ -1,6 +1,7 @@
 import { MapPin } from "lucide-react";
 import { useEffect, useState } from "react";
 import { AddressBar } from "@/components/address-bar";
+import { InstallReel } from "@/components/install-reel";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { OutOfAreaDialog } from "@/components/out-of-area-dialog";
@@ -107,7 +108,7 @@ export function LocationCard() {
         )}
 
         {location?.zip ? (
-          <div className="flex flex-1 flex-col gap-3">
+          <div className="flex flex-col gap-3">
             <div>
               <p className="font-display text-lg font-semibold tracking-tight">{location.label}</p>
               <p className="text-xs text-muted">
@@ -152,6 +153,7 @@ export function LocationCard() {
               : "Street address or ZIP — NASA sun hours for that home."}
           </p>
         )}
+        <InstallReel />
       </CardContent>
     </Card>
     <OutOfAreaDialog open={outOfArea} onClose={() => setOutOfArea(false)} />
