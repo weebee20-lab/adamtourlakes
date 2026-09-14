@@ -229,6 +229,18 @@
     0 0 36px color-mix(in oklab, var(--color-gold) 28%, transparent);
 }
 
+.nav-glow-hover {
+  transition: color 150ms ease, text-shadow 150ms ease;
+}
+
+.nav-glow-hover:hover {
+  color: var(--color-gold);
+  text-shadow:
+    0 0 8px color-mix(in oklab, var(--color-gold) 70%, transparent),
+    0 0 18px color-mix(in oklab, var(--color-gold) 45%, transparent),
+    0 0 28px color-mix(in oklab, var(--color-gold) 28%, transparent);
+}
+
 .helio-with-solar-glow {
   position: relative;
   isolation: isolate;

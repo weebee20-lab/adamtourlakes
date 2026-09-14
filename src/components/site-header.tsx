@@ -53,7 +53,7 @@ export function SiteHeader() {
                 aria-current={active ? "page" : undefined}
                 className={cn(
                   "inline-flex h-11 items-center px-1.5 text-[11px] font-medium whitespace-nowrap transition-colors duration-150 md:px-2 md:text-xs xl:px-2.5 xl:text-sm",
-                  active ? "text-gold" : "text-muted hover:text-fg",
+                  active ? "text-gold" : "nav-glow-hover text-muted",
                 )}
               >
                 {item.label}
@@ -96,7 +96,7 @@ export function SiteHeader() {
                   to={item.to}
                   className={cn(
                     "flex min-h-12 items-center border-b border-border text-base",
-                    active ? "text-gold" : "text-fg",
+                    active ? "text-gold" : "nav-glow-hover text-fg",
                   )}
                 >
                   {item.label}
