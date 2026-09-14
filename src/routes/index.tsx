@@ -51,17 +51,19 @@ export function HomePage() {
     <main>
       <section className="hero-stage relative isolate min-h-svh overflow-hidden">
         <div className="hero-aura" aria-hidden />
-        <img
-          src="/portraits/adam-user.png"
-          alt="Adam Tourlakes, Sales Manager at Solar Energy Solutions of America"
-          className="hero-portrait portrait-cutout portrait-glow"
-          width={1483}
-          height={1800}
-          fetchPriority="high"
-          decoding="async"
-        />
+        <div className="hero-portrait-wrap">
+          <img
+            src="/portraits/adam-user.png"
+            alt="Adam Tourlakes, Sales Manager at Solar Energy Solutions of America"
+            className="hero-portrait portrait-cutout portrait-glow"
+            width={1483}
+            height={1800}
+            fetchPriority="high"
+            decoding="async"
+          />
+          <span className="hero-cutline" aria-hidden />
+        </div>
         <div className="hero-veil" aria-hidden />
-        <div className="hero-cutline" aria-hidden />
         <div className="hero-copy relative z-30 mx-auto flex min-h-svh max-w-7xl flex-col justify-end gap-8 px-4 pt-28 pb-16 sm:px-6 lg:justify-between lg:pt-32 lg:pb-16">
           <div className="max-w-2xl lg:max-w-3xl">
             <img
