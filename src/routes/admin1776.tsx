@@ -206,7 +206,6 @@ function AdminInbox() {
                   </td>
                   <td className="max-w-[16rem] px-4 py-3 text-muted">{lead.message || "—"}</td>
                   <td className="px-4 py-3">
-                  <td className="px-4 py-3">
                     {lead.status === "deleted" ? (
                       <div className="flex flex-col gap-1">
                         <p className="text-xs text-muted">Wipes in 30 days</p>
