@@ -177,15 +177,15 @@
 .sun-mark-spark {
   position: absolute;
   top: 50%;
-  left: 0;
+  left: 50%;
   z-index: 21;
   width: 0.42rem;
   height: 0.42rem;
-  margin-top: -0.21rem;
   border-radius: 999px;
   background: #fff6e4;
   box-shadow: 0 0 10px 3px color-mix(in oklab, var(--color-gold) 75%, transparent);
-  animation: sun-scan 3.8s ease-in-out infinite;
+  transform: translate(-50%, -50%);
+  animation: none;
   pointer-events: none;
 }
 
