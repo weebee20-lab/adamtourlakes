@@ -20,14 +20,29 @@ export function canonicalUrl(path: string, host = publicShareHost()) {
 }
 
 export function seoHead(title: string, description: string, path = "/") {
-  const canonical = canonicalUrl(path);
+  const host = publicShareHost();
+  const canonical = canonicalUrl(path, host);
+  const meta: Array<Record<string, string>> = [
+    { title },
+    { name: "description", content: description },
+    { name: "robots", content: "index,follow" },
+    { name: "author", content: "Adam Tourlakes" },
+    { property: "og:type", content: "website" },
+    { property: "og:title", content: title },
+    { property: "og:description", content: description },
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: title },
+    { name: "twitter:description", content: description },
+  ];
+  if (canonical && host) {
+    meta.push(
+      { property: "og:url", content: canonical },
+      { property: "og:image", content: `https://${host}/og.jpg` },
+      { name: "twitter:image", content: `https://${host}/og.jpg` },
+    );
+  }
   return {
-    meta: [
-      { title },
-      { name: "description", content: description },
-      { name: "robots", content: "index,follow" },
-      { name: "author", content: "Adam Tourlakes" },
-    ],
+    meta,
     links: canonical ? [{ rel: "canonical", href: canonical }] : [],
   };
 }
