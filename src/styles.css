@@ -514,4 +514,11 @@
       transparent 88%
     );
   }
+
+  /* DESKTOP TRIAL — tuck kicker under “Tourlakes”. Revert this block + hero-kicker class. */
+  .hero-kicker {
+    width: max-content;
+    margin-top: -1.15rem;
+    margin-left: 18.5rem;
+  }
 }
