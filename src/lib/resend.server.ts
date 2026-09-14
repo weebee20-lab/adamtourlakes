@@ -37,6 +37,7 @@ async function sendEmail(payload: {
     headers: {
       Authorization: `Bearer ${key}`,
       "Content-Type": "application/json",
+      "User-Agent": "AdamTourlakesSite/1.0",
     },
     body: JSON.stringify({
       from: FROM,
