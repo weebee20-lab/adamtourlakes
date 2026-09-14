@@ -90,10 +90,10 @@ export function HomePage() {
           <div className="max-w-2xl lg:max-w-3xl">
             <div className="flex flex-wrap gap-3">
               <Button asChild size="lg">
-                <a href={COMPANY.phoneHref}>
+                <Link to="/contact">
                   <Phone className="size-4" />
                   Talk to Adam
-                </a>
+                </Link>
               </Button>
               <Button asChild size="lg" variant="outline">
                 <Link to="/solar">
@@ -207,9 +207,7 @@ export function HomePage() {
                 </a>
               </Button>
               <Button asChild size="lg" variant="outline">
-                <a href={COMPANY.contactUrl} target="_blank" rel="noreferrer">
-                  Company estimate form
-                </a>
+                <Link to="/contact">Send Adam a note</Link>
               </Button>
             </div>
             <p className="mt-4 text-xs text-muted">

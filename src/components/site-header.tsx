@@ -3,7 +3,7 @@ import { Menu, Phone, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { SiteMark } from "@/components/site-mark";
-import { COMPANY, NAV, SITE_NAME } from "@/lib/site";
+import { NAV, SITE_NAME } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
@@ -67,10 +67,10 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-2">
           <Button asChild size="sm" className="hidden sm:inline-flex">
-            <a href={COMPANY.phoneHref}>
+            <Link to="/contact">
               <Phone className="size-4" />
               Get a quote
-            </a>
+            </Link>
           </Button>
           <button
             type="button"
@@ -106,12 +106,13 @@ export function SiteHeader() {
                 </Link>
               );
             })}
-            <a
-              href={COMPANY.phoneHref}
+            <Link
+              to="/contact"
               className="mt-4 inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-gold px-4 text-sm font-medium text-gold-fg"
             >
               <Phone className="size-4" />
-              Call {COMPANY.phoneDisplay}
+              Get a quote
+            </Link>
             </a>
           </nav>
         </div>

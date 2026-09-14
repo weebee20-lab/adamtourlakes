@@ -44,24 +44,29 @@ function ContactPage() {
     }
     setBusy(true);
     setError(null);
-    const res = await saveContactLead({
-      data: {
-        name,
-        email,
-        phone,
-        address: place,
-        bill,
-        backup,
-        message,
-      },
-    });
-    setBusy(false);
-    if (!res.ok) {
-      if (res.error === "out_of_area") setOutOfArea(true);
-      else setError(res.error || "Could not send. Try the office line.");
-      return;
+    try {
+      const res = await saveContactLead({
+        data: {
+          name,
+          email,
+          phone,
+          address: place,
+          bill,
+          backup,
+          message,
+        },
+      });
+      if (!res.ok) {
+        if (res.error === "out_of_area") setOutOfArea(true);
+        else setError(res.error || "Could not send. Try the office line.");
+        return;
+      }
+      setSent(true);
+    } catch {
+      setError("Could not send just now. Call the office and ask for Adam.");
+    } finally {
+      setBusy(false);
     }
-    setSent(true);
   }
 
   return (
@@ -125,7 +130,8 @@ function ContactPage() {
                 <Field label="Phone" htmlFor="contact-phone">
                   <Input
                     id="contact-phone"
-                    type="tel"
+                    type="text"
+                    inputMode="tel"
                     autoComplete="tel"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}

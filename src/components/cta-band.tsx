@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { COMPANY } from "@/lib/site";
@@ -18,15 +19,13 @@ export function CtaBand({
         </div>
         <div className="flex flex-wrap gap-3">
           <Button asChild size="lg">
-            <a href={COMPANY.phoneHref}>
+            <Link to="/contact">
               <Phone className="size-4" />
-              Call {COMPANY.phoneDisplay}
-            </a>
+              Talk to Adam
+            </Link>
           </Button>
           <Button asChild size="lg" variant="outline">
-            <a href={COMPANY.contactUrl} target="_blank" rel="noreferrer">
-              Company estimate form
-            </a>
+            <Link to="/contact">Send Adam a note</Link>
           </Button>
         </div>
       </div>
