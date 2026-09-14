@@ -175,6 +175,29 @@ function finishSavings(opts: {
   };
 }
 
+export function savingsAtOffset(opts: {
+  location: LocationInfo;
+  monthlyBill: number;
+  offsetPct: number;
+  watts?: number;
+}): SavingsResult {
+  const watts = opts.watts ?? 430;
+  const loc = opts.location;
+  const avgKwh = usageKwhFromBill(opts.monthlyBill, loc.rate, loc.customerCharge);
+  const usage = seasonalKwhShape(loc.lat, loc.climate).map((s) => avgKwh * s);
+  const annualUse = usage.reduce((a, b) => a + b, 0);
+  const annualKwh = annualUse * opts.offsetPct;
+  const kwhPerPanel = yearKwhFromFactors(watts, loc.ghi || loc.zipGhi, loc.climate, poaFactor(22, loc.lat), AZIMUTH_FACTOR.S);
+  const panelCount = Math.max(1, Math.round(annualKwh / Math.max(1, kwhPerPanel)));
+  return finishSavings({
+    panelCount,
+    annualKwh,
+    watts,
+    location: loc,
+    monthlyBill: opts.monthlyBill,
+  });
+}
+
 export function calculateSavings(input: CalcInput): SavingsResult {
   const watts = input.wattage;
   const climate = input.location?.climate ?? "hot";

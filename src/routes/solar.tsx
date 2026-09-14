@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { BatteryCharging, PanelsTopLeft, Sun, UtilityPole } from "lucide-react";
 import { CtaBand } from "@/components/cta-band";
+import { ExampleBill } from "@/components/example-bill";
 import { seoHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/solar")({
@@ -132,35 +133,7 @@ function SolarPage() {
 
       <section className="border-y border-border bg-surface">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-          <p className="text-xs font-medium tracking-[0.2em] text-gold uppercase">
-            Florida, 2026
-          </p>
-          <h2 className="mt-3 max-w-2xl font-display text-4xl font-semibold tracking-tight">
-            The credit changed. The sun did not.
-          </h2>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            <article className="rounded-lg bg-bg p-5 shadow-[var(--shadow-border)]">
-              <h3 className="font-display text-xl font-semibold">No 25D on new buys</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">
-                The 30% residential federal credit does not apply to systems paid for after
-                December 31, 2025. Quotes on this site will not pretend otherwise.
-              </p>
-            </article>
-            <article className="rounded-lg bg-bg p-5 shadow-[var(--shadow-border)]">
-              <h3 className="font-display text-xl font-semibold">The bill is the engine</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">
-                Every kilowatt-hour the roof makes is one you do not buy from the utility. On a
-                Cape Coral house with a pool and a long cooling season, that is the whole case.
-              </p>
-            </article>
-            <article className="rounded-lg bg-bg p-5 shadow-[var(--shadow-border)]">
-              <h3 className="font-display text-xl font-semibold">Storms are a spec</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">
-                Wind-rated racking, a licensed solar contractor, and a battery only if you want
-                backup. Grid-tied solar without storage will not run the house during an outage.
-              </p>
-            </article>
-          </div>
+          <ExampleBill />
         </div>
       </section>
 
