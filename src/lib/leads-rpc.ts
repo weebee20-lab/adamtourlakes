@@ -36,6 +36,21 @@ export const saveContactLead = createServerFn({ method: "POST" })
         backup: data.backup,
         message: data.message,
       });
+      try {
+        const { sendContactEmails } = await import("@/lib/resend.server");
+        await sendContactEmails({
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          address: data.address,
+          zip,
+          bill: data.bill,
+          backup: data.backup,
+          message: data.message,
+        });
+      } catch (err) {
+        console.error("contact_email_failed", err);
+      }
       return { ok: true as const };
     } catch {
       return { ok: false as const, error: "Could not save just now. Call the office and ask for Adam." };
