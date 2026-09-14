@@ -93,7 +93,7 @@ function SolarPage() {
         <div className="absolute inset-0 bg-linear-to-t from-bg via-bg/75 to-bg/30" />
         <div className="relative mx-auto flex min-h-[22rem] max-w-6xl flex-col justify-end px-4 py-12 sm:px-6">
           <p className="text-xs font-medium tracking-[0.2em] text-gold uppercase">
-            A short briefing
+            A Short Walkthrough
           </p>
           <h1 className="mt-3 max-w-3xl font-display text-4xl font-semibold tracking-tight sm:text-6xl">
             How a home solar system actually works.
