@@ -2,7 +2,9 @@ import { MapPin, Search } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { OutOfAreaDialog } from "@/components/out-of-area-dialog";
 import { resolveLocation, suggestAddress, type AddressHit } from "@/lib/solar/places";
+import { isFloridaLocation } from "@/lib/swfl";
 import { cn } from "@/lib/utils";
 import { useDesigner } from "@/store/designer";
 
@@ -15,6 +17,7 @@ export function AddressBar() {
   const [busy, setBusy] = useState(false);
   const [looking, setLooking] = useState(false);
   const [active, setActive] = useState(-1);
+  const [outOfArea, setOutOfArea] = useState(false);
   const box = useRef<HTMLDivElement>(null);
   const skipSuggest = useRef(false);
   const suggestGen = useRef(0);
@@ -45,7 +48,7 @@ export function AddressBar() {
       suggestAddress({ data: { q: query } })
         .then((rows) => {
           if (my !== suggestGen.current) return;
-          setHits(rows);
+          setHits(rows.filter((row) => isFloridaLocation(row) !== false));
           setOpen(rows.length > 0);
           setActive(-1);
         })
@@ -78,6 +81,11 @@ export function AddressBar() {
     if (q === query) skipSuggest.current = false;
     try {
       const loc = await resolveLocation({ data: { q } });
+      if (!loc) return;
+      if (isFloridaLocation(loc) === false) {
+        setOutOfArea(true);
+        return;
+      }
       setLocation(loc);
     } finally {
       setBusy(false);
@@ -85,6 +93,7 @@ export function AddressBar() {
   };
 
   return (
+    <>
     <div className="relative flex flex-col gap-2 sm:flex-row sm:items-center">
       <div ref={box} className="relative min-w-0 flex-1">
         <MapPin className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" aria-hidden />
@@ -170,5 +179,7 @@ export function AddressBar() {
         Use This Address
       </Button>
     </div>
+    <OutOfAreaDialog open={outOfArea} onClose={() => setOutOfArea(false)} />
+    </>
   );
 }

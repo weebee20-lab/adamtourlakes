@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import { AddressBar } from "@/components/address-bar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { OutOfAreaDialog } from "@/components/out-of-area-dialog";
 import { resolveLocation } from "@/lib/solar/places";
+import { isFloridaLocation, isFloridaZip } from "@/lib/swfl";
 import { cn, formatNumber, formatUsd } from "@/lib/utils";
 import { useDesigner } from "@/store/designer";
 
@@ -19,6 +21,7 @@ export function LocationCard() {
   const [mode, setMode] = useState<"address" | "zip">("address");
   const [zip, setZip] = useState(location?.zip ?? "");
   const [busy, setBusy] = useState(false);
+  const [outOfArea, setOutOfArea] = useState(false);
 
   useEffect(() => {
     if (location?.zip && location.zip !== zip) setZip(location.zip);
@@ -29,10 +32,21 @@ export function LocationCard() {
     if (mode !== "zip") return;
     const z = zip.replace(/\D/g, "").slice(0, 5);
     if (z.length !== 5 || z === location?.zip) return;
+    if (isFloridaZip(z) === false) {
+      setOutOfArea(true);
+      return;
+    }
     const t = window.setTimeout(() => {
       setBusy(true);
       resolveLocation({ data: { q: z } })
-        .then(setLocation)
+        .then((loc) => {
+          if (!loc) return;
+          if (isFloridaLocation(loc) === false) {
+            setOutOfArea(true);
+            return;
+          }
+          setLocation(loc);
+        })
         .finally(() => setBusy(false));
     }, 400);
     return () => window.clearTimeout(t);
@@ -41,6 +55,7 @@ export function LocationCard() {
   const strengthColor = location?.solarStrength === "Exceptional" ? "text-gold" : "text-fg";
 
   return (
+    <>
     <Card className="flex h-full w-full flex-col">
       <CardContent className="flex h-full flex-1 flex-col gap-4 pt-5">
         <div className="flex flex-wrap items-center justify-between gap-2">
@@ -139,5 +154,7 @@ export function LocationCard() {
         )}
       </CardContent>
     </Card>
+    <OutOfAreaDialog open={outOfArea} onClose={() => setOutOfArea(false)} />
+    </>
   );
 }

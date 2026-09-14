@@ -27,17 +27,8 @@ export function SiteHeader() {
     };
   }, [open]);
 
-  const home = pathname === "/";
-
   return (
-    <header
-      className={cn(
-        "z-40 border-0 shadow-none",
-        home
-          ? "sticky top-0 bg-transparent"
-          : "sticky top-0 bg-bg/80 backdrop-blur-md",
-      )}
-    >
+    <header className="sticky top-0 z-40 border-0 bg-bg/95 shadow-none backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link
           to="/"
