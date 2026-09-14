@@ -6,6 +6,20 @@ import { canPlacePanel, roofSpec, seedCells } from "@/lib/solar/roof";
 import type { BillMode, HouseSize, LocationInfo, RoofKind, Rotation } from "@/lib/solar/types";
 import { utilityFor, usageKwhFromBill } from "@/lib/solar/utility";
 import { solarStrength } from "@/lib/solar/zip";
+import { writeQuoteHandoff } from "@/lib/quote-handoff";
+
+function persistHandoff(state: {
+  location: LocationInfo | null;
+  monthlyBill: number;
+  wantBackup: boolean;
+}) {
+  writeQuoteHandoff({
+    label: state.location?.label || state.location?.zip || "",
+    zip: state.location?.zip || "",
+    monthlyBill: state.monthlyBill,
+    wantBackup: state.wantBackup,
+  });
+}
 
 function starterLocation(): LocationInfo {
   const util = utilityFor("33914", "FL", "Lee");
@@ -96,7 +110,10 @@ export const useDesigner = create<DesignerState>((set, get) => ({
     set((s) => ({ rotation: ((((s.rotation + dir * 90) % 360) + 360) % 360) as Rotation })),
   setWattage: (n) =>
     set({ wattage: Math.min(WATTAGE_MAX, Math.max(WATTAGE_MIN, Math.round(n))) }),
-  setMonthlyBill: (n) => set({ monthlyBill: n, billMode: "bill" }),
+  setMonthlyBill: (n) => {
+    set({ monthlyBill: n, billMode: "bill" });
+    persistHandoff({ ...get(), monthlyBill: n });
+  },
   setBillMode: (billMode) => set({ billMode }),
   setMonthlyKwhMonth: (index, value) => {
     if (index < 0 || index > 11) return;
@@ -156,9 +173,15 @@ export const useDesigner = create<DesignerState>((set, get) => ({
       }),
     });
   },
-  setLocation: (location) => set({ location }),
+  setLocation: (location) => {
+    set({ location });
+    persistHandoff({ ...get(), location });
+  },
   setAddressQuery: (addressQuery) => set({ addressQuery }),
-  setWantBackup: (wantBackup) => set({ wantBackup }),
+  setWantBackup: (wantBackup) => {
+    set({ wantBackup });
+    persistHandoff({ ...get(), wantBackup });
+  },
   setBatteryId: (batteryId) => set({ batteryId, batteryCount: 1 }),
   setBatteryCount: (n) => set({ batteryCount: Math.max(1, Math.round(n)) }),
   setChimney: (chimney) => set({ chimney }),

@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { LocationCard } from "@/components/location-card";
-import { RoofCanvas } from "@/components/roof-canvas";
 import { SavingsCard } from "@/components/savings-card";
+
+const RoofCanvas = lazy(() =>
+  import("@/components/roof-canvas").then((m) => ({ default: m.RoofCanvas })),
+);
 
 export function DesignerApp() {
   const [live, setLive] = useState(false);
@@ -21,7 +24,9 @@ export function DesignerApp() {
         </a>
       </p>
       <div className="grid min-w-0 items-stretch gap-4 lg:grid-cols-[minmax(0,1.15fr)_minmax(20rem,0.85fr)]">
-        <RoofCanvas />
+        <Suspense fallback={<div className="min-h-[22rem] rounded-xl bg-surface" />}>
+          <RoofCanvas />
+        </Suspense>
         <div className="relative z-10 flex min-h-0 min-w-0 lg:col-start-2 lg:row-start-1">
           <LocationCard />
         </div>

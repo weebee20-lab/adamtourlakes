@@ -7,8 +7,8 @@ import { saveContactLead } from "@/lib/leads-rpc";
 import { seoHead } from "@/lib/seo";
 import { COMPANY, JOB_TITLE, SITE_NAME } from "@/lib/site";
 import { isSwflZip, zipFromText } from "@/lib/swfl";
+import { readQuoteHandoff } from "@/lib/quote-handoff";
 import { cn } from "@/lib/utils";
-import { useDesigner } from "@/store/designer";
 
 export const Route = createFileRoute("/contact")({
   ssr: false,
@@ -22,15 +22,13 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
-  const location = useDesigner((s) => s.location);
-  const monthlyBill = useDesigner((s) => s.monthlyBill);
-  const wantBackup = useDesigner((s) => s.wantBackup);
+  const handoff = readQuoteHandoff();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [place, setPlace] = useState(location?.zip ? location.label || location.zip : "");
-  const [bill, setBill] = useState(monthlyBill ? String(monthlyBill) : "");
-  const [backup, setBackup] = useState(wantBackup);
+  const [place, setPlace] = useState(handoff?.label || handoff?.zip || "");
+  const [bill, setBill] = useState(handoff?.monthlyBill ? String(handoff.monthlyBill) : "");
+  const [backup, setBackup] = useState(Boolean(handoff?.wantBackup));
   const [message, setMessage] = useState("");
   const [sent, setSent] = useState(false);
   const [outOfArea, setOutOfArea] = useState(false);
@@ -39,7 +37,7 @@ function ContactPage() {
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
-    const zip = zipFromText(place) || location?.zip || "";
+    const zip = zipFromText(place) || handoff?.zip || "";
     if (isSwflZip(zip) === false) {
       setOutOfArea(true);
       return;

@@ -222,7 +222,7 @@ function rankHits(hits: RankedHit[], q: string): AddressHit[] {
 
 async function censusHits(q: string): Promise<AddressHit[]> {
   const url = `https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=${encodeURIComponent(q)}&benchmark=Public_AR_Current&format=json`;
-  const data = (await fetchJson(url, 3500)) as {
+  const data = (await fetchJson(url, 1800)) as {
     result?: {
       addressMatches?: Array<{
         matchedAddress?: string;
@@ -248,7 +248,7 @@ async function censusHits(q: string): Promise<AddressHit[]> {
 
 async function censusPoint(q: string) {
   const url = `https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=${encodeURIComponent(q)}&benchmark=Public_AR_Current&format=json`;
-  const data = (await fetchJson(url, 3500)) as {
+  const data = (await fetchJson(url, 1800)) as {
     result?: {
       addressMatches?: Array<{
         matchedAddress?: string;
@@ -271,8 +271,8 @@ async function censusPoint(q: string) {
 }
 
 async function photonHits(q: string): Promise<AddressHit[]> {
-  const st = queryState(q);
-  const ll = st ? STATE_LL[st] : undefined;
+  const st = queryState(q) || "FL";
+  const ll = STATE_LL[st] ?? STATE_LL.FL;
   const bias = ll ? `&lat=${ll[0]}&lon=${ll[1]}` : "";
   const url = `https://photon.komoot.io/api/?q=${encodeURIComponent(q)}&limit=8&lang=en${bias}`;
   const data = (await fetchJson(url, 1400)) as {
@@ -306,8 +306,8 @@ async function photonHits(q: string): Promise<AddressHit[]> {
 }
 
 async function nominatimHits(q: string): Promise<AddressHit[]> {
-  const url = `https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&limit=6&countrycodes=us&q=${encodeURIComponent(q)}`;
-  const rows = (await fetchJson(url, 2200)) as Array<{
+  const url = `https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&limit=6&countrycodes=us&viewbox=-87.63,31.00,-79.97,24.40&q=${encodeURIComponent(q)}`;
+  const rows = (await fetchJson(url, 1400)) as Array<{
     address?: {
       house_number?: string;
       road?: string;
@@ -396,16 +396,16 @@ export async function lookupSuggestions(q: string): Promise<AddressHit[]> {
       jobs.push(censusHits(q).then((pack) => tag("census", pack)));
       jobs.push(nominatimHits(q).then((pack) => tag("nominatim", pack)));
       jobs.push(googleHits(q).then((pack) => tag("google", pack)));
-      for (const variant of queryVariants(q).slice(0, 4)) {
-        if (variant === q) continue;
-        jobs.push(censusHits(variant).then((pack) => tag("census", pack)));
-      }
     } else if (q.includes(",")) {
       jobs.push(nominatimHits(q).then((pack) => tag("nominatim", pack)));
     }
-    const packs = await Promise.all(jobs);
-    for (const pack of packs) for (const row of pack) ranked.push(row);
-    const sliced = rankHits(ranked, q).slice(0, 8);
+    const packs = await Promise.allSettled(jobs);
+    for (const pack of packs) {
+      if (pack.status === "fulfilled") for (const row of pack.value) ranked.push(row);
+    }
+    const sliced = rankHits(ranked, q)
+      .filter((row) => !row.state || row.state.toUpperCase() === "FL")
+      .slice(0, 8);
     if (sliced.length) {
       suggestCache.set(key, sliced);
       capCache(suggestCache, 160);
@@ -422,7 +422,7 @@ async function nasaPoint(lat: number, lng: number) {
     const cached = nasaCache.get(key);
     if (cached) return cached;
     const url = `https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=ALLSKY_SFC_SW_DWN&community=RE&longitude=${lng}&latitude=${lat}&format=JSON`;
-    const nasa = (await fetchJson(url, 7000)) as {
+    const nasa = (await fetchJson(url, 1600)) as {
       properties?: { parameter?: { ALLSKY_SFC_SW_DWN?: Record<string, number> } };
     } | null;
     const table = nasa?.properties?.parameter?.ALLSKY_SFC_SW_DWN ?? {};
@@ -430,7 +430,7 @@ async function nasaPoint(lat: number, lng: number) {
     const ann = Number(table.ANN ?? 0);
     const avg = monthly.every((n) => n > 0) ? monthly.reduce((a, b) => a + b, 0) / 12 : 0;
     const ghi = ann > 1 ? ann : avg;
-    if (!(ghi > 1)) throw new Error("NASA POWER returned no irradiance");
+    if (!(ghi > 1)) return null;
     const out = {
       ghi,
       ghiMonthly: monthly.length === 12 && monthly.every((v) => v > 0) ? monthly : undefined,
@@ -534,8 +534,8 @@ export async function lookupLocation(q: string): Promise<LocationInfo | null> {
       }
       if (!placed) {
         const geo = (await fetchJson(
-          `https://nominatim.openstreetmap.org/search?format=json&limit=1&addressdetails=1&countrycodes=us&q=${encodeURIComponent(q)}`,
-          2000,
+          `https://nominatim.openstreetmap.org/search?format=json&limit=1&addressdetails=1&countrycodes=us&viewbox=-87.63,31.00,-79.97,24.40&q=${encodeURIComponent(q)}`,
+          1600,
         )) as Array<{
           lat: string;
           lon: string;
@@ -577,9 +577,11 @@ export async function lookupLocation(q: string): Promise<LocationInfo | null> {
     let nasa = false;
     try {
       const sun = await nasaPoint(lat, lng);
-      ghi = sun.ghi;
-      ghiMonthly = sun.ghiMonthly;
-      nasa = true;
+      if (sun) {
+        ghi = sun.ghi;
+        ghiMonthly = sun.ghiMonthly;
+        nasa = true;
+      }
     } catch {
       ghi = zipGhi;
       nasa = false;

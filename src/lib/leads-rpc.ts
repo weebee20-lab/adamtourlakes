@@ -20,18 +20,26 @@ export const saveContactLead = createServerFn({ method: "POST" })
     if (!data.name || !data.email) return { ok: false as const, error: "Name and email are required." };
     const zip = zipFromText(data.address);
     if (isSwflZip(zip) === false) return { ok: false as const, error: "out_of_area" as const };
-    const { insertLead } = await import("@/lib/leads.server");
-    await insertLead({
-      name: data.name,
-      email: data.email,
-      phone: data.phone,
-      address: data.address,
-      zip,
-      bill: data.bill,
-      backup: data.backup,
-      message: data.message,
-    });
-    return { ok: true as const };
+    const { allowRateLimit } = await import("@/lib/solar/guard.server");
+    if (!allowRateLimit("contact-lead", 8, 15 * 60 * 1000)) {
+      return { ok: false as const, error: "Too many tries. Call the office or wait a few minutes." };
+    }
+    try {
+      const { insertLead } = await import("@/lib/leads.server");
+      await insertLead({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        address: data.address,
+        zip,
+        bill: data.bill,
+        backup: data.backup,
+        message: data.message,
+      });
+      return { ok: true as const };
+    } catch {
+      return { ok: false as const, error: "Could not save just now. Call the office and ask for Adam." };
+    }
   });
 
 export const adminLeadStatus = createServerFn({ method: "POST" }).handler(async () => {
@@ -56,8 +64,12 @@ export const adminLeadLogout = createServerFn({ method: "POST" }).handler(async 
 export const adminListLeads = createServerFn({ method: "POST" }).handler(async () => {
   const mod = await import("@/lib/leads.server");
   if (!mod.isAdmin()) return { ok: false as const, error: "locked" as const, leads: [] as ContactLead[] };
-  const leads = await mod.listLeads();
-  return { ok: true as const, leads };
+  try {
+    const leads = await mod.listLeads();
+    return { ok: true as const, leads };
+  } catch {
+    return { ok: true as const, leads: [] as ContactLead[] };
+  }
 });
 
 export const adminSetLeadStatus = createServerFn({ method: "POST" })
