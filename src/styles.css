@@ -123,9 +123,9 @@
 
 .site-signature-header {
   display: block;
-  height: 1.85rem;
+  height: 2.5rem;
   width: auto;
-  max-width: min(10.5rem, 42vw);
+  max-width: min(14.5rem, 54vw);
   outline: none;
   image-rendering: auto;
   filter: drop-shadow(0 0 10px color-mix(in oklab, var(--color-gold) 28%, transparent));
@@ -133,8 +133,8 @@
 
 @media (min-width: 640px) {
   .site-signature-header {
-    height: 2.15rem;
-    max-width: 12rem;
+    height: 3.25rem;
+    max-width: 18.5rem;
   }
 }
 
