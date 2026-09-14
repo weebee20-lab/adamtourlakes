@@ -823,8 +823,8 @@ export function RoofCanvas() {
                   <polygon
                     data-cell={isObstacle ? undefined : cell.key}
                     points={poly(cell.pts)}
-                    fill={isObstacle ? "#8a6a48" : placed ? panelFill : hover ? "rgba(226,90,28,0.22)" : "rgba(255,248,235,0.08)"}
-                    stroke={hover && !isObstacle ? "#e25a1c" : placed ? "#11161c" : "rgba(120,90,50,0.28)"}
+                    fill={isObstacle ? "#8a6a48" : placed ? panelFill : hover ? "rgba(201,164,74,0.28)" : "rgba(255,248,235,0.08)"}
+                    stroke={hover && !isObstacle ? "#c9a44a" : placed ? "#11161c" : "rgba(120,90,50,0.28)"}
                     strokeWidth={hover && !isObstacle ? 1.6 / model.scale : 0.55 / model.scale}
                     className={isObstacle ? "cursor-not-allowed" : "cursor-pointer"}
                     pointerEvents={isObstacle ? "none" : "auto"}
@@ -923,14 +923,14 @@ function PowerFlowPath({ d }: { d: string }) {
   return (
     <g>
       <path d={d} fill="none" stroke="#5c5955" strokeWidth={4.5} strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
-      <path d={d} fill="none" stroke="#ff7a32" strokeWidth={2.8} strokeLinecap="round" strokeLinejoin="round" opacity="0.5" vectorEffect="non-scaling-stroke" />
-      <path d={d} fill="none" stroke="#ff8a3a" strokeWidth={10} strokeLinecap="round" strokeLinejoin="round" strokeDasharray="52 38" opacity="0.22" vectorEffect="non-scaling-stroke">
+      <path d={d} fill="none" stroke="#c9a44a" strokeWidth={2.8} strokeLinecap="round" strokeLinejoin="round" opacity="0.5" vectorEffect="non-scaling-stroke" />
+      <path d={d} fill="none" stroke="#d4b45c" strokeWidth={10} strokeLinecap="round" strokeLinejoin="round" strokeDasharray="52 38" opacity="0.22" vectorEffect="non-scaling-stroke">
         <animate attributeName="stroke-dashoffset" from="0" to="-90" dur="3.4s" repeatCount="indefinite" />
       </path>
-      <path d={d} fill="none" stroke="#ff6a1f" strokeWidth={3.6} strokeLinecap="round" strokeLinejoin="round" strokeDasharray="52 38" vectorEffect="non-scaling-stroke">
+      <path d={d} fill="none" stroke="#c9a44a" strokeWidth={3.6} strokeLinecap="round" strokeLinejoin="round" strokeDasharray="52 38" vectorEffect="non-scaling-stroke">
         <animate attributeName="stroke-dashoffset" from="0" to="-90" dur="3.4s" repeatCount="indefinite" />
       </path>
-      <path d={d} fill="none" stroke="#ffd4a8" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round" strokeDasharray="52 38" vectorEffect="non-scaling-stroke">
+      <path d={d} fill="none" stroke="#f3e0a8" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round" strokeDasharray="52 38" vectorEffect="non-scaling-stroke">
         <animate attributeName="stroke-dashoffset" from="0" to="-90" dur="3.4s" repeatCount="indefinite" />
       </path>
     </g>
@@ -954,7 +954,7 @@ function Compass({ rotation }: { rotation: Rotation }) {
     <div className="pointer-events-none absolute right-3 bottom-3 size-[4.4rem] rounded-full border border-white/70 bg-card/92 text-[9px] font-bold tracking-wide text-muted-foreground shadow-sm">
       <svg viewBox="0 0 64 64" className="absolute inset-0 size-full" aria-hidden>
         <g transform={`rotate(${angle} 32 32)`}>
-          <polygon points="32,8 36,32 32,28 28,32" fill="#e25a1c" />
+          <polygon points="32,8 36,32 32,28 28,32" fill="#c9a44a" />
           <polygon points="32,56 36,32 32,36 28,32" fill="#c9c2b6" />
         </g>
       </svg>
