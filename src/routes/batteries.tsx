@@ -2,6 +2,7 @@ import { createFileRoute, Link, Navigate } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useMemo, useState, type Dispatch, type SetStateAction } from "react";
 import { Button } from "@/components/ui/button";
+import { HelioCredit } from "@/components/helio-credit";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import {
@@ -72,6 +73,7 @@ function BatteriesPage() {
 
   return (
     <main className="mx-auto flex w-full max-w-4xl flex-col gap-6 px-4 py-8 sm:px-6">
+      <HelioCredit />
       <header>
         <h2 className="font-display text-2xl font-semibold tracking-tight">Add Backup Power</h2>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">

@@ -202,6 +202,13 @@
   );
 }
 
+.helio-credit {
+  text-shadow:
+    0 0 8px color-mix(in oklab, var(--color-gold) 70%, transparent),
+    0 0 18px color-mix(in oklab, var(--color-gold) 45%, transparent),
+    0 0 36px color-mix(in oklab, var(--color-gold) 28%, transparent);
+}
+
 .portrait-cutout {
   outline: none;
 }
