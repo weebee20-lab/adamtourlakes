@@ -1,5 +1,5 @@
 import { envFileValue } from "@/lib/solar/guard.server";
-import { COMPANY, SITE_NAME } from "@/lib/site";
+import { COMPANY } from "@/lib/site";
 
 const FROM = "Adam Tourlakes <adam@adamtourlakes.com>";
 
@@ -12,7 +12,7 @@ function apiKey() {
 }
 
 function notifyTo() {
-  return envStr("ADAM_NOTIFY_EMAIL") || "adam@adamtourlakes.com";
+  return envStr("ADAM_NOTIFY_EMAIL") || "atourlakes@yahoo.com";
 }
 
 function escapeHtml(value: string) {
@@ -99,21 +99,27 @@ export async function sendContactEmails(lead: {
   const notifyText = `New contact form\n\n${rows.map(([k, v]) => `${k}: ${v}`).join("\n")}\n`;
 
   const thanksHtml = `
-    <p style="font-family:Georgia,serif;font-size:22px;color:#c9a227;margin:0 0 12px">Got it, ${escapeHtml(first)}.</p>
-    <p style="font-family:system-ui,sans-serif;font-size:15px;color:#111;line-height:1.55">
-      This is Adam Tourlakes. I received your note from the site and I will follow up.
-      If you want the faster path, call the Cape Coral office at ${COMPANY.phoneDisplay} and ask for Adam.
-    </p>
-    <p style="font-family:system-ui,sans-serif;font-size:15px;color:#111;line-height:1.55">
-      ${COMPANY.name}<br/>
-      ${COMPANY.addressLine}<br/>
-      ${COMPANY.cityStateZip}
-    </p>
-    <p style="font-family:system-ui,sans-serif;font-size:13px;color:#666;margin-top:24px">
-      — ${SITE_NAME}
-    </p>
+    <div style="margin:0;padding:32px 24px;background:#08090c;color:#f4f1ea">
+      <p style="font-family:Georgia,'Times New Roman',serif;font-size:13px;letter-spacing:0.18em;text-transform:uppercase;color:#c9a227;margin:0 0 16px">Adam Tourlakes</p>
+      <p style="font-family:Georgia,'Times New Roman',serif;font-size:28px;line-height:1.2;color:#c9a227;margin:0 0 18px">Thank you for your inquiry.</p>
+      <p style="font-family:system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.6;color:#f4f1ea;margin:0 0 14px">
+        Hi ${escapeHtml(first)},
+      </p>
+      <p style="font-family:system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.6;color:#d8d4cc;margin:0 0 14px">
+        I received your note from the site. I will review it and follow up personally — I am the point of contact from the first call through after the install.
+      </p>
+      <p style="font-family:system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.6;color:#d8d4cc;margin:0 0 22px">
+        If you would rather talk now, call the Cape Coral office at ${COMPANY.phoneDisplay} and ask for Adam.
+      </p>
+      <p style="font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.55;color:#9a958c;margin:0">
+        ${COMPANY.name}<br/>
+        ${COMPANY.addressLine}<br/>
+        ${COMPANY.cityStateZip}
+      </p>
+      <p style="font-family:Georgia,'Times New Roman',serif;font-size:16px;color:#c9a227;margin:28px 0 0">— Adam</p>
+    </div>
   `;
-  const thanksText = `Got it, ${first}.\n\nThis is Adam Tourlakes. I received your note from the site and I will follow up. If you want the faster path, call the Cape Coral office at ${COMPANY.phoneDisplay} and ask for Adam.\n\n${COMPANY.name}\n${COMPANY.addressLine}\n${COMPANY.cityStateZip}\n`;
+  const thanksText = `Thank you for your inquiry.\n\nHi ${first},\n\nI received your note from the site. I will review it and follow up personally — I am the point of contact from the first call through after the install.\n\nIf you would rather talk now, call the Cape Coral office at ${COMPANY.phoneDisplay} and ask for Adam.\n\n${COMPANY.name}\n${COMPANY.addressLine}\n${COMPANY.cityStateZip}\n\n— Adam\n`;
 
   const results = await Promise.allSettled([
     sendEmail({
@@ -125,7 +131,7 @@ export async function sendContactEmails(lead: {
     }),
     sendEmail({
       to: lead.email,
-      subject: "Got it — Adam Tourlakes",
+      subject: "Thank You For Your Inquiry — Adam Tourlakes",
       html: thanksHtml,
       text: thanksText,
       replyTo: "adam@adamtourlakes.com",
