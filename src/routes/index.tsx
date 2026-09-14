@@ -107,7 +107,7 @@ export function HomePage() {
       </section>
 
       <section className="relative z-20 mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <p className="text-xs font-medium tracking-[0.2em] text-gold uppercase">How I work</p>
+        <p className="text-sm font-medium tracking-[0.16em] text-gold uppercase sm:text-base">How I Work</p>
         <h2 className="mt-3 max-w-xl font-display text-4xl font-semibold tracking-tight">
           A solar conversation should be educational and fun, not pushy and rushed.
         </h2>
@@ -128,7 +128,7 @@ export function HomePage() {
       <section className="border-y border-border bg-surface">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2">
           <div>
-            <p className="text-xs font-medium tracking-[0.2em] text-gold uppercase">About</p>
+            <p className="text-sm font-medium tracking-[0.16em] text-gold uppercase sm:text-base">About Me</p>
             <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight">
               I learn the house — and the people in it — before I size a solar system.
             </h2>
