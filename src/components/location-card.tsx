@@ -13,32 +13,6 @@ function climateLabel(climate: string, lat: number) {
   return "Mild";
 }
 
-function AboutHelio() {
-  return (
-    <div className="mt-3 flex flex-1 flex-col">
-      <div className="flex h-full flex-col rounded-lg border border-border/70 bg-muted/40 px-4 py-4">
-        <p className="relative overflow-hidden py-1 text-center font-display text-xl font-semibold tracking-tight text-primary">
-          <span className="helio-nameplate-flare helio-nameplate-flare-slow" aria-hidden />
-          <span className="relative z-10">Why Helio Exists</span>
-        </p>
-        <div className="mt-1 flex flex-col gap-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
-          <p>
-            Helio is a free calculator built by working solar engineers and designers. The goal is simple: give
-            everyone a clear, honest look at solar — production, savings, and cost — without the usual fluff.
-          </p>
-          <p>
-            We don’t sell your information to calling lists, and we don’t dress up the numbers. Your design is shared
-            only with the companies you choose on the last page, and you stay in control of that every step.
-          </p>
-          <p>
-            If a company is Helio Verified, it means it passed a rigorous quality check from our team. These companies will feature a Helio Verified badge.
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export function LocationCard() {
   const location = useDesigner((s) => s.location);
   const setLocation = useDesigner((s) => s.setLocation);
@@ -64,23 +38,23 @@ export function LocationCard() {
     return () => window.clearTimeout(t);
   }, [mode, zip, location?.zip, setLocation]);
 
-  const strengthColor = location?.solarStrength === "Exceptional" ? "text-primary" : "text-foreground";
+  const strengthColor = location?.solarStrength === "Exceptional" ? "text-gold" : "text-fg";
 
   return (
     <Card className="flex h-full w-full flex-col">
       <CardContent className="flex h-full flex-1 flex-col gap-4 pt-5">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <p className="flex items-center gap-2 text-sm font-semibold">
-            <MapPin className="size-4 text-muted-foreground" aria-hidden />
+            <MapPin className="size-4 text-muted" aria-hidden />
             Location
           </p>
-          <div className="inline-flex rounded-lg bg-muted p-0.5">
+          <div className="inline-flex rounded-lg bg-surface-2 p-0.5 ring-1 ring-border">
             <button
               type="button"
               aria-pressed={mode === "address"}
               className={cn(
-                "rounded-md px-3 py-1.5 text-xs font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                mode === "address" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground",
+                "rounded-md px-3 py-1.5 text-xs font-semibold transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                mode === "address" ? "bg-gold text-gold-fg" : "text-muted hover:text-fg",
               )}
               onClick={() => setMode("address")}
             >
@@ -90,8 +64,8 @@ export function LocationCard() {
               type="button"
               aria-pressed={mode === "zip"}
               className={cn(
-                "rounded-md px-3 py-1.5 text-xs font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                mode === "zip" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground",
+                "rounded-md px-3 py-1.5 text-xs font-semibold transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                mode === "zip" ? "bg-gold text-gold-fg" : "text-muted hover:text-fg",
               )}
               onClick={() => setMode("zip")}
             >
@@ -104,7 +78,7 @@ export function LocationCard() {
           <AddressBar />
         ) : (
           <label htmlFor="helio-zip" className="flex max-w-[10rem] flex-col gap-1.5">
-            <span className="text-[10px] font-semibold tracking-wide text-muted-foreground uppercase">ZIP code</span>
+            <span className="text-[10px] font-semibold tracking-wide text-muted uppercase">ZIP code</span>
             <Input
               id="helio-zip"
               inputMode="numeric"
@@ -118,50 +92,50 @@ export function LocationCard() {
         )}
 
         {location?.zip ? (
-          <div className="flex flex-1 flex-col">
-            <p className="font-display text-lg font-semibold tracking-tight">{location.label}</p>
-            <p className="text-xs text-muted-foreground">
-              {climateLabel(location.climate, location.lat)} · {location.utilityName} · {formatNumber(location.rate * 100, 1)}¢/kWh
-              {location.customerCharge > 0 ? ` + ${formatUsd(location.customerCharge)}/mo service` : ""}
-            </p>
-            <div className="mt-3 grid grid-cols-2 gap-2">
-              <div className="rounded-lg bg-muted px-3 py-2">
-                <p className="text-[10px] font-semibold tracking-wide text-muted-foreground uppercase">
+          <div className="flex flex-1 flex-col gap-3">
+            <div>
+              <p className="font-display text-lg font-semibold tracking-tight">{location.label}</p>
+              <p className="text-xs text-muted">
+                {climateLabel(location.climate, location.lat)} · {location.utilityName} ·{" "}
+                <span className="font-num">{formatNumber(location.rate * 100, 1)}¢/kWh</span>
+                {location.customerCharge > 0 ? (
+                  <>
+                    {" "}
+                    + <span className="font-num">{formatUsd(location.customerCharge)}/mo</span> service
+                  </>
+                ) : null}
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              <div className="rounded-lg bg-surface-2 px-3 py-2">
+                <p className="text-[10px] font-semibold tracking-wide text-muted uppercase">
                   {mode === "address" ? "Sun Hours" : "ZIP Average"}
                 </p>
-                <p className="font-display text-xl font-semibold tabular-nums">
+                <p className="font-num text-xl font-semibold">
                   {formatNumber(location.nasa ? location.ghi : location.zipGhi, 2)}
                 </p>
-                <p className="text-[10px] text-muted-foreground">kWh/m²/day</p>
+                <p className="text-[10px] text-muted">kWh/m²/day</p>
               </div>
-              <div className="rounded-lg bg-muted px-3 py-2">
-                <p className="text-[10px] font-semibold tracking-wide text-muted-foreground uppercase">Solar Strength</p>
-                <p className={cn("font-display text-xl font-semibold", strengthColor)}>{location.solarStrength}</p>
-                <p className="text-[10px] text-muted-foreground">for this ZIP</p>
+              <div className="rounded-lg bg-surface-2 px-3 py-2">
+                <p className="text-[10px] font-semibold tracking-wide text-muted uppercase">Solar Strength</p>
+                <p className={cn("font-sans text-xl font-semibold", strengthColor)}>{location.solarStrength}</p>
+                <p className="text-[10px] text-muted">for this ZIP</p>
               </div>
             </div>
-            <p className="mt-3 text-xs text-muted-foreground">
-              {location.nasa
-                ? `NASA POWER at this point: ${formatNumber(location.ghi, 2)} kWh/m²/day.${mode === "zip" ? " Switch to Full Address for the exact lat/long of the home." : ""}`
-                : busy
-                  ? "Looking up this ZIP…"
-                  : mode === "address"
-                    ? "Type a street address and Helio will use NASA sun calculations for that home."
-                    : "Type a ZIP and Helio will use NASA sun calculations for that area."}
-            </p>
-            <AboutHelio />
-          </div>
-        ) : (
-          <>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-xs text-muted">
               {busy
                 ? "Looking up this location…"
-                : mode === "address"
-                  ? "Type a street address and Helio will use NASA sun calculations for that home."
-                  : "Type a ZIP and Helio will use NASA sun calculations for that area."}
+                : location.nasa
+                  ? `NASA sun hours: ${formatNumber(location.ghi, 2)} kWh/m²/day.`
+                  : "Street address or ZIP — NASA sun hours for that home."}
             </p>
-            <AboutHelio />
-          </>
+          </div>
+        ) : (
+          <p className="text-sm text-muted">
+            {busy
+              ? "Looking up this location…"
+              : "Street address or ZIP — NASA sun hours for that home."}
+          </p>
         )}
       </CardContent>
     </Card>

@@ -79,7 +79,7 @@ function grassSquiggle(t: { x: number; y: number; s: number; seed: number }) {
 }
 
 function Seg({ children }: { children: ReactNode }) {
-  return <div className="flex rounded-lg bg-muted p-0.5">{children}</div>;
+  return <div className="flex rounded-lg bg-surface-2 p-0.5 ring-1 ring-border">{children}</div>;
 }
 function SegBtn({ on, onClick, children }: { on: boolean; onClick: () => void; children: ReactNode }) {
   return (
@@ -87,8 +87,8 @@ function SegBtn({ on, onClick, children }: { on: boolean; onClick: () => void; c
       type="button"
       onClick={onClick}
       className={cn(
-        "rounded-md px-3 py-1.5 text-xs font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-        on ? "bg-card text-foreground shadow-sm" : "text-muted-foreground",
+        "rounded-md px-3 py-1.5 text-xs font-semibold transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        on ? "bg-gold text-gold-fg" : "text-muted hover:text-fg",
       )}
       aria-pressed={on}
     >
@@ -875,15 +875,15 @@ export function RoofCanvas() {
       </div>
 
       <div className="grid grid-cols-2 gap-2 border-t border-border px-3 py-2 sm:px-4">
-        <div className="rounded-md bg-muted/80 px-3 py-2">
-          <p className="text-[10px] font-medium tracking-wide text-muted-foreground uppercase">kW Size</p>
-          <p className="font-display text-lg font-semibold tabular-nums tracking-tight">
+        <div className="rounded-md bg-surface-2 px-3 py-2">
+          <p className="text-[10px] font-medium tracking-wide text-muted uppercase">kW Size</p>
+          <p className="font-num text-lg font-semibold tracking-tight">
             {savings.panelCount ? `${formatNumber(savings.systemKw, 2)} kW` : "—"}
           </p>
         </div>
-        <div className="rounded-md bg-muted/80 px-3 py-2">
-          <p className="text-[10px] font-medium tracking-wide text-muted-foreground uppercase">Yearly Production</p>
-          <p className="font-display text-lg font-semibold tabular-nums tracking-tight">
+        <div className="rounded-md bg-surface-2 px-3 py-2">
+          <p className="text-[10px] font-medium tracking-wide text-muted uppercase">Yearly Production</p>
+          <p className="font-num text-lg font-semibold tracking-tight">
             {savings.panelCount && savings.annualKwh > 0 ? formatKwh(savings.annualKwh) : "—"}
           </p>
         </div>
@@ -904,7 +904,7 @@ export function RoofCanvas() {
             {WATTAGE_MIN}–{WATTAGE_MAX} W
           </p>
         </div>
-        <p className="text-right text-sm font-semibold tabular-nums">
+        <p className="font-num text-right text-sm font-semibold">
           {wattage} W
           <span className="block text-[10px] font-normal text-muted-foreground">
             {Math.round(PANEL_EFFICIENCY * 1000) / 10}% eff · {PANEL_TEMP_COEFF * 100}% /°C

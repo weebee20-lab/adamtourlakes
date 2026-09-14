@@ -106,6 +106,12 @@
   font-family: var(--font-display);
 }
 
+.font-num {
+  font-family: var(--font-sans);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
 .site-signature {
   display: block;
   width: min(16.5rem, 58vw);

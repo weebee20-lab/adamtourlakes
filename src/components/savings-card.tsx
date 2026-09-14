@@ -53,11 +53,11 @@ export function SavingsCard() {
         <h1 className="font-display text-lg font-semibold tracking-tight">System Sizing and Savings</h1>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-2 gap-1 rounded-lg bg-muted p-1">
+        <div className="grid grid-cols-2 gap-1 rounded-lg bg-surface-2 p-1 ring-1 ring-border">
           <Button
             type="button"
             size="sm"
-            variant={billMode === "bill" ? "default" : "ghost"}
+            variant={billMode === "bill" ? "gold" : "ghost"}
             className="h-auto whitespace-normal px-2 py-2 text-xs leading-tight"
             aria-pressed={billMode === "bill"}
             onClick={() => setBillMode("bill")}
@@ -67,7 +67,7 @@ export function SavingsCard() {
           <Button
             type="button"
             size="sm"
-            variant={billMode === "kwh" ? "default" : "ghost"}
+            variant={billMode === "kwh" ? "gold" : "ghost"}
             className="h-auto whitespace-normal px-2 py-2 text-xs leading-tight"
             aria-pressed={billMode === "kwh"}
             onClick={() => setBillMode("kwh")}
@@ -138,7 +138,7 @@ export function SavingsCard() {
                 );
               })}
             </div>
-            <p className="text-sm font-medium tabular-nums">
+            <p className="font-num text-sm font-medium">
               Avg Bill {formatUsd(monthlyBill)}
               <span className="font-normal text-muted-foreground">
                 {" "}
@@ -229,7 +229,7 @@ function BigStat({ label, value, emphasize }: { label: string; value: string; em
   return (
     <div className={cn("rounded-lg bg-muted/70 px-3 py-2", emphasize && "ring-1 ring-primary/40")}>
       <p className="text-[10px] font-medium tracking-wide text-muted-foreground uppercase">{label}</p>
-      <p className="font-display text-lg font-semibold tabular-nums">{value}</p>
+      <p className="font-num text-lg font-semibold">{value}</p>
     </div>
   );
 }
@@ -239,7 +239,7 @@ function Row({ label, value }: { label: string; value: string }) {
     <div className="mx-auto flex w-[75%] items-baseline gap-2 py-2">
       <dt className="shrink-0 text-muted-foreground">{label}</dt>
       <span className="mb-1 min-w-3 flex-1 border-b border-dotted border-primary/80" aria-hidden />
-      <dd className="shrink-0 font-medium tabular-nums">{value}</dd>
+      <dd className="font-num shrink-0 font-medium">{value}</dd>
     </div>
   );
 }
