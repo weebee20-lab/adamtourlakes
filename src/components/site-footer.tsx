@@ -90,7 +90,14 @@ export function SiteFooter() {
       <div className="h-px w-full hairline" />
       <p className="mx-auto max-w-6xl px-4 py-5 text-xs text-muted sm:px-6">
         Independent personal site for {SITE_NAME}. Not the official{" "}
-        {COMPANY.short} corporate website.
+        {COMPANY.short} corporate website.{" "}
+        <Link to="/privacy" className="text-muted transition-colors hover:text-fg">
+          Privacy
+        </Link>
+        {" · "}
+        <Link to="/terms" className="text-muted transition-colors hover:text-fg">
+          Terms
+        </Link>
       </p>
     </footer>
   );

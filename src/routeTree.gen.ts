@@ -16,7 +16,9 @@ import { Route as CalculatorRouteImport } from './routes/calculator'
 import { Route as CompanyRouteImport } from './routes/company'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FloridaRouteImport } from './routes/florida'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SolarRouteImport } from './routes/solar'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as FloridaCharlotteCountyRouteImport } from './routes/florida.charlotte-county'
 import { Route as FloridaCollierCountyRouteImport } from './routes/florida.collier-county'
 import { Route as FloridaLeeCountyRouteImport } from './routes/florida.lee-county'
@@ -56,9 +58,19 @@ const FloridaRoute = FloridaRouteImport.update({
   path: '/florida',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SolarRoute = SolarRouteImport.update({
   id: '/solar',
   path: '/solar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FloridaCharlotteCountyRoute = FloridaCharlotteCountyRouteImport.update({
@@ -85,7 +97,9 @@ export interface FileRoutesByFullPath {
   '/company': typeof CompanyRoute
   '/contact': typeof ContactRoute
   '/florida': typeof FloridaRouteWithChildren
+  '/privacy': typeof PrivacyRoute
   '/solar': typeof SolarRoute
+  '/terms': typeof TermsRoute
   '/florida/charlotte-county': typeof FloridaCharlotteCountyRoute
   '/florida/collier-county': typeof FloridaCollierCountyRoute
   '/florida/lee-county': typeof FloridaLeeCountyRoute
@@ -98,7 +112,9 @@ export interface FileRoutesByTo {
   '/company': typeof CompanyRoute
   '/contact': typeof ContactRoute
   '/florida': typeof FloridaRouteWithChildren
+  '/privacy': typeof PrivacyRoute
   '/solar': typeof SolarRoute
+  '/terms': typeof TermsRoute
   '/florida/charlotte-county': typeof FloridaCharlotteCountyRoute
   '/florida/collier-county': typeof FloridaCollierCountyRoute
   '/florida/lee-county': typeof FloridaLeeCountyRoute
@@ -112,7 +128,9 @@ export interface FileRoutesById {
   '/company': typeof CompanyRoute
   '/contact': typeof ContactRoute
   '/florida': typeof FloridaRouteWithChildren
+  '/privacy': typeof PrivacyRoute
   '/solar': typeof SolarRoute
+  '/terms': typeof TermsRoute
   '/florida/charlotte-county': typeof FloridaCharlotteCountyRoute
   '/florida/collier-county': typeof FloridaCollierCountyRoute
   '/florida/lee-county': typeof FloridaLeeCountyRoute
@@ -127,7 +145,9 @@ export interface FileRouteTypes {
     | '/company'
     | '/contact'
     | '/florida'
+    | '/privacy'
     | '/solar'
+    | '/terms'
     | '/florida/charlotte-county'
     | '/florida/collier-county'
     | '/florida/lee-county'
@@ -140,7 +160,9 @@ export interface FileRouteTypes {
     | '/company'
     | '/contact'
     | '/florida'
+    | '/privacy'
     | '/solar'
+    | '/terms'
     | '/florida/charlotte-county'
     | '/florida/collier-county'
     | '/florida/lee-county'
@@ -153,7 +175,9 @@ export interface FileRouteTypes {
     | '/company'
     | '/contact'
     | '/florida'
+    | '/privacy'
     | '/solar'
+    | '/terms'
     | '/florida/charlotte-county'
     | '/florida/collier-county'
     | '/florida/lee-county'
@@ -167,7 +191,9 @@ export interface RootRouteChildren {
   CompanyRoute: typeof CompanyRoute
   ContactRoute: typeof ContactRoute
   FloridaRoute: typeof FloridaRouteWithChildren
+  PrivacyRoute: typeof PrivacyRoute
   SolarRoute: typeof SolarRoute
+  TermsRoute: typeof TermsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -221,11 +247,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FloridaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/solar': {
       id: '/solar'
       path: '/solar'
       fullPath: '/solar'
       preLoaderRoute: typeof SolarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/florida/charlotte-county': {
@@ -275,7 +315,9 @@ const rootRouteChildren: RootRouteChildren = {
   CompanyRoute: CompanyRoute,
   ContactRoute: ContactRoute,
   FloridaRoute: FloridaRouteWithChildren,
+  PrivacyRoute: PrivacyRoute,
   SolarRoute: SolarRoute,
+  TermsRoute: TermsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
