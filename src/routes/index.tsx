@@ -73,12 +73,12 @@ function Home() {
             </p>
             <h1 className="mt-4 font-display text-5xl font-semibold tracking-tight text-fg sm:text-6xl lg:text-7xl">
               Honest solar.
-              <span className="mt-1 block italic text-gold">No runaround.</span>
+              <span className="mt-1 block font-medium italic text-gold">No runaround.</span>
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
-              I am {SITE_NAME}, Sales Manager at {COMPANY.name}. I help homeowners on this coast
-              own their power — with a veteran-owned crew that designs, permits, and installs
-              in-house.
+              I'm Adam Tourlakes, Head of Sales at Solar Energy Solutions by Ecosmart. I help
+              homeowners in Southwest Florida own their power — with a veteran-ran and operated
+              crew that designs, permits, and installs in-house.
             </p>
           </div>
           <div className="max-w-2xl lg:max-w-3xl">
