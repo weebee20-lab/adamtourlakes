@@ -40,7 +40,7 @@ export function SiteHeader() {
               <SiteMark className="relative z-10 size-7" />
             </span>
           </span>
-          <span className="font-display text-xl leading-none font-semibold tracking-tight text-gold sm:text-2xl">
+          <span className="font-caps text-sm font-semibold tracking-[0.14em] text-gold uppercase sm:text-base">
             {SITE_NAME}
           </span>
         </Link>
