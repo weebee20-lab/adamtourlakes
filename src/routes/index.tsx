@@ -86,6 +86,18 @@ export function HomePage() {
               homeowners in Southwest Florida own their power — with a veteran-ran and operated
               crew that designs, permits, and installs in-house.
             </p>
+            <p className="hero-copy-nudge mt-4 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
+              For too long, bad actors, sleazy salesmen, and “solar bros” have given this industry a
+              rotten name. That’s how solar picked up labels it doesn’t deserve: scam, money grab,
+              too pricey. If you’ve been burned or lied to, I take that personally — and I’m the one
+              who wants to set it straight.
+            </p>
+            <p className="hero-copy-nudge mt-4 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
+              Like any trade, solar needs professionals as the face of it — not a script and a door
+              knock that keeps you trapped in a conversation. That’s my team and me. We’re trained,
+              experienced, and we put honesty, integrity, fair pricing, and transparency first. No
+              door knockers. Strict pricing. The reviews speak for themselves.
+            </p>
           </div>
           <div className="hero-copy-nudge max-w-2xl lg:max-w-3xl">
             <div className="flex flex-wrap gap-3">
