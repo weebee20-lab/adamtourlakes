@@ -51,7 +51,7 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
+        <nav className="hidden min-w-0 flex-1 items-center justify-end gap-0.5 sm:flex" aria-label="Primary">
           {NAV.map((item) => {
             const active = pathname === item.to || pathname.startsWith(`${item.to}/`);
             return (
@@ -60,7 +60,7 @@ export function SiteHeader() {
                 to={item.to}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "inline-flex h-11 items-center px-2 text-xs font-medium whitespace-nowrap transition-colors duration-150 xl:px-2.5 xl:text-sm",
+                  "inline-flex h-11 items-center px-1.5 text-[11px] font-medium whitespace-nowrap transition-colors duration-150 md:px-2 md:text-xs xl:px-2.5 xl:text-sm",
                   active ? "text-gold" : "text-muted hover:text-fg",
                 )}
               >
@@ -79,7 +79,7 @@ export function SiteHeader() {
           </Button>
           <button
             type="button"
-            className="inline-flex size-11 items-center justify-center rounded-md text-fg lg:hidden"
+            className="inline-flex size-11 items-center justify-center rounded-md text-fg sm:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             onClick={() => setOpen((v) => !v)}
@@ -93,7 +93,7 @@ export function SiteHeader() {
       {open ? (
         <div
           id="mobile-nav"
-          className="border-t border-border bg-bg px-4 py-4 lg:hidden"
+          className="border-t border-border bg-bg px-4 py-4 sm:hidden"
         >
           <nav className="flex flex-col" aria-label="Mobile">
             {NAV.map((item) => {
