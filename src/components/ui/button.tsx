@@ -9,6 +9,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         gold: "bg-gold text-gold-fg hover:opacity-90",
+        default: "bg-gold text-gold-fg hover:opacity-90",
         outline:
           "bg-transparent text-fg shadow-[var(--shadow-border)] hover:shadow-[var(--shadow-border-hover)] hover:text-gold",
         ghost: "bg-transparent text-muted hover:text-fg",
@@ -17,7 +18,10 @@ const buttonVariants = cva(
       size: {
         sm: "h-10 rounded-sm px-3.5 text-sm",
         md: "h-11 rounded-md px-4 text-sm",
+        default: "h-11 rounded-md px-4 text-sm",
         lg: "h-12 rounded-md px-5 text-base",
+        icon: "size-10 rounded-md",
+        "icon-sm": "size-8 rounded-sm",
       },
     },
     defaultVariants: {

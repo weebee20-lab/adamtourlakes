@@ -22,4 +22,5 @@ export const COMPANY = {
 export const NAV = [
   { to: "/company", label: "Solar Energy Solutions of America", match: "prefix" as const },
   { to: "/solar", label: "Solar Education", match: "prefix" as const },
+  { to: "/calculator", label: "Free Solar Calculator", match: "prefix" as const },
 ] as const;

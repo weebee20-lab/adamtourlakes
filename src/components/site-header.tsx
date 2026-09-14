@@ -49,15 +49,14 @@ export function SiteHeader() {
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
           {NAV.map((item) => {
-            const active =
-              item.match === "exact" ? pathname === item.to : pathname.startsWith(item.to);
+            const active = pathname === item.to || pathname.startsWith(`${item.to}/`);
             return (
               <Link
                 key={item.to}
                 to={item.to}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "inline-flex h-11 items-center px-2.5 text-sm font-medium whitespace-nowrap transition-colors duration-150",
+                  "inline-flex h-11 items-center px-2 text-xs font-medium whitespace-nowrap transition-colors duration-150 xl:px-2.5 xl:text-sm",
                   active ? "text-gold" : "text-muted hover:text-fg",
                 )}
               >
@@ -94,8 +93,7 @@ export function SiteHeader() {
         >
           <nav className="flex flex-col" aria-label="Mobile">
             {NAV.map((item) => {
-              const active =
-                item.match === "exact" ? pathname === item.to : pathname.startsWith(item.to);
+              const active = pathname === item.to || pathname.startsWith(`${item.to}/`);
               return (
                 <Link
                   key={item.to}

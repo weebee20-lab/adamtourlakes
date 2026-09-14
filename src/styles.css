@@ -14,6 +14,22 @@
   --color-border: color-mix(in oklab, var(--color-fg) 12%, transparent);
   --color-border-strong: color-mix(in oklab, var(--color-fg) 22%, transparent);
 
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-fg);
+  --color-card: var(--color-surface);
+  --color-card-foreground: var(--color-fg);
+  --color-popover: var(--color-surface-2);
+  --color-popover-foreground: var(--color-fg);
+  --color-primary: var(--color-gold);
+  --color-primary-foreground: var(--color-gold-fg);
+  --color-secondary: var(--color-surface-2);
+  --color-secondary-foreground: var(--color-fg);
+  --color-muted-foreground: var(--color-muted);
+  --color-accent: var(--color-blue-deep);
+  --color-accent-foreground: var(--color-fg);
+  --color-input: var(--color-border-strong);
+  --color-ring: var(--color-gold);
+
   --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Cormorant Garamond", "Times New Roman", serif;
   --font-script: "Great Vibes", "Snell Roundhand", "Apple Chancery", cursive;
@@ -104,6 +120,19 @@
   height: auto;
   outline: none;
   filter: drop-shadow(0 0 16px color-mix(in oklab, var(--color-gold) 28%, transparent));
+}
+
+.helio-savings-card {
+  border: 1px solid color-mix(in oklab, var(--color-gold) 55%, transparent);
+  box-shadow:
+    0 0 0 4px color-mix(in oklab, var(--color-gold) 14%, transparent),
+    var(--shadow-border);
+}
+
+.helio-nameplate-flare,
+.helio-nameplate-flare-slow,
+.helio-nameplate-spark {
+  display: none;
 }
 
 .hairline {
