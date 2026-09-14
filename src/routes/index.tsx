@@ -20,12 +20,12 @@ const STEPS = [
   {
     icon: BarChart3,
     title: "Analyze Usage",
-    body: "We start by determining your monthly and yearly usage. Knowing exactly how much your home uses, plus any changes in the future, is crucial.",
+    body: "I start by determining your monthly and yearly usage. Knowing exactly how much your home uses, plus any changes in the future, is crucial.",
   },
   {
     icon: PenTool,
     title: "Personalized Design",
-    body: "We build your system from the ground up using your usage history. We hand-model your home in our software and apply the most up-to-date irradiance information.",
+    body: "I build your system from the ground up using your usage history. I hand-model your home in the design software and apply the most up-to-date irradiance information.",
   },
   {
     icon: Timer,
@@ -130,22 +130,33 @@ export function HomePage() {
           <div>
             <p className="text-xs font-medium tracking-[0.2em] text-gold uppercase">About</p>
             <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight">
-              Your point of contact — from the first call on.
+              I learn the house — and the people in it — before I size a roof.
             </h2>
             <div className="mt-6 space-y-4 text-sm leading-relaxed text-muted">
               <p>
                 I have been designing solar systems since 2023 and have overseen hundreds of
-                installations. The roof, the usage, the bill math — that is my work, and I stay
-                with it.
+                installations. I do not run a canned pitch. I take the time to learn each client:
+                how they live in the house, what the bill actually looks like, and what they want
+                solar to do for them.
+              </p>
+              <p>
+                Current usage comes first. I want monthly and yearly kilowatt-hours — summer AC,
+                pool equipment, whatever is driving the statement — so the array is sized to the
+                home you have. Then I ask about future usage: an EV, a new heat pump, someone
+                moving in, a pool you have been putting off. A system built only on last year's
+                bill is already wrong if next year's load is different.
+              </p>
+              <p>
+                Priorities matter just as much. Some people want the bill as close to zero as the
+                roof will allow. Some want backup for storm season. Some want a clean layout on
+                the planes that look right from the street and will leave a face empty rather than
+                pack it. I design to those, not to a quota.
               </p>
               <p>
                 I am the main point of contact for all of my clients, from the very first phone
-                call to months after the installation. There is no handoff to a closer, a project
-                manager you have never met, or a voicemail tree.
-              </p>
-              <p>
-                I am known for going in depth with every install, and I never really have a day
-                off. Whenever my clients need me, I am available.
+                call to months after the installation. I am known for going in depth with every
+                install, and I never really have a day off. Whenever my clients need me, I am
+                available.
               </p>
             </div>
             <Button asChild variant="outline" className="mt-6">
