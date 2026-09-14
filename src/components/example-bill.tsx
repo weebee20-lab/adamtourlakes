@@ -26,7 +26,7 @@ const MONTHS = [
 const SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-const ZIP = "33990";
+const ZIP = "33919";
 const BILL = 250;
 const OFFSET = 0.9;
 
@@ -77,12 +77,12 @@ export function ExampleBill() {
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-xs font-medium tracking-[0.2em] text-gold uppercase">Cape Coral · ZIP {ZIP}</p>
+          <p className="text-xs font-medium tracking-[0.2em] text-gold uppercase">Fort Myers · ZIP {ZIP}</p>
           <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight">
             A ${BILL} bill, with and without solar.
           </h2>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">
-            Same home, same LCEC rate, sized to a {Math.round(OFFSET * 100)}% offset. This is an example from the same
+            Same home, same FPL rate, sized to a {Math.round(OFFSET * 100)}% offset. This is an example from the same
             math as the calculator — not a quote.
           </p>
         </div>
@@ -101,7 +101,7 @@ export function ExampleBill() {
           </p>
           <p className="font-display text-3xl font-semibold tabular-nums">{formatUsd(SAVINGS.withoutSolar25)}</p>
           <p className="mt-2 text-xs leading-relaxed text-muted">
-            What this home would pay LCEC over 25 years at ${BILL}/mo, with bills rising{" "}
+            What this home would pay FPL over 25 years at ${BILL}/mo, with bills rising{" "}
             {Math.round(UTILITY_INFLATION * 100)}% each year.
           </p>
         </div>

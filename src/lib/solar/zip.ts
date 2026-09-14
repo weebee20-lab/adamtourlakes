@@ -19,6 +19,7 @@ const ROWS: ZipRow[] = [
   { zip: "33904", city: "Cape Coral", state: "FL", county: "Lee", lat: 26.564, lng: -81.949, ghi: 5.41, climate: "hot", rate: 0.147, utility: "Lee County Electric Cooperative" },
   { zip: "33909", city: "Cape Coral", state: "FL", county: "Lee", lat: 26.68, lng: -81.94, ghi: 5.4, climate: "hot", rate: 0.147, utility: "Lee County Electric Cooperative" },
   { zip: "33990", city: "Cape Coral", state: "FL", county: "Lee", lat: 26.641, lng: -81.94, ghi: 5.4, climate: "hot", rate: 0.147, utility: "Lee County Electric Cooperative" },
+  { zip: "33919", city: "Fort Myers", state: "FL", county: "Lee", lat: 26.553, lng: -81.872, ghi: 5.41, climate: "hot", rate: 0.163, utility: "Florida Power & Light" },
   { zip: "33991", city: "Cape Coral", state: "FL", county: "Lee", lat: 26.64, lng: -82.02, ghi: 5.41, climate: "hot", rate: 0.147, utility: "Lee County Electric Cooperative" },
   { zip: "33993", city: "Cape Coral", state: "FL", county: "Lee", lat: 26.72, lng: -82.05, ghi: 5.4, climate: "hot", rate: 0.147, utility: "Lee County Electric Cooperative" },
   { zip: "34102", city: "Naples", state: "FL", county: "Collier", lat: 26.142, lng: -81.795, ghi: 5.48, climate: "hot", rate: 0.163, utility: "Florida Power & Light" },
