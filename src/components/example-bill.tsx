@@ -83,7 +83,7 @@ export function ExampleBill() {
           </h2>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">
             Same home, same FPL rate, sized to a {Math.round(OFFSET * 100)}% offset. This is an example from the same
-            math as the calculator — not a quote.
+            math as the calculator — not a quote. Hover over each bar on the graph to see the savings and bill change.
           </p>
         </div>
         <Button asChild>
