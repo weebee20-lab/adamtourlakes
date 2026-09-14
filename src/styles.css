@@ -287,8 +287,7 @@
 .hero-portrait-wrap {
   position: absolute;
   z-index: 10;
-  top: auto;
-  bottom: 0;
+  top: 3.25rem;
   left: auto;
   right: 0.35rem;
   height: auto;
@@ -306,7 +305,7 @@
   max-width: 100%;
   transform: none;
   object-fit: contain;
-  object-position: bottom right;
+  object-position: top right;
   pointer-events: none;
 }
 
@@ -405,28 +404,19 @@
 }
 
 @media (min-width: 1024px) {
-  .hero-aura {
-    top: auto;
-    bottom: 0;
-    right: -8%;
-    height: min(48rem, 92%);
-  }
-
   .hero-portrait-wrap {
-    top: auto;
+    top: 0;
     left: auto;
     right: 0.5rem;
-    bottom: 0;
     height: auto;
-    max-height: 100%;
+    max-height: 100svh;
     max-width: calc(100% - 0.5rem);
     width: auto;
     transform: none;
   }
 
   .hero-portrait {
-    max-height: 100%;
-    object-position: bottom right;
+    max-height: 100svh;
   }
 
   .hero-veil {
