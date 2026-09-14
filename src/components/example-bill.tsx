@@ -7,7 +7,7 @@ import { UTILITY_INFLATION } from "@/lib/solar/panels";
 import type { LocationInfo } from "@/lib/solar/types";
 import { utilityFor } from "@/lib/solar/utility";
 import { lookupZip } from "@/lib/solar/zip";
-import { formatNumber, formatUsd } from "@/lib/utils";
+import { formatNumber, formatUsd, cn } from "@/lib/utils";
 
 const MONTHS = [
   "January",
@@ -105,7 +105,7 @@ export function ExampleBill() {
             {Math.round(UTILITY_INFLATION * 100)}% each year.
           </p>
         </div>
-        <div className="rounded-xl border border-gold/40 bg-bg p-4">
+        <div className="helio-with-solar-glow rounded-xl border border-gold/40 bg-bg p-4">
           <p className="text-[10px] font-medium tracking-wide text-gold uppercase">25-Year Lifetime Savings</p>
           <p className="font-display text-3xl font-semibold tabular-nums text-gold">{formatUsd(SAVINGS.lifetimeNet)}</p>
           <p className="mt-2 text-xs leading-relaxed text-muted">
@@ -184,7 +184,12 @@ function Statement({
   const shown = solar ? "grid" : "use";
 
   return (
-    <article className="overflow-hidden rounded-xl border border-border bg-bg">
+    <article
+      className={cn(
+        "rounded-xl border bg-bg",
+        solar ? "helio-with-solar-glow border-gold/40" : "overflow-hidden border-border",
+      )}
+    >
       <div className="flex items-start justify-between gap-3 px-5 py-4">
         <div>
           <p className="font-display text-lg font-semibold tracking-tight">{LOCATION.utilityName}</p>
