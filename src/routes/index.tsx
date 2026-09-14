@@ -135,28 +135,28 @@ export function HomePage() {
             <div className="mt-6 space-y-4 text-sm leading-relaxed text-muted">
               <p>
                 I have been designing solar systems since 2023 and have overseen hundreds of
-                installations. I do not run a canned pitch. I take the time to learn each client:
-                how they live in the house, what the bill actually looks like, and what they want
-                solar to do for them.
+                installations. I never run a padded sales pitch or force fake “urgency” on my
+                clients. I take the time to learn each client: how they live in the house, what
+                the bill actually looks like, and what they want solar to do for them.
               </p>
               <p>
-                Current usage comes first. I want monthly and yearly kilowatt-hours — summer AC,
-                pool equipment, whatever is driving the statement — so the array is sized to the
-                home you have. Then I ask about future usage: an EV, a new heat pump, someone
-                moving in, a pool you have been putting off. A system built only on last year's
-                bill is already wrong if next year's load is different.
+                Current usage always comes first for the design. I get monthly and yearly
+                kilowatt-hours for every home I design — summer AC, pool equipment, whatever is
+                driving the statement — so the array is sized appropriately. Then I determine
+                future usage: an EV, a new heat pump, someone moving in, a pool you might have
+                been putting off. A system built only on last year's bill is already wrong if
+                next year's load is different.
               </p>
               <p>
-                Priorities matter just as much. Some people want the bill as close to zero as the
-                roof will allow. Some want backup for storm season. Some want a clean layout on
-                the planes that look right from the street and will leave a face empty rather than
-                pack it. I design to those, not to a quota.
+                My clients' priorities matter just as much. Some people want the electric bill as
+                close to zero as possible. Some want substantial backup for storm season. Some
+                want a clean layout on the roof planes that face the street or to leave all
+                panels off street-side roofs. I always design systems based on exactly what my
+                clients need and want.
               </p>
               <p>
-                I am the main point of contact for all of my clients, from the very first phone
-                call to months after the installation. I am known for going in depth with every
-                install, and I never really have a day off. Whenever my clients need me, I am
-                available.
+                I pride myself on being the main point of contact for all of my clients, from the
+                very first phone call to months after the installation.
               </p>
             </div>
             <Button asChild variant="outline" className="mt-6">
