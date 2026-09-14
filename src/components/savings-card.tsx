@@ -261,10 +261,10 @@ function BigStat({ label, value, emphasize }: { label: string; value: string; em
 
 function Row({ label, value }: { label: string; value: string }) {
   return (
-    <div className="mx-auto flex w-[75%] items-baseline gap-2 py-2">
-      <dt className="shrink-0 text-muted-foreground">{label}</dt>
-      <span className="mb-1 min-w-3 flex-1 border-b border-dotted border-primary/80" aria-hidden />
-      <dd className="font-num shrink-0 font-medium">{value}</dd>
+    <div className="flex w-full min-w-0 flex-col gap-0.5 py-2 sm:mx-auto sm:w-[75%] sm:flex-row sm:items-baseline sm:gap-2">
+      <dt className="text-muted-foreground sm:shrink-0">{label}</dt>
+      <span className="mb-1 hidden min-w-3 flex-1 border-b border-dotted border-primary/80 sm:block" aria-hidden />
+      <dd className="font-num font-medium break-words sm:shrink-0">{value}</dd>
     </div>
   );
 }
