@@ -1,4 +1,3 @@
-import { getRequest } from "@tanstack/react-start/server";
 import { envFileValue } from "@/lib/solar/guard.server";
 import { bundledRecaptchaSecret } from "@/lib/solar/bundled-secrets.server";
 
@@ -19,17 +18,6 @@ function recaptchaSecret() {
   return "";
 }
 
-function remoteIp() {
-  try {
-    const req = getRequest();
-    const xf = req?.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
-    const real = req?.headers.get("x-real-ip")?.trim();
-    return xf || real || "";
-  } catch {
-    return "";
-  }
-}
-
 export async function verifyRecaptchaToken(
   token: string,
   expectedAction: string,
@@ -43,24 +31,40 @@ export async function verifyRecaptchaToken(
     const body = new URLSearchParams();
     body.set("secret", secret);
     body.set("response", response);
-    const ip = remoteIp();
-    if (ip && ip !== "local") body.set("remoteip", ip);
 
     const res = await fetch(VERIFY_URL, {
       method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "User-Agent": "AdamTourlakesSite/1.0",
+      },
       body,
       signal: AbortSignal.timeout(10000),
     });
     if (!res.ok) return { ok: false, error: FAIL };
 
-    const data = (await res.json()) as { success?: boolean; score?: number; action?: string };
-    if (!data || data.success !== true) return { ok: false, error: FAIL };
-    const score = Number(data.score);
-    if (!Number.isFinite(score) || score < MIN_SCORE) return { ok: false, error: FAIL };
+    const data = (await res.json()) as {
+      success?: boolean;
+      score?: number;
+      action?: string;
+      hostname?: string;
+      "error-codes"?: string[];
+    };
+    const codes = (data["error-codes"] ?? []).filter(Boolean);
+    if (!data || data.success !== true) {
+      const hint = codes.length ? ` (${codes.join(", ")})` : data?.hostname ? ` (${data.hostname})` : "";
+      console.error("recaptcha_verify_failed", { codes, hostname: data?.hostname, action: data?.action });
+      return { ok: false, error: FAIL + hint };
+    }
+    if (typeof data.score === "number") {
+      if (data.score < MIN_SCORE) return { ok: false, error: FAIL };
+    }
     const action = String(data.action ?? "").trim();
-    if (action && action !== expectedAction) return { ok: false, error: FAIL };
-    return { ok: true, score };
+    if (action && action !== expectedAction) {
+      console.error("recaptcha_action_mismatch", { action, expectedAction });
+      return { ok: false, error: FAIL };
+    }
+    return { ok: true, score: typeof data.score === "number" ? data.score : 1 };
   } catch {
     return { ok: false, error: UNAVAILABLE };
   }

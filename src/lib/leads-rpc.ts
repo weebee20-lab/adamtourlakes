@@ -15,7 +15,7 @@ export const saveContactLead = createServerFn({ method: "POST" })
     bill: text(d?.bill, 20),
     backup: Boolean(d?.backup),
     message: text(d?.message, 2000),
-    captchaToken: text(d?.captchaToken, 4096),
+    captchaToken: text(d?.captchaToken, 8192),
   }))
   .handler(async ({ data }) => {
     if (!data.name || !data.email) return { ok: false as const, error: "Name and email are required." };
