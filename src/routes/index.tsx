@@ -38,12 +38,12 @@ const QUOTES = [
   {
     quote:
       "Adam is a great salesman to work with, always there to answer any questions, and very timely. He did a great job explaining the process and laying out a well kept timeline for us.",
-    name: "Dave Horton",
+    credit: "Dave H., Cape Coral, FL",
   },
   {
     quote:
       "Great experience. Adam was very knowledgeable and helpful. The installation was quick and quality.",
-    name: "Daniel DeShazo",
+    credit: "Daniel D., Cape Coral, FL",
   },
 ];
 
@@ -169,14 +169,14 @@ export function HomePage() {
           <div className="grid gap-4">
             {QUOTES.map((item) => (
               <blockquote
-                key={item.name}
+                key={item.credit}
                 className="rounded-lg bg-bg p-5 shadow-[var(--shadow-border)]"
               >
                 <p className="font-display text-xl leading-snug text-fg italic">
                   “{item.quote}”
                 </p>
                 <footer className="mt-4 text-xs font-medium tracking-wide text-gold uppercase">
-                  {item.name}
+                  {item.credit}
                 </footer>
               </blockquote>
             ))}
