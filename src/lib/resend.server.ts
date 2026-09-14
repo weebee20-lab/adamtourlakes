@@ -98,28 +98,72 @@ export async function sendContactEmails(lead: {
   `;
   const notifyText = `New contact form\n\n${rows.map(([k, v]) => `${k}: ${v}`).join("\n")}\n`;
 
-  const thanksHtml = `
-    <div style="margin:0;padding:32px 24px;background:#08090c;color:#f4f1ea">
-      <p style="font-family:Georgia,'Times New Roman',serif;font-size:13px;letter-spacing:0.18em;text-transform:uppercase;color:#c9a227;margin:0 0 16px">Adam Tourlakes</p>
-      <p style="font-family:Georgia,'Times New Roman',serif;font-size:28px;line-height:1.2;color:#c9a227;margin:0 0 18px">Thank you for your inquiry.</p>
-      <p style="font-family:system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.6;color:#f4f1ea;margin:0 0 14px">
-        Hi ${escapeHtml(first)},
-      </p>
-      <p style="font-family:system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.6;color:#d8d4cc;margin:0 0 14px">
-        I received your note from the site. I will review it and follow up personally — I am the point of contact from the first call through after the install.
-      </p>
-      <p style="font-family:system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.6;color:#d8d4cc;margin:0 0 22px">
-        If you would rather talk now, call the Cape Coral office at ${COMPANY.phoneDisplay} and ask for Adam.
-      </p>
-      <p style="font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.55;color:#9a958c;margin:0">
-        ${COMPANY.name}<br/>
-        ${COMPANY.addressLine}<br/>
-        ${COMPANY.cityStateZip}
-      </p>
-      <p style="font-family:Georgia,'Times New Roman',serif;font-size:16px;color:#c9a227;margin:28px 0 0">— Adam</p>
-    </div>
-  `;
-  const thanksText = `Thank you for your inquiry.\n\nHi ${first},\n\nI received your note from the site. I will review it and follow up personally — I am the point of contact from the first call through after the install.\n\nIf you would rather talk now, call the Cape Coral office at ${COMPANY.phoneDisplay} and ask for Adam.\n\n${COMPANY.name}\n${COMPANY.addressLine}\n${COMPANY.cityStateZip}\n\n— Adam\n`;
+  const thanksHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Cormorant+Garamond:ital,wght@0,600;1,500&family=Outfit:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Cormorant+Garamond:ital,wght@0,600;1,500&family=Outfit:wght@400;500&display=swap");
+  </style>
+</head>
+<body style="margin:0;padding:0;background:#08090c;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#08090c;margin:0;padding:32px 12px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="width:560px;max-width:100%;background:#11141a;border:1px solid #2a2418;">
+          <tr>
+            <td style="height:3px;background:#c9a44a;font-size:0;line-height:0;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td style="padding:36px 40px 40px;">
+              <p style="margin:0 0 18px;font-family:Cinzel,Times New Roman,serif;font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:#c9a44a;">
+                Adam Tourlakes
+              </p>
+              <h1 style="margin:0 0 22px;font-family:'Cormorant Garamond',Georgia,Times New Roman,serif;font-size:36px;line-height:1.15;font-weight:600;color:#f3efe6;">
+                Thank you for your inquiry.
+              </h1>
+              <p style="margin:0 0 16px;font-family:Outfit,system-ui,Segoe UI,sans-serif;font-size:16px;line-height:1.65;color:#f3efe6;">
+                Hi ${escapeHtml(first)},
+              </p>
+              <p style="margin:0 0 16px;font-family:Outfit,system-ui,Segoe UI,sans-serif;font-size:16px;line-height:1.65;color:#c4bfb4;">
+                I have your inquiry. I will review what you sent and reach out to you within 24 hours — you will hear from me personally.
+              </p>
+              <p style="margin:0 0 28px;font-family:Outfit,system-ui,Segoe UI,sans-serif;font-size:16px;line-height:1.65;color:#c4bfb4;">
+                I stay the point of contact from the first conversation through months after the install. If you would rather talk sooner, call the Cape Coral office and ask for Adam.
+              </p>
+              <table role="presentation" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="background:#c9a44a;">
+                    <a href="${COMPANY.phoneHref}" style="display:inline-block;padding:12px 22px;font-family:Outfit,system-ui,sans-serif;font-size:14px;font-weight:500;letter-spacing:0.04em;color:#16120a;text-decoration:none;">
+                      Call ${COMPANY.phoneDisplay}
+                    </a>
+                  </td>
+                </tr>
+              </table>
+              <p style="margin:32px 0 0;font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-style:italic;color:#c9a44a;">
+                — Adam
+              </p>
+              <p style="margin:10px 0 0;font-family:Outfit,system-ui,sans-serif;font-size:13px;line-height:1.6;color:#9a958a;">
+                Sales Manager<br/>
+                ${COMPANY.name}<br/>
+                ${COMPANY.addressLine}, ${COMPANY.cityStateZip}
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td style="height:1px;background:#c9a44a;opacity:0.45;font-size:0;line-height:0;">&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+  const thanksText = `Thank you for your inquiry.\n\nHi ${first},\n\nI have your inquiry. I will review what you sent and reach out to you within 24 hours — you will hear from me personally.\n\nI stay the point of contact from the first conversation through months after the install. If you would rather talk sooner, call the Cape Coral office at ${COMPANY.phoneDisplay} and ask for Adam.\n\n— Adam\nSales Manager\n${COMPANY.name}\n${COMPANY.addressLine}, ${COMPANY.cityStateZip}\n`;
 
   const results = await Promise.allSettled([
     sendEmail({
