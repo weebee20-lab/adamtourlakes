@@ -40,13 +40,9 @@ export function SiteHeader() {
               <SiteMark className="relative z-10 size-7" />
             </span>
           </span>
-          <img
-            src="/brand/signature-gold.png?v=3"
-            alt=""
-            className="site-signature-header"
-            width={2533}
-            height={883}
-          />
+          <span className="font-display text-xl leading-none font-semibold tracking-tight text-gold sm:text-2xl">
+            {SITE_NAME}
+          </span>
         </Link>
 
         <nav className="hidden min-w-0 flex-1 items-center justify-end gap-0.5 sm:flex" aria-label="Primary">
