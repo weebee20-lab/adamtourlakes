@@ -70,10 +70,10 @@ export function HomePage() {
               width={2533}
               height={883}
             />
-            <p className="mt-6 text-xs font-medium tracking-[0.2em] text-gold uppercase">
+            <p className="relative z-10 mt-2 text-xs font-medium tracking-[0.2em] text-gold uppercase">
               Solar Expert · Southwest Florida
             </p>
-            <h1 className="mt-4 font-display text-5xl font-semibold tracking-tight text-fg sm:text-6xl lg:text-7xl">
+            <h1 className="relative z-10 mt-4 font-display text-5xl font-semibold tracking-tight text-fg sm:text-6xl lg:text-7xl">
               Honest solar.
               <span className="mt-1 block font-medium italic text-gold">No runaround.</span>
             </h1>

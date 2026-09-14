@@ -123,11 +123,28 @@
 
 .site-signature-hero {
   display: block;
-  width: min(27.5rem, 92vw);
+  position: relative;
+  z-index: 0;
+  width: min(32rem, 96vw);
   height: auto;
   outline: none;
   image-rendering: auto;
   filter: drop-shadow(0 0 16px color-mix(in oklab, var(--color-gold) 28%, transparent));
+}
+
+@media (min-width: 640px) {
+  .site-signature-hero {
+    width: min(44rem, 128%);
+    margin-bottom: -2.35rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-signature-hero {
+    width: min(50rem, 142%);
+    max-width: none;
+    margin-bottom: -3rem;
+  }
 }
 
 .helio-savings-card {
