@@ -7,6 +7,6 @@ export function getRouter() {
     routeTree,
     defaultErrorComponent: AppErrorComponent,
     defaultPreload: "intent",
-    defaultPreloadStaleTime: 30_000,
+    defaultPreloadStaleTime: 60_000,
   });
 }

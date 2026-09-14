@@ -6,13 +6,14 @@ import { seoHead } from "@/lib/seo";
 import { COMPANY, SITE_NAME } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
+  shouldReload: false,
   head: () =>
     seoHead(
       `${SITE_NAME} | Sales Manager, Solar Energy Solutions of America`,
       "Meet Adam Tourlakes, Sales Manager at Solar Energy Solutions of America in Cape Coral. Straight answers on rooftop solar for Southwest Florida homes.",
       "/",
     ),
-  component: Home,
+  component: HomePage,
 });
 
 const STEPS = [
@@ -46,7 +47,7 @@ const QUOTES = [
   },
 ];
 
-function Home() {
+export function HomePage() {
   return (
     <main>
       <section className="hero-stage relative isolate min-h-svh overflow-hidden">

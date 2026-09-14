@@ -14,8 +14,8 @@ export function InstallReel() {
   }, []);
 
   return (
-    <div className="mt-auto flex flex-col gap-2">
-      <p className="text-[10px] font-semibold tracking-[0.16em] text-gold uppercase">
+    <div className="flex flex-col gap-2">
+      <p className="font-display text-lg font-semibold tracking-tight text-gold sm:text-xl">
         A few of our many installations
       </p>
       <div className="relative aspect-[720/424] w-full overflow-hidden rounded-lg ring-1 ring-border">

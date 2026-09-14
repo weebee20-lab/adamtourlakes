@@ -4,6 +4,7 @@ import { seoHead } from "@/lib/seo";
 import { SITE_NAME } from "@/lib/site";
 
 export const Route = createFileRoute("/calculator")({
+  shouldReload: false,
   head: () =>
     seoHead(
       `Free Solar Calculator | ${SITE_NAME}`,

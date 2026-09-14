@@ -1,5 +1,6 @@
-import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
+import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { AuthProvider } from "@/lib/auth/provider";
+import { KeepAliveOutlet } from "@/components/keep-alive-outlet";
 import { PreviewHostBridge } from "@/components/preview-host-bridge";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -50,7 +51,7 @@ function RootDocument() {
         <PreviewHostBridge />
         <AuthProvider>
           <SiteHeader />
-          <Outlet />
+          <KeepAliveOutlet />
           <SiteFooter />
         </AuthProvider>
         <script

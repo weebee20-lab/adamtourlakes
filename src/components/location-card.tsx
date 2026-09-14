@@ -107,6 +107,8 @@ export function LocationCard() {
           </label>
         )}
 
+        <InstallReel />
+
         {location?.zip ? (
           <div className="flex flex-col gap-3">
             <div>
@@ -153,7 +155,6 @@ export function LocationCard() {
               : "Street address or ZIP — NASA sun hours for that home."}
           </p>
         )}
-        <InstallReel />
       </CardContent>
     </Card>
     <OutOfAreaDialog open={outOfArea} onClose={() => setOutOfArea(false)} />
