@@ -22,32 +22,11 @@ export const BATTERIES: BatteryOption[] = [
     blurb: "Modular backup with fast install and app monitoring.",
   },
   {
-    id: "franklin",
-    name: "FranklinWH aPower",
-    usableKwh: 13.6,
-    continuousKw: 10,
-    blurb: "Whole-home battery designed for pair-with-solar backup.",
-  },
-  {
-    id: "eg4",
-    name: "EG4 WallMount",
-    usableKwh: 14.3,
-    continuousKw: 8,
-    blurb: "High-capacity wall battery popular with hybrid inverters.",
-  },
-  {
     id: "enphase",
     name: "Enphase IQ Battery 5P",
     usableKwh: 5,
     continuousKw: 3.84,
     blurb: "Stackable AC battery that pairs with microinverters.",
-  },
-  {
-    id: "generac",
-    name: "Generac PWRcell 2",
-    usableKwh: 9,
-    continuousKw: 7.6,
-    blurb: "Modular cabinet battery for whole-home backup.",
   },
 ];
 
