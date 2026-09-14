@@ -79,7 +79,7 @@ export function HomePage() {
               <span className="mt-1 block font-medium italic text-gold">No runaround.</span>
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
-              I'm Adam Tourlakes, Head of Sales at Solar Energy Solutions by Ecosmart. I help
+              I'm <span className="text-gold">Adam Tourlakes</span>, Head of Sales at Solar Energy Solutions by Ecosmart. I help
               homeowners in Southwest Florida own their power — with a veteran-ran and operated
               crew that designs, permits, and installs in-house.
             </p>
