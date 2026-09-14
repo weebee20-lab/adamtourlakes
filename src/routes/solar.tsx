@@ -115,6 +115,7 @@ function SolarPage() {
             well as some helpful videos on topics I'm asked about a lot.
           </p>
         </div>
+        <div className="hero-cutline" aria-hidden />
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
