@@ -1,2 +1,3 @@
-/** No bundled third-party keys. Set GOOGLE_MAPS_API_KEY in env for address autocomplete. */
+/** Server-only fallbacks when Grok Publish does not inject env. Env still wins. */
 export const bundledGoogleMapsKey = "";
+export const bundledRecaptchaSecret = "6Lce9rstAAAAAAGq4RgrcDiGPLn8BkXYPz06uGii";

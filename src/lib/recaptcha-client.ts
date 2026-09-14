@@ -9,69 +9,58 @@ declare global {
   }
 }
 
-const SCRIPT_ID = "recaptcha-v3";
+/** Public v3 site key (safe in the browser). Secret stays server-only. */
+const SITE_KEY =
+  String(import.meta.env.VITE_RECAPTCHA_SITE_KEY ?? "").trim() ||
+  "6Lce9rstAAAAAAsLRF-bsHp5PDLDUGjBCYEm_N0D";
 
-function bakedSiteKey() {
-  return String(import.meta.env.VITE_RECAPTCHA_SITE_KEY ?? "").trim();
+function siteKey() {
+  return SITE_KEY.startsWith("6L") ? SITE_KEY : "";
 }
 
-async function resolveSiteKey() {
-  if (bakedSiteKey()) return bakedSiteKey();
-  try {
-    const { getRecaptchaSiteKey } = await import("@/lib/recaptcha-rpc");
-    return String((await getRecaptchaSiteKey()) ?? "").trim();
-  } catch {
-    return "";
-  }
-}
+let loading: Promise<void> | null = null;
 
-function waitForGrecaptcha(ms = 8000): Promise<Grecaptcha | null> {
-  if (typeof window === "undefined") return Promise.resolve(null);
-  if (window.grecaptcha) {
-    return new Promise((resolve) => {
-      window.grecaptcha?.ready(() => resolve(window.grecaptcha ?? null));
-    });
-  }
-  return new Promise((resolve) => {
-    const start = Date.now();
-    const tick = () => {
-      if (window.grecaptcha) {
-        window.grecaptcha.ready(() => resolve(window.grecaptcha ?? null));
-        return;
-      }
-      if (Date.now() - start > ms) {
-        resolve(null);
-        return;
-      }
-      window.setTimeout(tick, 50);
-    };
-    tick();
-  });
-}
-
-export async function loadRecaptcha(): Promise<Grecaptcha | null> {
-  const key = await resolveSiteKey();
-  if (!key || typeof window === "undefined") return null;
-  if (window.grecaptcha) return waitForGrecaptcha();
-
-  if (!document.getElementById(SCRIPT_ID)) {
+export function loadRecaptcha(): Promise<void> {
+  const key = siteKey();
+  if (!key || typeof window === "undefined") return Promise.resolve();
+  if (window.grecaptcha) return Promise.resolve();
+  if (loading) return loading;
+  loading = new Promise<void>((resolve, reject) => {
+    const existing = document.querySelector<HTMLScriptElement>("script[data-adam-recaptcha]");
+    if (existing) {
+      existing.addEventListener("load", () => resolve(), { once: true });
+      existing.addEventListener("error", () => reject(new Error("recaptcha")), { once: true });
+      return;
+    }
     const script = document.createElement("script");
-    script.id = SCRIPT_ID;
     script.src = `https://www.google.com/recaptcha/api.js?render=${encodeURIComponent(key)}`;
     script.async = true;
     script.defer = true;
+    script.dataset.adamRecaptcha = "1";
+    script.onload = () => resolve();
+    script.onerror = () => reject(new Error("recaptcha"));
     document.head.appendChild(script);
-  }
-  return waitForGrecaptcha();
+  }).then(
+    () => undefined,
+    () => {
+      loading = null;
+    },
+  );
+  return loading;
 }
 
 export async function getRecaptchaToken(action: string): Promise<string> {
-  const key = await resolveSiteKey();
-  if (!key) return "";
-  const grecaptcha = await loadRecaptcha();
-  if (!grecaptcha) return "";
+  const key = siteKey();
+  if (!key || typeof window === "undefined") return "";
   try {
-    return (await grecaptcha.execute(key, { action })) || "";
+    await loadRecaptcha();
+    const grecaptcha = window.grecaptcha;
+    if (!grecaptcha) return "";
+    await new Promise<void>((resolve) => {
+      grecaptcha.ready(() => resolve());
+    });
+    const token = await grecaptcha.execute(key, { action });
+    return String(token ?? "").trim();
   } catch {
     return "";
   }
