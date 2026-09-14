@@ -153,59 +153,34 @@
 .sun-mark {
   position: relative;
   display: inline-flex;
-  overflow: hidden;
+  overflow: visible;
   border-radius: 999px;
   padding: 0.15rem;
-}
-
-.sun-mark-flare {
-  position: absolute;
-  inset: -50% -30%;
-  z-index: 20;
-  background: linear-gradient(
-    105deg,
-    transparent 38%,
-    color-mix(in oklab, var(--color-gold) 18%, transparent) 46%,
-    color-mix(in oklab, #fff8e6 82%, transparent) 50%,
-    color-mix(in oklab, var(--color-gold) 18%, transparent) 54%,
-    transparent 62%
-  );
-  animation: sun-scan 3.8s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes sun-scan {
-  0% {
-    transform: translateX(-140%) rotate(18deg);
-  }
-  100% {
-    transform: translateX(240%) rotate(18deg);
-  }
 }
 
 @keyframes sun-glow {
   0%,
   100% {
     filter:
-      drop-shadow(0 0 4px color-mix(in oklab, var(--color-gold) 45%, transparent))
-      drop-shadow(0 0 10px color-mix(in oklab, var(--color-gold) 28%, transparent));
+      drop-shadow(0 0 3px color-mix(in oklab, var(--color-gold) 35%, transparent))
+      drop-shadow(0 0 8px color-mix(in oklab, var(--color-gold) 18%, transparent));
   }
   50% {
     filter:
-      drop-shadow(0 0 8px color-mix(in oklab, var(--color-gold) 70%, transparent))
-      drop-shadow(0 0 18px color-mix(in oklab, var(--color-gold) 42%, transparent));
+      drop-shadow(0 0 12px color-mix(in oklab, var(--color-gold) 90%, transparent))
+      drop-shadow(0 0 28px color-mix(in oklab, var(--color-gold) 65%, transparent));
   }
 }
 
 .sun-ray {
   transform-origin: 16px 16px;
-  animation: sun-ray-pulse 2.4s ease-in-out infinite;
+  animation: sun-ray-pulse 1.8s ease-in-out infinite;
 }
 
 @keyframes sun-ray-pulse {
   0%,
   100% {
-    opacity: 0.62;
+    opacity: 0.28;
   }
   50% {
     opacity: 1;

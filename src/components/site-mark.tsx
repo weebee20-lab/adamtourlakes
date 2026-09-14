@@ -22,8 +22,8 @@ export function SiteMark({ className }: { className?: string }) {
           </feMerge>
         </filter>
       </defs>
-      {Array.from({ length: 8 }, (_, i) => {
-        const a = (i * Math.PI) / 4;
+      {Array.from({ length: 12 }, (_, i) => {
+        const a = (i * Math.PI) / 6;
         const x1 = 16 + Math.cos(a) * 7.2;
         const y1 = 16 + Math.sin(a) * 7.2;
         const x2 = 16 + Math.cos(a) * 14.6;
