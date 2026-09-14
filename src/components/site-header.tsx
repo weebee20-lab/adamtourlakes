@@ -29,15 +29,15 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-0 bg-bg/40 shadow-none backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
+      <div className="mx-auto flex h-12 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link
           to="/"
-          className="flex min-h-11 min-w-0 shrink-0 items-center gap-2 text-gold"
+          className="flex min-h-10 min-w-0 shrink-0 items-center gap-2 text-gold"
           aria-label={`${SITE_NAME} home`}
         >
           <span className="sun-mark-wrap">
             <span className="sun-mark">
-              <SiteMark className="relative z-10 size-7" />
+              <SiteMark className="relative z-10 size-6" />
             </span>
           </span>
           <span className="font-caps text-sm font-semibold tracking-[0.14em] text-gold uppercase sm:text-base">
@@ -55,7 +55,7 @@ export function SiteHeader() {
                 preload="intent"
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "inline-flex h-11 items-center px-1.5 text-[11px] font-medium whitespace-nowrap transition-colors duration-150 md:px-2 md:text-xs xl:px-2.5 xl:text-sm",
+                  "inline-flex h-10 items-center px-1.5 text-[11px] font-medium whitespace-nowrap transition-colors duration-150 md:px-2 md:text-xs xl:px-2.5 xl:text-sm",
                   active ? "text-gold" : "nav-glow-hover text-muted",
                 )}
               >
@@ -74,7 +74,7 @@ export function SiteHeader() {
           </Button>
           <button
             type="button"
-            className="inline-flex size-11 items-center justify-center rounded-md text-fg sm:hidden"
+            className="inline-flex size-10 items-center justify-center rounded-md text-fg sm:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             onClick={() => setOpen((v) => !v)}
