@@ -61,6 +61,7 @@ export function HomePage() {
           decoding="async"
         />
         <div className="hero-veil" aria-hidden />
+        <div className="hero-cutline" aria-hidden />
         <div className="hero-copy relative z-30 mx-auto flex min-h-svh max-w-7xl flex-col justify-end gap-8 px-4 pt-28 pb-16 sm:px-6 lg:justify-between lg:pt-32 lg:pb-16">
           <div className="max-w-2xl lg:max-w-3xl">
             <img
@@ -75,7 +76,7 @@ export function HomePage() {
             </p>
             <h1 className="relative z-10 mt-4 font-display text-5xl font-semibold tracking-tight text-fg sm:text-6xl lg:text-7xl">
               Honest solar.
-              <span className="mt-1 block font-medium italic text-gold">No runaround.</span>
+              <span className="helio-credit mt-1 block font-medium italic text-gold">No runaround.</span>
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
               I'm <span className="text-gold">Adam Tourlakes</span>, Head of Sales at Solar Energy Solutions by Ecosmart. I help
