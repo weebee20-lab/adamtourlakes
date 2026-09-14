@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Phone, ShieldCheck, SunMedium, Timer } from "lucide-react";
+import { ArrowRight, BarChart3, PenTool, Phone, Timer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CtaBand } from "@/components/cta-band";
 import { seoHead } from "@/lib/seo";
@@ -17,14 +17,14 @@ export const Route = createFileRoute("/")({
 
 const STEPS = [
   {
-    icon: SunMedium,
-    title: "Read the roof and the bill",
-    body: "We start with how you actually use power — not a canned kit. Shade, orientation, pool equipment, and the last twelve months of kilowatt-hours all change the design.",
+    icon: BarChart3,
+    title: "Analyze Usage",
+    body: "We start by determining your monthly and yearly usage. Knowing exactly how much your home uses, plus any changes in the future, is crucial.",
   },
   {
-    icon: ShieldCheck,
-    title: "Design it in-house",
-    body: "SES of America does not farm the job out. Sales, permitting, and the crew that climbs the roof sit in the same Cape Coral shop.",
+    icon: PenTool,
+    title: "Personalized Design",
+    body: "We build your system from the ground up using your usage history, hand-modeling your home in our software, and applying the most up-to-date irradiance information.",
   },
   {
     icon: Timer,
