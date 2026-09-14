@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent, type ReactNode } from "react";
-import { Button } from "@/components/ui/button";
+import { AddressSuggest } from "@/components/address-suggest";
 import { Input } from "@/components/ui/input";
 import { OutOfAreaDialog } from "@/components/out-of-area-dialog";
 import { saveContactLead } from "@/lib/leads-rpc";
@@ -113,7 +113,10 @@ function ContactPage() {
             </div>
           ) : (
             <form className="mt-8 flex flex-col gap-4" onSubmit={onSubmit}>
-              <Field label="Name" htmlFor="contact-name">
+              <p className="text-xs text-muted">
+                <span className="text-gold">*</span> Required
+              </p>
+              <Field label="Name" htmlFor="contact-name" required>
                 <Input
                   id="contact-name"
                   required
@@ -124,7 +127,7 @@ function ContactPage() {
                 />
               </Field>
               <div className="grid gap-4 sm:grid-cols-2">
-                <Field label="Email" htmlFor="contact-email">
+                <Field label="Email" htmlFor="contact-email" required>
                   <Input
                     id="contact-email"
                     type="email"
@@ -147,30 +150,28 @@ function ContactPage() {
                   />
                 </Field>
               </div>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <Field label="Address or ZIP" htmlFor="contact-place">
+              <Field label="Address" htmlFor="contact-place" required>
+                <AddressSuggest
+                  id="contact-place"
+                  value={place}
+                  required
+                  onChange={setPlace}
+                />
+              </Field>
+              <Field label="Average monthly bill" htmlFor="contact-bill">
+                <div className="relative">
+                  <span className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-sm text-muted">
+                    $
+                  </span>
                   <Input
-                    id="contact-place"
-                    value={place}
-                    onChange={(e) => setPlace(e.target.value)}
-                    className="min-h-11"
+                    id="contact-bill"
+                    inputMode="decimal"
+                    value={bill}
+                    onChange={(e) => setBill(e.target.value.replace(/[^\d.]/g, ""))}
+                    className="font-num min-h-11 pl-7"
                   />
-                </Field>
-                <Field label="Average monthly bill" htmlFor="contact-bill">
-                  <div className="relative">
-                    <span className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-sm text-muted">
-                      $
-                    </span>
-                    <Input
-                      id="contact-bill"
-                      inputMode="decimal"
-                      value={bill}
-                      onChange={(e) => setBill(e.target.value.replace(/[^\d.]/g, ""))}
-                      className="font-num min-h-11 pl-7"
-                    />
-                  </div>
-                </Field>
-              </div>
+                </div>
+              </Field>
               <label className="flex min-h-11 items-center gap-3 text-sm">
                 <input
                   type="checkbox"
@@ -211,15 +212,20 @@ function ContactPage() {
 function Field({
   label,
   htmlFor,
+  required,
   children,
 }: {
   label: string;
   htmlFor: string;
+  required?: boolean;
   children: ReactNode;
 }) {
   return (
     <label htmlFor={htmlFor} className="flex flex-col gap-1.5 text-sm font-medium">
-      {label}
+      <span>
+        {label}
+        {required ? <span className="text-gold"> *</span> : <span className="font-normal text-muted"> (optional)</span>}
+      </span>
       {children}
     </label>
   );
