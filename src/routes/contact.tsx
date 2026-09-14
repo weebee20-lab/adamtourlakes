@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useState, type FormEvent, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { OutOfAreaDialog } from "@/components/out-of-area-dialog";
 import { saveContactLead } from "@/lib/leads-rpc";
-import { getRecaptchaToken } from "@/lib/recaptcha-client";
+import { getRecaptchaToken, loadRecaptcha } from "@/lib/recaptcha-client";
 import { seoHead } from "@/lib/seo";
 import { COMPANY, JOB_TITLE, SITE_NAME } from "@/lib/site";
 import { isSwflZip, zipFromText } from "@/lib/swfl";
@@ -36,6 +36,10 @@ function ContactPage() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  useEffect(() => {
+    void loadRecaptcha();
+  }, []);
+
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
     const zip = zipFromText(place) || handoff?.zip || "";
@@ -48,7 +52,12 @@ function ContactPage() {
     try {
       const captchaToken = await getRecaptchaToken("contact_lead");
       if (!captchaToken) {
-        setError("Security check failed. Refresh and try again.");
+        const host = typeof window !== "undefined" ? window.location.hostname : "";
+        setError(
+          host.endsWith("grok.me") || host === "localhost"
+            ? "Security check failed. Add this preview host to the reCAPTCHA domain list, then refresh."
+            : "Security check failed. Refresh and try again.",
+        );
         return;
       }
       const res = await saveContactLead({
