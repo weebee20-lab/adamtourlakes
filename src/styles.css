@@ -197,6 +197,21 @@
   }
 }
 
+.sun-ray {
+  transform-origin: 16px 16px;
+  animation: sun-ray-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes sun-ray-pulse {
+  0%,
+  100% {
+    opacity: 0.62;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 .hairline {
   background: linear-gradient(
     90deg,
