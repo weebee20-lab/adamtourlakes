@@ -56,7 +56,7 @@ function AdminInbox() {
     const res = await adminLeadLogin({ data: { password } });
     setBusy(false);
     if (!res.ok) {
-      setError(res.error);
+      setError("Could not unlock.");
       return;
     }
     setPassword("");

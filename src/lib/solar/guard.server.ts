@@ -1,5 +1,6 @@
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
+import { readFileSync, existsSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { getRequest } from "@tanstack/react-start/server";
 
 const buckets = new Map<string, number[]>();
@@ -96,14 +97,36 @@ export function capCache<T>(cache: Map<string, T>, max: number) {
   }
 }
 
+function envSearchRoots() {
+  const roots = new Set<string>();
+  let dir = process.cwd();
+  for (let i = 0; i < 6 && dir; i++) {
+    roots.add(dir);
+    const parent = dirname(dir);
+    if (parent === dir) break;
+    dir = parent;
+  }
+  try {
+    roots.add(join(fileURLToPath(new URL(".", import.meta.url)), "../../.."));
+  } catch {
+    /* bundler without import.meta.url */
+  }
+  roots.add("/workspace");
+  return [...roots];
+}
+
 export function envFileValue(key: string) {
-  for (const name of [".env.local", ".env"]) {
-    try {
-      const match = readFileSync(join(process.cwd(), name), "utf8").match(new RegExp(`^${key}\\s*=\\s*(.*)$`, "m"));
-      const value = match?.[1]?.trim().replace(/^['"]|['"]$/g, "");
-      if (value) return value;
-    } catch {
-      /* missing is fine */
+  for (const root of envSearchRoots()) {
+    for (const name of [".env.local", ".env"]) {
+      const file = join(root, name);
+      if (!existsSync(file)) continue;
+      try {
+        const match = readFileSync(file, "utf8").match(new RegExp(`^${key}\\s*=\\s*(.*)$`, "m"));
+        const value = match?.[1]?.trim().replace(/^['"]|['"]$/g, "");
+        if (value) return value;
+      } catch {
+        /* unreadable is fine */
+      }
     }
   }
   return "";

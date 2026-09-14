@@ -10,12 +10,16 @@ const COOKIE = "adam_admin";
 // ADAM_ADMIN_PASSWORD  inbox login
 // ADAM_ADMIN_SECRET    long random HMAC key for the session cookie (not the password)
 
+function envStr(key: string) {
+  return String(process.env[key] ?? "").trim() || envFileValue(key);
+}
+
 function adminSecret() {
-  return String(process.env.ADAM_ADMIN_SECRET ?? "").trim() || envFileValue("ADAM_ADMIN_SECRET");
+  return envStr("ADAM_ADMIN_SECRET");
 }
 
 function adminPassword() {
-  return String(process.env.ADAM_ADMIN_PASSWORD ?? "").trim() || envFileValue("ADAM_ADMIN_PASSWORD");
+  return envStr("ADAM_ADMIN_PASSWORD");
 }
 
 function sign(exp: number) {
