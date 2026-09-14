@@ -130,7 +130,7 @@ export function HomePage() {
           <div>
             <p className="text-xs font-medium tracking-[0.2em] text-gold uppercase">About</p>
             <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight">
-              I learn the house — and the people in it — before I size a roof.
+              I learn the house — and the people in it — before I size a solar system.
             </h2>
             <div className="mt-6 space-y-4 text-sm leading-relaxed text-muted">
               <p>
