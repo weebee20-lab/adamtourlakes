@@ -86,7 +86,7 @@ export function HomePage() {
             <div className="hero-copy-panel mt-6">
             <p className="max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
               I'm <span className="text-gold">Adam Tourlakes</span>, Head of Sales at Solar Energy Solutions by Ecosmart. I help
-              homeowners in Southwest Florida own their power — with a veteran-ran and operated
+              homeowners in Southwest Florida own their power — with a veteran-run and operated
               crew that designs, permits, and installs in-house.
             </p>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
