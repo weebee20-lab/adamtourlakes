@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { HelioCredit } from "@/components/helio-credit";
 
 export function InstallReel() {
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -67,6 +68,9 @@ export function InstallReel() {
         >
           <source src="/videos/swfl-installs.mp4?v=3" type="video/mp4" />
         </video>
+      </div>
+      <div className="hidden lg:block">
+        <HelioCredit />
       </div>
     </div>
   );
