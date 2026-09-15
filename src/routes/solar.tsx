@@ -125,7 +125,8 @@ function SolarPage() {
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-linear-to-t from-bg via-bg/75 to-bg/30" />
-        <div className="relative mx-auto flex min-h-[22rem] max-w-6xl flex-col justify-end px-4 py-12 sm:px-6">
+        <div className="solar-edu-sun" aria-hidden />
+        <div className="relative z-10 mx-auto flex min-h-[22rem] max-w-6xl flex-col justify-end px-4 py-12 sm:px-6">
           <p className="text-xs font-medium tracking-[0.2em] text-gold uppercase">
             A Short Walkthrough
           </p>
