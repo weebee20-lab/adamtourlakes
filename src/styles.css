@@ -149,7 +149,7 @@
   .hero-copy-panel {
     position: relative;
     z-index: 1;
-    padding: 2.35rem 1.35rem 1.35rem;
+    padding: 1.15rem 1.35rem 1.35rem;
     border-radius: 0.85rem;
     background: color-mix(in oklab, var(--color-bg) 82%, transparent);
     box-shadow: 0 0 0 1px color-mix(in oklab, var(--color-gold) 22%, transparent);
@@ -164,10 +164,6 @@
     max-width: none;
     margin-left: -1rem;
     margin-bottom: -9.5rem;
-  }
-
-  .hero-copy-panel {
-    padding-top: 5.75rem;
   }
 }
 

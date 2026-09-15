@@ -75,7 +75,6 @@ export function HomePage() {
               width={2533}
               height={883}
             />
-            <div className="hero-copy-panel">
             <p className="relative z-10 mt-2 text-xs font-medium tracking-[0.2em] text-gold uppercase lg:text-[0.975rem]">
               Solar Expert · Southwest Florida
             </p>
@@ -83,7 +82,8 @@ export function HomePage() {
               Honest solar.
               <span className="helio-credit mt-1 block font-medium italic text-gold">No runaround.</span>
             </h1>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
+            <div className="hero-copy-panel mt-6">
+            <p className="max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
               I'm <span className="text-gold">Adam Tourlakes</span>, Head of Sales at Solar Energy Solutions by Ecosmart. I help
               homeowners in Southwest Florida own their power — with a veteran-ran and operated
               crew that designs, permits, and installs in-house.
