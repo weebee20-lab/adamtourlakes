@@ -2,6 +2,7 @@ import { createHmac, randomUUID, timingSafeEqual } from "node:crypto";
 import { getCookie, getRequest, setCookie } from "@tanstack/react-start/server";
 import { getSql } from "@/lib/db";
 import { envFileValue } from "@/lib/solar/guard.server";
+import { bundledAdminPassword, bundledAdminSecret } from "@/lib/solar/bundled-secrets.server";
 import type { ContactLead, LeadStatus } from "@/lib/leads-types";
 
 const COOKIE = "adam_admin";
@@ -11,7 +12,7 @@ function envStr(key: string) {
 }
 
 function adminSecret() {
-  return envStr("ADAM_ADMIN_SECRET");
+  return envStr("ADAM_ADMIN_SECRET") || bundledAdminSecret;
 }
 
 function sign(exp: number) {
@@ -38,9 +39,9 @@ export function isAdmin() {
 
 function passwordOk(password: string) {
   const pw = password.trim();
-  const expected = envStr("ADAM_ADMIN_PASSWORD");
-  if (!pw || !expected) return false;
-  return safeEqual(pw, expected);
+  if (!pw) return false;
+  const candidates = [envStr("ADAM_ADMIN_PASSWORD"), bundledAdminPassword].filter(Boolean);
+  return candidates.some((expected) => safeEqual(pw, expected));
 }
 
 export function loginAdmin(password: string) {
