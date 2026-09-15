@@ -48,19 +48,59 @@ export function SiteHeader() {
         <nav className="hidden min-w-0 flex-1 items-center justify-end gap-0.5 sm:flex" aria-label="Primary">
           {NAV.map((item) => {
             const active = pathname === item.to || pathname.startsWith(`${item.to}/`);
+            const children = "children" in item ? item.children : undefined;
+            if (!children) {
+              return (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  preload="intent"
+                  aria-current={active ? "page" : undefined}
+                  className={cn(
+                    "inline-flex h-10 items-center px-1.5 text-[11px] font-medium whitespace-nowrap transition-colors duration-150 md:px-2 md:text-xs xl:px-2.5 xl:text-sm",
+                    active ? "text-gold" : "nav-glow-hover text-muted",
+                  )}
+                >
+                  {item.label}
+                </Link>
+              );
+            }
             return (
-              <Link
-                key={item.to}
-                to={item.to}
-                preload="intent"
-                aria-current={active ? "page" : undefined}
-                className={cn(
-                  "inline-flex h-10 items-center px-1.5 text-[11px] font-medium whitespace-nowrap transition-colors duration-150 md:px-2 md:text-xs xl:px-2.5 xl:text-sm",
-                  active ? "text-gold" : "nav-glow-hover text-muted",
-                )}
-              >
-                {item.label}
-              </Link>
+              <div key={item.to} className="group relative">
+                <Link
+                  to={item.to}
+                  preload="intent"
+                  aria-current={active ? "page" : undefined}
+                  aria-haspopup="menu"
+                  className={cn(
+                    "inline-flex h-10 items-center px-1.5 text-[11px] font-medium whitespace-nowrap transition-colors duration-150 md:px-2 md:text-xs xl:px-2.5 xl:text-sm",
+                    active ? "text-gold" : "nav-glow-hover text-muted",
+                  )}
+                >
+                  {item.label}
+                </Link>
+                <div className="invisible absolute top-full right-0 z-50 min-w-[10.5rem] pt-1 opacity-0 transition-[opacity,visibility] duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                  <div className="rounded-md border border-border/80 bg-bg/90 py-1 shadow-[var(--shadow-border)] backdrop-blur-xl">
+                    {children.map((child) => {
+                      const childActive = pathname === child.to;
+                      return (
+                        <Link
+                          key={child.to}
+                          to={child.to}
+                          preload="intent"
+                          aria-current={childActive ? "page" : undefined}
+                          className={cn(
+                            "flex h-10 items-center px-3 text-xs font-medium whitespace-nowrap",
+                            childActive ? "text-gold" : "nav-glow-hover text-muted",
+                          )}
+                        >
+                          {child.label}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
             );
           })}
         </nav>
@@ -92,17 +132,31 @@ export function SiteHeader() {
           <nav className="flex flex-col" aria-label="Mobile">
             {NAV.map((item) => {
               const active = pathname === item.to || pathname.startsWith(`${item.to}/`);
+              const children = "children" in item ? item.children : undefined;
               return (
-                <Link
-                  key={item.to}
-                  to={item.to}
-                  className={cn(
-                    "flex min-h-12 items-center border-b border-border text-base",
-                    active ? "text-gold" : "nav-glow-hover text-fg",
-                  )}
-                >
-                  {item.label}
-                </Link>
+                <div key={item.to}>
+                  <Link
+                    to={item.to}
+                    className={cn(
+                      "flex min-h-12 items-center border-b border-border text-base",
+                      active ? "text-gold" : "nav-glow-hover text-fg",
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                  {children?.map((child) => (
+                    <Link
+                      key={child.to}
+                      to={child.to}
+                      className={cn(
+                        "flex min-h-11 items-center border-b border-border pl-4 text-sm",
+                        pathname === child.to ? "text-gold" : "nav-glow-hover text-muted",
+                      )}
+                    >
+                      {child.label}
+                    </Link>
+                  ))}
+                </div>
               );
             })}
             <Link

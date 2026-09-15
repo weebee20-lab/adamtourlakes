@@ -67,7 +67,7 @@ function SolarVideosPage() {
         </div>
         <div className="mt-12">
           <CtaBand
-            heading="If a clip clicks, the next step is still your bill."
+            heading="The next step is your electric bill."
             body="Call the Cape Coral office, ask for Adam, and we will look at twelve months of usage before anyone talks modules."
           />
         </div>

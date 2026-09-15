@@ -21,6 +21,11 @@ export const COMPANY = {
 
 export const NAV = [
   { to: "/company", label: "Solar Energy Solutions by EcoSmart", match: "prefix" as const },
-  { to: "/solar", label: "Solar Education", match: "prefix" as const },
+  {
+    to: "/solar",
+    label: "Solar Education",
+    match: "prefix" as const,
+    children: [{ to: "/solar/videos", label: "Videos" }],
+  },
   { to: "/calculator", label: "Free Solar Calculator", match: "prefix" as const },
 ] as const;
