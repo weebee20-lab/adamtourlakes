@@ -76,6 +76,24 @@ export function logoutAdmin() {
   setCookie(COOKIE, "", { httpOnly: true, sameSite: "lax", path: "/", maxAge: 0 });
 }
 
+function isLiveHost() {
+  try {
+    const req = getRequest();
+    const host = (req?.headers.get("x-forwarded-host") || req?.headers.get("host") || "").toLowerCase();
+    return host.includes("adamtourlakes.com");
+  } catch {
+    return false;
+  }
+}
+
+async function durableSql() {
+  const { dbSource } = await import("@/lib/db");
+  if (dbSource !== "neon" && isLiveHost()) {
+    throw new Error("Lead storage requires Neon DATABASE_URL on the live site.");
+  }
+  return getSql();
+}
+
 function asLead(row: Record<string, unknown>): ContactLead {
   const status = String(row.status ?? "new");
   return {
@@ -114,7 +132,7 @@ export async function insertLead(input: {
   batteryName?: string;
   batteryCount?: string;
 }) {
-  const sql = await getSql();
+  const sql = await durableSql();
   const id = randomUUID();
   await sql`
     insert into contact_leads (
@@ -143,7 +161,7 @@ export async function insertLead(input: {
 }
 
 export async function listLeads() {
-  const sql = await getSql();
+  const sql = await durableSql();
   await sql`
     delete from contact_leads
     where deleted_at is not null
@@ -159,7 +177,7 @@ export async function listLeads() {
 }
 
 export async function setLeadStatus(id: string, status: LeadStatus) {
-  const sql = await getSql();
+  const sql = await durableSql();
   if (status === "deleted") {
     await sql`update contact_leads set status = ${"deleted"}, deleted_at = now() where id = ${id}`;
     return;

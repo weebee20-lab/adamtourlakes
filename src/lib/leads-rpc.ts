@@ -78,7 +78,8 @@ export const saveContactLead = createServerFn({ method: "POST" })
 
 export const adminLeadStatus = createServerFn({ method: "POST" }).handler(async () => {
   const { isAdmin } = await import("@/lib/leads.server");
-  return { ok: isAdmin() };
+  const { dbSource } = await import("@/lib/db");
+  return { ok: isAdmin(), storage: dbSource };
 });
 
 export const adminLeadLogin = createServerFn({ method: "POST" })

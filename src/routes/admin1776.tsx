@@ -33,6 +33,7 @@ function AdminInbox() {
   const [leads, setLeads] = useState<ContactLead[]>([]);
   const [filter, setFilter] = useState<Filter>("all");
   const [busy, setBusy] = useState(false);
+  const [storage, setStorage] = useState<"neon" | "pglite" | "">("");
 
   async function load() {
     const res = await adminListLeads();
@@ -48,6 +49,7 @@ function AdminInbox() {
 
   useEffect(() => {
     void adminLeadStatus().then((s) => {
+      if (s.storage) setStorage(s.storage);
       if (s.ok) void load();
     });
   }, []);
@@ -118,6 +120,12 @@ function AdminInbox() {
           <p className="mt-1 text-sm text-muted">
             {leads.filter((row) => row.status !== "deleted").length} active ·{" "}
             {leads.filter((row) => row.status === "deleted").length} in deleted
+            {" · "}
+            {storage === "neon"
+              ? "Neon (durable)"
+              : storage === "pglite"
+                ? "Temporary memory — leads will vanish on restart"
+                : ""}
           </p>
         </div>
         <Button
