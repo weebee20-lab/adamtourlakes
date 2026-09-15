@@ -207,7 +207,7 @@ function SolarPage() {
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <p className="text-xs font-medium tracking-[0.2em] text-gold uppercase">Florida solar</p>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">
-          Local pages for the roofs I actually work:{" "}
+          Local pages for the areas I actually work:{" "}
           <Link to="/florida" className="text-gold hover:text-fg">
             Florida
           </Link>
