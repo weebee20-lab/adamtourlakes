@@ -49,7 +49,8 @@ const QUOTES = [
 export function HomePage() {
   return (
     <main>
-      <section className="hero-stage relative isolate min-h-svh overflow-hidden">
+      <section className="hero-stage relative isolate min-h-svh overflow-hidden lg:min-h-0">
+        <div className="hero-lock">
         <div className="hero-portrait-wrap">
           <div className="hero-aura" aria-hidden />
           <img
@@ -65,7 +66,7 @@ export function HomePage() {
         <div className="hero-veil" aria-hidden />
         <div className="hero-dither" aria-hidden />
         <div className="hero-cutline" aria-hidden />
-        <div className="hero-copy relative z-30 mx-auto flex min-h-svh max-w-7xl flex-col justify-end gap-8 px-4 pt-28 pb-16 sm:px-6 lg:justify-start lg:gap-6 lg:pt-3 lg:pb-12">
+        <div className="hero-copy relative z-30 mx-auto flex min-h-0 max-w-7xl flex-col justify-end gap-8 px-4 pt-28 pb-16 sm:px-6 lg:min-h-[920px] lg:justify-start lg:gap-6 lg:pt-3 lg:pb-12">
           <div className="max-w-2xl lg:max-w-3xl">
             <img
               src="/brand/signature-gold.png?v=3"
@@ -118,6 +119,7 @@ export function HomePage() {
               Office {COMPANY.phoneDisplay} · Ask for Adam · {COMPANY.cityStateZip}
             </p>
           </div>
+        </div>
         </div>
       </section>
 

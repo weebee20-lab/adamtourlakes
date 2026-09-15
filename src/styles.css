@@ -160,8 +160,8 @@
 
 @media (min-width: 1024px) {
   .site-signature-hero {
-    width: min(45rem, 128%);
-    max-width: calc(100vw - 3rem);
+    width: 45rem;
+    max-width: none;
     margin-left: -1rem;
     margin-bottom: -9.5rem;
   }
@@ -332,6 +332,10 @@
   transform: scale(1.14);
 }
 
+.hero-lock {
+  position: relative;
+}
+
 .hero-dither {
   position: absolute;
   inset: 0;
@@ -413,7 +417,7 @@
   );
 }
 
-@media (max-width: 639px) {
+@media (max-width: 1023px) {
   html,
   body {
     overflow-x: hidden;
@@ -501,20 +505,36 @@
 }
 
 @media (min-width: 1024px) {
+  .hero-stage {
+    min-height: 0;
+    overflow-x: hidden;
+  }
+
+  .hero-lock {
+    width: 1440px;
+    max-width: 1440px;
+    margin-inline: auto;
+    zoom: min(1, calc(100vw / 1440));
+  }
+
+  .hero-copy {
+    min-height: 920px;
+  }
+
   .hero-portrait-wrap {
     top: 0;
     bottom: auto;
     left: auto;
     right: 0.5rem;
     height: auto;
-    max-height: 100svh;
-    max-width: calc(100% - 0.5rem);
+    max-height: 920px;
+    max-width: 900px;
     width: auto;
     transform: none;
   }
 
   .hero-portrait {
-    max-height: 100svh;
+    max-height: 920px;
     object-position: top right;
   }
 
@@ -530,5 +550,14 @@
       color-mix(in oklab, var(--color-bg) 4%, transparent) 74%,
       transparent 88%
     );
+  }
+}
+
+@supports not (zoom: 1) {
+  @media (min-width: 1024px) {
+    .hero-lock {
+      transform: scale(min(1, calc(100vw / 1440)));
+      transform-origin: top center;
+    }
   }
 }
