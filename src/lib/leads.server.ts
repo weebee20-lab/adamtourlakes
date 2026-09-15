@@ -40,16 +40,10 @@ export function isAdmin() {
 function passwordOk(password: string) {
   const pw = password.trim();
   if (!pw) return false;
-  const candidates = new Set<string>();
-  const fromEnv = envStr("ADAM_ADMIN_PASSWORD");
-  if (fromEnv) {
-    candidates.add(fromEnv);
-    if (!fromEnv.endsWith("$")) candidates.add(`${fromEnv}$`);
-  }
-  if (bundledAdminPassword) candidates.add(bundledAdminPassword);
-  for (const expected of candidates) {
-    if (safeEqual(pw, expected)) return true;
-  }
+  const expected = bundledAdminPassword || envStr("ADAM_ADMIN_PASSWORD");
+  if (!expected) return false;
+  if (safeEqual(pw, expected)) return true;
+  if (!expected.endsWith("$") && safeEqual(pw, `${expected}$`)) return true;
   return false;
 }
 
