@@ -170,7 +170,7 @@ export function HomePage() {
       <section className="border-y border-border bg-surface">
         <div className="mx-auto grid max-w-6xl items-start gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2">
           <div>
-            <p className="text-sm font-medium tracking-[0.16em] text-gold uppercase sm:text-base">About Me</p>
+            <p className="text-sm font-medium tracking-[0.16em] text-gold uppercase sm:text-base">How I Work</p>
             <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight">
               I learn the house — and the people in it — before I size a solar system.
             </h2>
@@ -178,7 +178,7 @@ export function HomePage() {
               <p>
                 I have been designing solar systems since 2023 and have overseen hundreds of
                 installations. I never run a padded sales pitch or force fake “urgency” on my
-                clients. I take the time to learn each client: how they live in the house, what
+                clients. I take the time to learn about each client: how they live in the house, what
                 the bill actually looks like, and what they want solar to do for them.
               </p>
               <p>
