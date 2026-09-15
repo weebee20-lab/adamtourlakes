@@ -52,7 +52,7 @@ const FAQS = [
   },
   {
     q: "Do I need a battery?",
-    a: "Only if you care about backup or about using more of your own midday production after sunset. A battery does not make the array larger. On this coast the honest use-case is outages and, for some houses, shifting peak. We will not tack one on to dress up a quote.",
+    a: "Only if you care about outage backup or using more of your own excess solar production after sunset. Batteries do not make the array larger or produce more power. In Southwest Florida, having a battery (or multiple) means you and your family will be safe from losing power during grid outages, storms, and hurricanes.",
   },
   {
     q: "How do you size a system?",
