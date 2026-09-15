@@ -142,8 +142,9 @@
   .site-signature-hero {
     width: min(39.5rem, 115%);
     max-width: calc(100vw - 2.5rem);
+    margin-top: -2.4rem;
     margin-left: -0.65rem;
-    margin-bottom: -2.85rem;
+    margin-bottom: -3.2rem;
   }
 
   .hero-copy-panel {
@@ -162,12 +163,13 @@
   .site-signature-hero {
     width: min(45rem, 128%);
     max-width: calc(100vw - 3rem);
+    margin-top: -4.5rem;
     margin-left: -1rem;
-    margin-bottom: -3.6rem;
+    margin-bottom: -4.6rem;
   }
 
   .hero-copy-panel {
-    padding-top: 2.7rem;
+    padding-top: 3.1rem;
   }
 }
 
