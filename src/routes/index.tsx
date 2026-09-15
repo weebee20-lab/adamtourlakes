@@ -145,7 +145,7 @@ export function HomePage() {
       </section>
 
       <section className="border-y border-border bg-surface">
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2">
+        <div className="mx-auto grid max-w-6xl items-start gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2">
           <div>
             <p className="text-sm font-medium tracking-[0.16em] text-gold uppercase sm:text-base">About Me</p>
             <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight">
@@ -185,11 +185,11 @@ export function HomePage() {
               </Link>
             </Button>
           </div>
-          <div className="grid gap-4">
+          <div className="grid content-start gap-4">
             {QUOTES.map((item) => (
               <blockquote
                 key={item.credit}
-                className="rounded-lg bg-bg p-5 shadow-[var(--shadow-border)]"
+                className="h-fit rounded-lg bg-bg p-5 shadow-[var(--shadow-border)]"
               >
                 <p className="font-display text-xl leading-snug text-fg italic">
                   “{item.quote}”
@@ -199,6 +199,23 @@ export function HomePage() {
                 </footer>
               </blockquote>
             ))}
+            <article className="h-fit rounded-lg bg-bg p-5 shadow-[var(--shadow-border)]">
+              <p className="text-xs font-medium tracking-[0.16em] text-gold uppercase">
+                Cape Coral office
+              </p>
+              <p className="mt-3 font-display text-xl leading-snug">
+                Hundreds of installs. I’m still the number they call.
+              </p>
+              <p className="mt-2 text-base leading-relaxed text-muted sm:text-lg">
+                If you want the same kind of process — bill first, no door knockers — send it over.
+              </p>
+              <Button asChild variant="outline" className="mt-4">
+                <Link to="/contact">
+                  Contact Adam
+                  <ArrowRight className="size-4" />
+                </Link>
+              </Button>
+            </article>
           </div>
         </div>
       </section>
