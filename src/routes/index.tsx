@@ -79,8 +79,10 @@ export function HomePage() {
               Solar Expert · Southwest Florida
             </p>
             <h1 className="relative z-10 mt-4 font-display text-5xl font-semibold tracking-tight text-fg sm:text-6xl lg:text-7xl">
-              Honest solar.
-              <span className="helio-credit mt-1 block font-medium italic text-gold">No runaround.</span>
+              Honest solar.{" "}
+              <span className="helio-credit mt-1 block font-medium italic text-gold lg:mt-0 lg:inline">
+                No runaround.
+              </span>
             </h1>
             <div className="hero-copy-panel mt-6">
             <p className="max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
