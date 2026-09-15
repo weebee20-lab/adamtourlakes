@@ -211,7 +211,7 @@ export function SavingsCard() {
 
         {ready ? (
           <div className="flex flex-col gap-3">
-            <p className="text-center text-sm font-medium">Want backup batteries with this system?</p>
+            <p className="text-center text-sm font-medium">Want Backup Batteries With This System?</p>
             <div className="grid gap-2 sm:grid-cols-2">
               <Button
                 type="button"
@@ -222,7 +222,7 @@ export function SavingsCard() {
                   void navigate({ to: "/batteries" });
                 }}
               >
-                Yes, size batteries
+                Yes, Size Batteries
                 <ArrowRight className="size-4" />
               </Button>
               <Button
@@ -235,7 +235,7 @@ export function SavingsCard() {
                   void navigate({ to: "/contact" });
                 }}
               >
-                No — contact Adam
+                No — Contact Adam
               </Button>
             </div>
           </div>
