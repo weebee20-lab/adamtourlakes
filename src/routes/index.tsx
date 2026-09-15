@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, BarChart3, PenTool, Timer } from "lucide-react";
+import { ArrowRight, BookOpen, Building2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { seoHead } from "@/lib/seo";
 import { COMPANY, SITE_NAME } from "@/lib/site";
@@ -15,21 +15,24 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const STEPS = [
+const PURPOSES = [
   {
-    icon: BarChart3,
-    title: "Analyze Usage",
-    body: "I start by determining your monthly and yearly usage. Knowing exactly how much your home uses, plus any changes in the future, is crucial.",
+    icon: Building2,
+    title: "Work with me in Southwest Florida",
+    body: "This site showcases the company I work for — Solar Energy Solutions by EcoSmart — and the installs our veteran-run crew designs, permits, and puts on the roof in-house. If you’re a homeowner here, you can reach me directly. No door knocker. No runaround.",
+    links: [
+      { to: "/company" as const, label: "Meet the company" },
+      { to: "/contact" as const, label: "Contact Adam" },
+    ],
   },
   {
-    icon: PenTool,
-    title: "Personalized Design",
-    body: "I build your system from the ground up using your usage history. I hand-model your home in the design software and apply the most up-to-date irradiance information.",
-  },
-  {
-    icon: Timer,
-    title: "Keep a real timeline",
-    body: "Homeowners who have worked with me mention the same thing: I answer, I explain the process, and I do not vanish after the contract.",
+    icon: BookOpen,
+    title: "Straight answers on solar — for anyone",
+    body: "I also use this site to answer the questions people actually ask about solar, anywhere in the country. Free educational pages and videos so anyone can understand how a system works, what it does to a bill, and what a battery is for — without sitting through a pitch.",
+    links: [
+      { to: "/solar" as const, label: "Solar Education" },
+      { to: "/calculator" as const, label: "Free Solar Calculator" },
+    ],
   },
 ];
 
@@ -126,19 +129,28 @@ export function HomePage() {
       </section>
 
       <section className="relative z-20 mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <p className="text-sm font-medium tracking-[0.16em] text-gold uppercase sm:text-base">How I Work</p>
-        <h2 className="mt-3 max-w-xl font-display text-4xl font-semibold tracking-tight">
-          A solar conversation should be educational and fun, not pushy and rushed.
+        <h2 className="max-w-xl font-display text-4xl font-semibold tracking-tight">
+          What is this website for?
         </h2>
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
-          {STEPS.map((step) => (
+        <div className="mt-10 grid gap-4 md:grid-cols-2">
+          {PURPOSES.map((item) => (
             <article
-              key={step.title}
-              className="rounded-lg bg-surface p-5 shadow-[var(--shadow-border)]"
+              key={item.title}
+              className="flex flex-col rounded-lg bg-surface p-5 shadow-[var(--shadow-border)]"
             >
-              <step.icon className="size-5 text-gold" />
-              <h3 className="mt-4 font-display text-2xl font-semibold">{step.title}</h3>
-              <p className="mt-2 text-base leading-relaxed text-muted sm:text-lg">{step.body}</p>
+              <item.icon className="size-5 text-gold" />
+              <h3 className="mt-4 font-display text-2xl font-semibold">{item.title}</h3>
+              <p className="mt-2 flex-1 text-base leading-relaxed text-muted sm:text-lg">{item.body}</p>
+              <div className="mt-5 flex flex-wrap gap-3">
+                {item.links.map((link) => (
+                  <Button key={link.to} asChild variant="outline">
+                    <Link to={link.to}>
+                      {link.label}
+                      <ArrowRight className="size-4" />
+                    </Link>
+                  </Button>
+                ))}
+              </div>
             </article>
           ))}
         </div>
