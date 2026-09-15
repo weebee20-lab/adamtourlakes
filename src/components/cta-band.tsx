@@ -19,9 +19,6 @@ export function CtaBand({
           <Button asChild size="lg">
             <Link to="/contact">Contact Adam</Link>
           </Button>
-          <Button asChild size="lg" variant="outline">
-            <Link to="/contact">Send Adam a note</Link>
-          </Button>
         </div>
       </div>
       <p className="mt-4 text-xs text-muted">

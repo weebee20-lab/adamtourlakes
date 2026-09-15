@@ -241,7 +241,7 @@ export function HomePage() {
                   <a href={COMPANY.phoneHref}>Call {COMPANY.phoneDisplay}</a>
                 </Button>
                 <Button asChild size="lg" variant="outline">
-                  <Link to="/contact">Send Adam a note</Link>
+                  <Link to="/contact">Contact Adam</Link>
                 </Button>
               </div>
               <p className="mt-3 text-xs text-muted">
