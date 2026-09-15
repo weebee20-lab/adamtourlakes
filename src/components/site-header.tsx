@@ -9,6 +9,13 @@ import { cn } from "@/lib/utils";
 export function SiteHeader() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const [open, setOpen] = useState(false);
+  const [eduOpen, setEduOpen] = useState(false);
+  const [eduHoverLocked, setEduHoverLocked] = useState(false);
+
+  useEffect(() => {
+    setOpen(false);
+    setEduOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     setOpen(false);
@@ -66,12 +73,27 @@ export function SiteHeader() {
               );
             }
             return (
-              <div key={item.to} className="group relative">
+              <div
+                key={item.to}
+                className="relative"
+                onMouseEnter={() => {
+                  if (!eduHoverLocked) setEduOpen(true);
+                }}
+                onMouseLeave={() => {
+                  setEduOpen(false);
+                  setEduHoverLocked(false);
+                }}
+              >
                 <Link
                   to={item.to}
                   preload="intent"
                   aria-current={active ? "page" : undefined}
                   aria-haspopup="menu"
+                  aria-expanded={eduOpen}
+                  onClick={() => {
+                    setEduOpen(false);
+                    setEduHoverLocked(true);
+                  }}
                   className={cn(
                     "inline-flex h-10 items-center px-1.5 text-[11px] font-medium whitespace-nowrap transition-colors duration-150 md:px-2 md:text-xs xl:px-2.5 xl:text-sm",
                     active ? "text-gold" : "nav-glow-hover text-muted",
@@ -79,7 +101,12 @@ export function SiteHeader() {
                 >
                   {item.label}
                 </Link>
-                <div className="invisible absolute top-full left-1/2 z-50 min-w-[11.5rem] -translate-x-1/2 pt-1 opacity-0 transition-[opacity,visibility] duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                <div
+                  className={cn(
+                    "absolute top-full left-1/2 z-50 w-max min-w-[14rem] -translate-x-1/2 pt-1 transition-[opacity,visibility] duration-150",
+                    eduOpen ? "visible opacity-100" : "invisible opacity-0",
+                  )}
+                >
                   <div className="rounded-md border border-border/80 bg-bg/90 py-1 shadow-[var(--shadow-border)] backdrop-blur-xl">
                     {children.map((child) => {
                       const childActive = pathname === child.to;
@@ -89,6 +116,10 @@ export function SiteHeader() {
                           to={child.to}
                           preload="intent"
                           aria-current={childActive ? "page" : undefined}
+                          onClick={() => {
+                            setEduOpen(false);
+                            setEduHoverLocked(true);
+                          }}
                           className={cn(
                             "flex h-10 items-center justify-center px-3 text-center text-xs font-medium whitespace-nowrap",
                             childActive ? "text-gold" : "nav-glow-hover text-muted",
