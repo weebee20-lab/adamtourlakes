@@ -47,8 +47,8 @@ const FAQS = [
     a: "Yes — and the heat is a real design input, not a footnote. More sun means more kilowatt-hours; hotter cells mean slightly less efficiency per module. We size for both, and we spec equipment that is rated for this climate and for wind.",
   },
   {
-    q: "What happens in a hurricane?",
-    a: "A properly permitted rooftop array is engineered to the Florida Building Code wind loads for the site. That is racking, attachments, and inspection — not a hope. A grid-tied system without a battery still shuts down when the utility is down (anti-islanding). If you want lights during an outage, that is a battery conversation.",
+    q: "What happens to the system during a hurricane?",
+    a: "If installed properly, the answer is...nothing. A properly permitted and installed rooftop solar array is engineered to the Florida Building Code wind loads for the area. Racking, mounts, and installation materials should all be hurricane-rated for extremely high winds. That means they're not going anywhere, even in the worst of the worst storms. A grid-tied system without a battery shuts down when the utility grid falls. If you want to keep the lights on and the home powered during a grid outage, you'll need a battery storage system.",
   },
   {
     q: "Do I need a battery?",
