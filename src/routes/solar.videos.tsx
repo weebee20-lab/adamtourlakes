@@ -28,6 +28,7 @@ const VIDEOS = [
 function SolarVideosPage() {
   return (
     <main className="solar-edu">
+      <div className="videos-lock">
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <p className="text-xs font-medium tracking-[0.2em] text-gold uppercase">Watch</p>
         <h1 className="mt-3 max-w-3xl font-display text-4xl font-semibold tracking-tight sm:text-6xl">
@@ -45,7 +46,7 @@ function SolarVideosPage() {
             </Link>
           </Button>
         </div>
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="videos-grid mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
           {VIDEOS.map((item) => (
             <article
               key={item.n}
@@ -73,6 +74,7 @@ function SolarVideosPage() {
           />
         </div>
       </section>
+      </div>
     </main>
   );
 }

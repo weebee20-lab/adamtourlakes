@@ -688,3 +688,18 @@
   }
 }
 
+@media (min-width: 1024px) {
+  .videos-lock {
+    width: 1152px;
+    max-width: 1152px;
+    margin-inline: auto;
+    zoom: min(1, calc(100vw / 1152));
+  }
+
+  .videos-lock .videos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+
