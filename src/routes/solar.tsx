@@ -31,7 +31,7 @@ const STEPS = [
     n: "03",
     icon: UtilityPole,
     title: "The house uses it first",
-    body: "Loads in the home draw from the array before the grid does. Extra kilowatt-hours go out through a bi-directional meter. How those credits are valued depends on the utility.",
+    body: "Loads in the home draw from the solar array, meaning your home is running on sunshine. Extra kWh go out through a bi-directional meter and is credited to your utility account by your utility company.",
   },
   {
     n: "04",
