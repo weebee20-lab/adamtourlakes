@@ -28,7 +28,7 @@ const PURPOSES = [
   },
   {
     icon: BookOpen,
-    title: "Straight answers on solar — for anyone",
+    title: "Anyone Looking for Solar Answers",
     body: (
       <>
         I also use this site to answer the questions people actually ask about solar, anywhere in
@@ -138,7 +138,7 @@ export function HomePage() {
 
       <section className="relative z-20 mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <h2 className="max-w-xl font-display text-4xl font-semibold tracking-tight">
-          What is this website for?
+          Who is this website for?
         </h2>
         <div className="mt-10 grid gap-4 md:grid-cols-2">
           {PURPOSES.map((item) => (
