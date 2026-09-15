@@ -38,10 +38,12 @@ function AdminInbox() {
     const res = await adminListLeads();
     if (!res.ok) {
       setUnlocked(false);
-      return;
+      setError("Logged in, but the inbox could not load. Refresh and try once more.");
+      return false;
     }
     setLeads(res.leads);
     setUnlocked(true);
+    return true;
   }
 
   useEffect(() => {
@@ -54,14 +56,15 @@ function AdminInbox() {
     e.preventDefault();
     setBusy(true);
     setError(null);
-    const res = await adminLeadLogin({ data: { password } });
-    setBusy(false);
+    const res = await adminLeadLogin({ data: { password: password.trim() } });
     if (!res.ok) {
-      setError("Could not unlock.");
+      setBusy(false);
+      setError("Could not unlock. Check the admin password (not the site preview password).");
       return;
     }
     setPassword("");
     await load();
+    setBusy(false);
   }
 
   async function setStatus(id: string, status: LeadStatus) {

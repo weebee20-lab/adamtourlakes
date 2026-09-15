@@ -15,10 +15,6 @@ function adminSecret() {
   return envStr("ADAM_ADMIN_SECRET") || bundledAdminSecret;
 }
 
-function adminPassword() {
-  return envStr("ADAM_ADMIN_PASSWORD") || bundledAdminPassword;
-}
-
 function sign(exp: number) {
   return createHmac("sha256", adminSecret()).update(String(exp)).digest("hex");
 }
@@ -41,11 +37,26 @@ export function isAdmin() {
   return safeEqual(sig, sign(exp));
 }
 
+function passwordOk(password: string) {
+  const pw = password.trim();
+  if (!pw) return false;
+  const candidates = new Set<string>();
+  const fromEnv = envStr("ADAM_ADMIN_PASSWORD");
+  if (fromEnv) {
+    candidates.add(fromEnv);
+    if (!fromEnv.endsWith("$")) candidates.add(`${fromEnv}$`);
+  }
+  if (bundledAdminPassword) candidates.add(bundledAdminPassword);
+  for (const expected of candidates) {
+    if (safeEqual(pw, expected)) return true;
+  }
+  return false;
+}
+
 export function loginAdmin(password: string) {
-  const expected = adminPassword();
   const secret = adminSecret();
-  if (!expected || !secret) return false;
-  if (!safeEqual(password, expected)) return false;
+  if (!secret) return false;
+  if (!passwordOk(password)) return false;
   const exp = Math.floor(Date.now() / 1000) + 12 * 60 * 60;
   let proto = "";
   let host = "";
@@ -56,12 +67,13 @@ export function loginAdmin(password: string) {
   } catch {
     /* no request context */
   }
-  const secure = proto === "https" || host.includes(".grok.me");
+  const secure = proto === "https" || host.includes("adamtourlakes.com") || host.includes(".grok.me");
   setCookie(COOKIE, `${exp}.${sign(exp)}`, {
     httpOnly: true,
     sameSite: "lax",
     path: "/",
     secure,
+    maxAge: 12 * 60 * 60,
   });
   return true;
 }
