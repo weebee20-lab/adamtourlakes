@@ -97,7 +97,7 @@ export function HomePage() {
               salesman or a door knocker saying he’s there to give you a “free energy audit.” My team
               and I are the solar professionals you’ve been hoping for. We’re trained, experienced,
               and we put honesty, integrity, fair pricing, and transparency first. No door knockers.
-              Strict pricing. The reviews speak for themselves.
+              Strict pricing. Our reviews speak for themselves.
             </p>
           </div>
           <div className="hero-copy-nudge max-w-2xl lg:max-w-3xl">
