@@ -65,7 +65,6 @@ export function HomePage() {
         </div>
         <div className="hero-veil" aria-hidden />
         <div className="hero-dither" aria-hidden />
-        <div className="hero-cutline" aria-hidden />
         <div className="hero-copy relative z-30 mx-auto flex min-h-0 max-w-7xl flex-col justify-end gap-8 px-4 pt-28 pb-16 sm:px-6 lg:min-h-[800px] lg:justify-start lg:gap-6 lg:pt-20 lg:pb-12">
           <div className="max-w-2xl lg:max-w-3xl">
             <img
@@ -117,6 +116,7 @@ export function HomePage() {
           </div>
         </div>
         </div>
+        <div className="hero-cutline" aria-hidden />
       </section>
 
       <section className="relative z-20 mx-auto max-w-6xl px-4 py-16 sm:px-6">
