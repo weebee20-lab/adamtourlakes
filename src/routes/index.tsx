@@ -50,6 +50,8 @@ export function HomePage() {
   return (
     <main>
       <section className="hero-stage relative isolate min-h-svh overflow-hidden lg:min-h-0">
+        <div className="hero-veil" aria-hidden />
+        <div className="hero-dither" aria-hidden />
         <div className="hero-lock">
         <div className="hero-portrait-wrap">
           <div className="hero-aura" aria-hidden />
@@ -63,8 +65,6 @@ export function HomePage() {
             decoding="async"
           />
         </div>
-        <div className="hero-veil" aria-hidden />
-        <div className="hero-dither" aria-hidden />
         <div className="hero-copy relative z-30 mx-auto flex min-h-0 max-w-7xl flex-col justify-end gap-8 px-4 pt-28 pb-16 sm:px-6 lg:min-h-[800px] lg:justify-start lg:gap-6 lg:pt-20 lg:pb-12">
           <div className="max-w-2xl lg:max-w-3xl">
             <img

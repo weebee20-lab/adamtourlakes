@@ -507,6 +507,37 @@
     overflow-x: hidden;
   }
 
+  .hero-stage::before,
+  .hero-stage::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 28;
+    width: max(10rem, calc((100% - 1440px) / 2 + 8rem));
+    pointer-events: none;
+  }
+
+  .hero-stage::before {
+    left: 0;
+    background: linear-gradient(
+      to right,
+      var(--color-bg) 0%,
+      color-mix(in oklab, var(--color-bg) 55%, transparent) 42%,
+      transparent 100%
+    );
+  }
+
+  .hero-stage::after {
+    right: 0;
+    background: linear-gradient(
+      to left,
+      var(--color-bg) 0%,
+      color-mix(in oklab, var(--color-bg) 55%, transparent) 42%,
+      transparent 100%
+    );
+  }
+
   .hero-lock {
     width: 1440px;
     max-width: 1440px;
