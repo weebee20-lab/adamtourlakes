@@ -74,7 +74,7 @@ export function HomePage() {
               width={2533}
               height={883}
             />
-            <div className="hero-copy-panel hero-copy-nudge">
+            <div className="hero-copy-panel">
             <p className="relative z-10 mt-2 text-xs font-medium tracking-[0.2em] text-gold uppercase lg:text-[0.975rem]">
               Solar Expert · Southwest Florida
             </p>
@@ -102,7 +102,7 @@ export function HomePage() {
             </p>
             </div>
           </div>
-          <div className="hero-copy-nudge max-w-2xl lg:max-w-3xl">
+          <div className="max-w-2xl lg:max-w-3xl">
             <div className="flex flex-wrap gap-3">
               <Button asChild size="lg">
                 <Link to="/contact">Talk to Adam</Link>
