@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, BookOpen, Building2 } from "lucide-react";
+import type { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { seoHead } from "@/lib/seo";
 import { COMPANY, SITE_NAME } from "@/lib/site";
@@ -19,7 +20,7 @@ const PURPOSES = [
   {
     icon: Building2,
     title: "Work with me in Southwest Florida",
-    body: "This site showcases the company I'm proud to work for — Solar Energy Solutions by EcoSmart — and the installs our crew make happen. If you’re a homeowner here, you can learn a bit about me and reach me easily right through this site.",
+    body: "This site showcases the company I'm proud to work for — Solar Energy Solutions by EcoSmart — and the installs our crew make happen. If you’re a homeowner here, you can learn a bit about me and reach me easily right through this site." as ReactNode,
     links: [
       { to: "/company" as const, label: "Meet the company" },
       { to: "/contact" as const, label: "Contact Adam" },
@@ -28,7 +29,17 @@ const PURPOSES = [
   {
     icon: BookOpen,
     title: "Straight answers on solar — for anyone",
-    body: "I also use this site to answer the questions people actually ask about solar, anywhere in the country. Free educational pages and videos so anyone can understand how a system works, what it does to a bill, and what a battery is for — without sitting through a pitch.",
+    body: (
+      <>
+        I also use this site to answer the questions people actually ask about solar, anywhere in
+        the country. I've got educational pages and videos so anyone can understand how a system
+        works, what it does to a bill, and exactly what system size you'll need through the built-in{" "}
+        <Link to="/calculator" className="font-medium text-gold hover:text-fg">
+          Solar Calculator
+        </Link>
+        . All for free, for everyone, forever.
+      </>
+    ),
     links: [
       { to: "/solar" as const, label: "Solar Education" },
       { to: "/calculator" as const, label: "Free Solar Calculator" },
