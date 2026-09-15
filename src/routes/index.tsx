@@ -20,7 +20,7 @@ const PURPOSES = [
   {
     icon: Building2,
     title: "Work with me in Southwest Florida",
-    body: "This site showcases the company I'm proud to work for — Solar Energy Solutions by EcoSmart — and the installs our crew make happen. If you’re a homeowner here, you can learn a bit about me and reach me easily right through this site." as ReactNode,
+    body: "This site showcases the company I'm proud to work for — Solar Energy Solutions by EcoSmart — and the installs our crew make happen. If you’re a homeowner here, you can learn a bit about me and reach me easily right through this site. Keep in mind, I only work in Southwest Florida right now." as ReactNode,
     links: [
       { to: "/company" as const, label: "Meet the company" },
       { to: "/contact" as const, label: "Contact Adam" },
