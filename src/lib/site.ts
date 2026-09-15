@@ -25,7 +25,7 @@ export const NAV = [
     to: "/solar",
     label: "Solar Education",
     match: "prefix" as const,
-    children: [{ to: "/solar/videos", label: "Videos" }],
+    children: [{ to: "/solar/videos", label: "Original Videos" }],
   },
   { to: "/calculator", label: "Free Solar Calculator", match: "prefix" as const },
 ] as const;

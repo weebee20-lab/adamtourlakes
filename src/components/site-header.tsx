@@ -79,7 +79,7 @@ export function SiteHeader() {
                 >
                   {item.label}
                 </Link>
-                <div className="invisible absolute top-full right-0 z-50 min-w-[10.5rem] pt-1 opacity-0 transition-[opacity,visibility] duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                <div className="invisible absolute top-full left-1/2 z-50 min-w-[11.5rem] -translate-x-1/2 pt-1 opacity-0 transition-[opacity,visibility] duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
                   <div className="rounded-md border border-border/80 bg-bg/90 py-1 shadow-[var(--shadow-border)] backdrop-blur-xl">
                     {children.map((child) => {
                       const childActive = pathname === child.to;
@@ -90,7 +90,7 @@ export function SiteHeader() {
                           preload="intent"
                           aria-current={childActive ? "page" : undefined}
                           className={cn(
-                            "flex h-10 items-center px-3 text-xs font-medium whitespace-nowrap",
+                            "flex h-10 items-center justify-center px-3 text-center text-xs font-medium whitespace-nowrap",
                             childActive ? "text-gold" : "nav-glow-hover text-muted",
                           )}
                         >
