@@ -86,7 +86,7 @@ function SolarPage() {
   };
 
   return (
-    <main>
+    <main className="solar-edu">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
