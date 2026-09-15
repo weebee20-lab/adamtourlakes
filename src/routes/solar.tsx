@@ -124,16 +124,18 @@ function SolarPage() {
             {STEPS.map((step) => (
               <article
                 key={step.n}
-                className="rounded-lg bg-surface p-5 shadow-[var(--shadow-border)]"
+                className="rounded-lg bg-surface px-4 py-3.5 shadow-[var(--shadow-border)]"
               >
-                <div className="flex items-center justify-between">
-                  <step.icon className="size-5 text-gold" />
-                  <span className="text-xs font-medium tracking-[0.16em] text-blue uppercase">
+                <div className="flex items-center gap-3">
+                  <step.icon className="size-5 shrink-0 text-gold" />
+                  <h3 className="min-w-0 flex-1 font-display text-xl font-semibold tracking-tight">
+                    {step.title}
+                  </h3>
+                  <span className="shrink-0 text-xs font-medium tracking-[0.16em] text-blue uppercase">
                     {step.n}
                   </span>
                 </div>
-                <h3 className="mt-4 font-display text-2xl font-semibold">{step.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{step.body}</p>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted">{step.body}</p>
               </article>
             ))}
           </div>
