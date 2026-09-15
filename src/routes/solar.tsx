@@ -41,6 +41,33 @@ const STEPS = [
   },
 ];
 
+const TERMS = [
+  {
+    term: "kWh",
+    def: "Kilowatt-hour. The unit on your electric bill — how much energy you used, not how big the system is.",
+  },
+  {
+    term: "Array",
+    def: "The group of panels on the roof, working as one system.",
+  },
+  {
+    term: "Inverter",
+    def: "Turns the panels’ DC power into AC, which is what the house actually runs on.",
+  },
+  {
+    term: "Bidirectional meter",
+    def: "Measures power both ways: what you buy from the utility, and extra solar you send back.",
+  },
+  {
+    term: "Offset",
+    def: "How much of your annual usage the array is designed to cover. 90% offset means the system is sized to make about 90% of what the house uses in a year.",
+  },
+  {
+    term: "Battery",
+    def: "Stores extra daytime production for night or a grid outage. It does not make more sun or a bigger array.",
+  },
+];
+
 const FAQS = [
   {
     q: "Will solar work through a Southwest Florida summer?",
@@ -139,6 +166,20 @@ function SolarPage() {
               </article>
             ))}
           </div>
+          <article className="mt-6 rounded-lg bg-surface px-4 py-4 shadow-[var(--shadow-border)] sm:px-5">
+            <p className="text-xs font-medium tracking-[0.16em] text-gold uppercase">Plain English</p>
+            <h3 className="mt-2 font-display text-2xl font-semibold tracking-tight">
+              Solar terms you’ll see on this page
+            </h3>
+            <dl className="mt-4 grid gap-x-8 gap-y-3 sm:grid-cols-2">
+              {TERMS.map((item) => (
+                <div key={item.term}>
+                  <dt className="font-display text-lg font-semibold text-gold">{item.term}</dt>
+                  <dd className="mt-0.5 text-sm leading-relaxed text-muted">{item.def}</dd>
+                </div>
+              ))}
+            </dl>
+          </article>
         </div>
         <div className="hero-cutline" aria-hidden />
       </section>
