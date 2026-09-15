@@ -1,6 +1,7 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 import { getCookie, getRequest, setCookie } from "@tanstack/react-start/server";
 import { envFileValue } from "@/lib/solar/guard.server";
+import { bundledSiteGatePassword, bundledSiteGateSecret } from "@/lib/solar/bundled-secrets.server";
 
 const COOKIE = "adam_preview";
 
@@ -9,11 +10,11 @@ function envStr(key: string) {
 }
 
 function gatePassword() {
-  return envStr("SITE_GATE_PASSWORD");
+  return envStr("SITE_GATE_PASSWORD") || bundledSiteGatePassword;
 }
 
 function gateSecret() {
-  return envStr("SITE_GATE_SECRET");
+  return envStr("SITE_GATE_SECRET") || bundledSiteGateSecret;
 }
 
 function sign(exp: number) {
@@ -42,7 +43,7 @@ export function unlockSite(password: string) {
   const expected = gatePassword();
   const secret = gateSecret();
   if (!expected || !secret) return false;
-  if (!safeEqual(password, expected)) return false;
+  if (!safeEqual(password.trim(), expected)) return false;
   const exp = Math.floor(Date.now() / 1000) + 7 * 24 * 60 * 60;
   let proto = "";
   let host = "";
