@@ -18,10 +18,11 @@ const VIDEOS = [
   { n: "01", title: "Who am I, and why should you care?" },
   { n: "02", title: "The Basics of Solar" },
   { n: "03", title: "The Cost of Solar" },
-  { n: "04", title: "Solar on Different Roof Types" },
-  { n: "05", title: "Solar is a Scam?" },
-  { n: "06", title: "Solar With Batteries" },
-  { n: "07", title: "Solar Installer Red Flags" },
+  { n: "04", title: "Loan, Lease, or Cash?" },
+  { n: "05", title: "Solar on Different Roof Types" },
+  { n: "06", title: "Solar is a Scam?" },
+  { n: "07", title: "Solar With Batteries" },
+  { n: "08", title: "Solar Installer Red Flags" },
 ];
 
 function SolarVideosPage() {
