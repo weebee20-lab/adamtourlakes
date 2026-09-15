@@ -1,4 +1,5 @@
 import { envFileValue } from "@/lib/solar/guard.server";
+import { bundledResendApiKey } from "@/lib/solar/bundled-secrets.server";
 import { COMPANY } from "@/lib/site";
 
 const FROM = "Adam Tourlakes <adam@adamtourlakes.com>";
@@ -9,8 +10,11 @@ function envStr(key: string) {
 }
 
 function apiKey() {
-  const key = envStr("RESEND_API_KEY");
-  return key.startsWith("re_") ? key : "";
+  for (const value of [envStr("RESEND_API_KEY"), bundledResendApiKey]) {
+    const key = String(value ?? "").trim();
+    if (key.startsWith("re_")) return key;
+  }
+  return "";
 }
 
 function notifyTo() {

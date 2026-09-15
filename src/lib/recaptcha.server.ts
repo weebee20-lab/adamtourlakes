@@ -1,5 +1,6 @@
 import { getRequest } from "@tanstack/react-start/server";
 import { envFileValue } from "@/lib/solar/guard.server";
+import { bundledRecaptchaSecret } from "@/lib/solar/bundled-secrets.server";
 
 const VERIFY_URL = "https://www.google.com/recaptcha/api/siteverify";
 const MIN_SCORE = 0.3;
@@ -7,7 +8,11 @@ const FAIL = "Security check failed. Refresh and try again.";
 const UNAVAILABLE = "Security check unavailable. Try again later.";
 
 function recaptchaSecret() {
-  for (const value of [process.env["RECAPTCHA_SECRET_KEY"], envFileValue("RECAPTCHA_SECRET_KEY")]) {
+  for (const value of [
+    process.env["RECAPTCHA_SECRET_KEY"],
+    envFileValue("RECAPTCHA_SECRET_KEY"),
+    bundledRecaptchaSecret,
+  ]) {
     const key = String(value ?? "").trim();
     if (key.startsWith("6L")) return key;
   }

@@ -9,19 +9,33 @@ declare global {
   }
 }
 
-/** Public v3 site key (safe in the browser). Secret stays server-only. */
-const SITE_KEY = String(import.meta.env.VITE_RECAPTCHA_SITE_KEY ?? "").trim();
+/** Public v3 site key. VITE_ first; server RPC fills in if Publish did not bake it. */
+let resolvedKey = String(import.meta.env.VITE_RECAPTCHA_SITE_KEY ?? "").trim();
+
+async function resolveSiteKey() {
+  if (resolvedKey.startsWith("6L")) return resolvedKey;
+  try {
+    const { getRecaptchaSiteKey } = await import("@/lib/recaptcha-rpc");
+    const fromServer = String((await getRecaptchaSiteKey()) ?? "").trim();
+    if (fromServer.startsWith("6L")) resolvedKey = fromServer;
+  } catch {
+    /* keep empty */
+  }
+  return resolvedKey;
+}
 
 function siteKey() {
-  return SITE_KEY.startsWith("6L") ? SITE_KEY : "";
+  return resolvedKey.startsWith("6L") ? resolvedKey : "";
 }
 
 let loading: Promise<void> | null = null;
 
-export function loadRecaptcha(): Promise<void> {
+export async function loadRecaptcha(): Promise<void> {
+  if (typeof window === "undefined") return;
+  await resolveSiteKey();
   const key = siteKey();
-  if (!key || typeof window === "undefined") return Promise.resolve();
-  if (window.grecaptcha) return Promise.resolve();
+  if (!key) return;
+  if (window.grecaptcha) return;
   if (loading) return loading;
   loading = new Promise<void>((resolve, reject) => {
     const existing = document.querySelector<HTMLScriptElement>("script[data-adam-recaptcha]");
@@ -48,8 +62,10 @@ export function loadRecaptcha(): Promise<void> {
 }
 
 export async function getRecaptchaToken(action: string): Promise<string> {
+  if (typeof window === "undefined") return "";
+  await resolveSiteKey();
   const key = siteKey();
-  if (!key || typeof window === "undefined") return "";
+  if (!key) return "";
   try {
     await loadRecaptcha();
     const grecaptcha = window.grecaptcha;
