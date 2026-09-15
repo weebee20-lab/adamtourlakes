@@ -114,7 +114,7 @@ export function HomePage() {
                 </Link>
               </Button>
             </div>
-            <p className="mt-5 text-sm text-muted">
+            <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">
               Office {COMPANY.phoneDisplay} · Ask for Adam · {COMPANY.cityStateZip}
             </p>
           </div>
@@ -134,7 +134,7 @@ export function HomePage() {
             >
               <step.icon className="size-5 text-gold" />
               <h3 className="mt-4 font-display text-2xl font-semibold">{step.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{step.body}</p>
+              <p className="mt-2 text-base leading-relaxed text-muted sm:text-lg">{step.body}</p>
             </article>
           ))}
         </div>
@@ -147,7 +147,7 @@ export function HomePage() {
             <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight">
               I learn the house — and the people in it — before I size a solar system.
             </h2>
-            <div className="mt-6 space-y-4 text-sm leading-relaxed text-muted">
+            <div className="mt-6 space-y-4 text-base leading-relaxed text-muted sm:text-lg">
               <p>
                 I have been designing solar systems since 2023 and have overseen hundreds of
                 installations. I never run a padded sales pitch or force fake “urgency” on my
@@ -206,7 +206,7 @@ export function HomePage() {
               <h2 className="font-display text-3xl font-semibold tracking-tight text-fg">
                 Want a straight answer on your system?
               </h2>
-              <p className="mt-2 text-sm leading-relaxed text-muted">
+              <p className="mt-2 text-base leading-relaxed text-muted sm:text-lg">
                 Call the Cape Coral office and ask for Adam. Bring a recent electric bill if you have
                 one — that is the fastest way to see whether solar actually pays on your house.
               </p>
@@ -231,7 +231,7 @@ export function HomePage() {
               <h2 className="font-display text-3xl font-semibold tracking-tight text-fg">
                 Just here for solar information?
               </h2>
-              <p className="mt-2 text-sm leading-relaxed text-muted">
+              <p className="mt-2 text-base leading-relaxed text-muted sm:text-lg">
                 How a system works, what it does to a bill, and what a battery actually buys you —
                 no sales call required.
               </p>
