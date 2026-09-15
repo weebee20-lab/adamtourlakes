@@ -221,6 +221,10 @@ function SolarPage() {
           <Link to="/florida/charlotte-county" className="text-gold hover:text-fg">
             Charlotte County
           </Link>
+          {", "}
+          <Link to="/florida/sarasota-county" className="text-gold hover:text-fg">
+            Sarasota County
+          </Link>
           .
         </p>
         <CtaBand

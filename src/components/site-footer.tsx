@@ -57,6 +57,11 @@ export function SiteFooter() {
                 Charlotte County
               </Link>
             </li>
+            <li>
+              <Link to="/florida/sarasota-county" className="text-muted transition-colors hover:text-fg">
+                Sarasota County
+              </Link>
+            </li>
           </ul>
         </div>
 

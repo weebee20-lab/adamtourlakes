@@ -22,6 +22,7 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as FloridaCharlotteCountyRouteImport } from './routes/florida.charlotte-county'
 import { Route as FloridaCollierCountyRouteImport } from './routes/florida.collier-county'
 import { Route as FloridaLeeCountyRouteImport } from './routes/florida.lee-county'
+import { Route as FloridaSarasotaCountyRouteImport } from './routes/florida.sarasota-county'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -88,6 +89,11 @@ const FloridaLeeCountyRoute = FloridaLeeCountyRouteImport.update({
   path: '/lee-county',
   getParentRoute: () => FloridaRoute,
 } as any)
+const FloridaSarasotaCountyRoute = FloridaSarasotaCountyRouteImport.update({
+  id: '/sarasota-county',
+  path: '/sarasota-county',
+  getParentRoute: () => FloridaRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -103,6 +109,7 @@ export interface FileRoutesByFullPath {
   '/florida/charlotte-county': typeof FloridaCharlotteCountyRoute
   '/florida/collier-county': typeof FloridaCollierCountyRoute
   '/florida/lee-county': typeof FloridaLeeCountyRoute
+  '/florida/sarasota-county': typeof FloridaSarasotaCountyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -118,6 +125,7 @@ export interface FileRoutesByTo {
   '/florida/charlotte-county': typeof FloridaCharlotteCountyRoute
   '/florida/collier-county': typeof FloridaCollierCountyRoute
   '/florida/lee-county': typeof FloridaLeeCountyRoute
+  '/florida/sarasota-county': typeof FloridaSarasotaCountyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -134,6 +142,7 @@ export interface FileRoutesById {
   '/florida/charlotte-county': typeof FloridaCharlotteCountyRoute
   '/florida/collier-county': typeof FloridaCollierCountyRoute
   '/florida/lee-county': typeof FloridaLeeCountyRoute
+  '/florida/sarasota-county': typeof FloridaSarasotaCountyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -151,6 +160,7 @@ export interface FileRouteTypes {
     | '/florida/charlotte-county'
     | '/florida/collier-county'
     | '/florida/lee-county'
+    | '/florida/sarasota-county'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -166,6 +176,7 @@ export interface FileRouteTypes {
     | '/florida/charlotte-county'
     | '/florida/collier-county'
     | '/florida/lee-county'
+    | '/florida/sarasota-county'
   id:
     | '__root__'
     | '/'
@@ -181,6 +192,7 @@ export interface FileRouteTypes {
     | '/florida/charlotte-county'
     | '/florida/collier-county'
     | '/florida/lee-county'
+    | '/florida/sarasota-county'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -289,6 +301,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FloridaLeeCountyRouteImport
       parentRoute: typeof FloridaRoute
     }
+    '/florida/sarasota-county': {
+      id: '/florida/sarasota-county'
+      path: '/sarasota-county'
+      fullPath: '/florida/sarasota-county'
+      preLoaderRoute: typeof FloridaSarasotaCountyRouteImport
+      parentRoute: typeof FloridaRoute
+    }
   }
 }
 
@@ -296,12 +315,14 @@ interface FloridaRouteChildren {
   FloridaCharlotteCountyRoute: typeof FloridaCharlotteCountyRoute
   FloridaCollierCountyRoute: typeof FloridaCollierCountyRoute
   FloridaLeeCountyRoute: typeof FloridaLeeCountyRoute
+  FloridaSarasotaCountyRoute: typeof FloridaSarasotaCountyRoute
 }
 
 const FloridaRouteChildren: FloridaRouteChildren = {
   FloridaCharlotteCountyRoute: FloridaCharlotteCountyRoute,
   FloridaCollierCountyRoute: FloridaCollierCountyRoute,
   FloridaLeeCountyRoute: FloridaLeeCountyRoute,
+  FloridaSarasotaCountyRoute: FloridaSarasotaCountyRoute,
 }
 
 const FloridaRouteWithChildren =
