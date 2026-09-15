@@ -46,6 +46,9 @@ async function sendEmail(payload: {
       html: payload.html,
       text: payload.text,
       reply_to: payload.replyTo,
+      headers: {
+        "X-Entity-Ref-ID": `${Date.now()}-${payload.to.slice(0, 40)}`,
+      },
     }),
   });
   if (!res.ok) {
@@ -126,12 +129,6 @@ export async function sendContactEmails(lead: {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Cormorant+Garamond:ital,wght@0,600;1,500&family=Outfit:wght@400;500&display=swap" rel="stylesheet" />
-  <style>
-    @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Cormorant+Garamond:ital,wght@0,600;1,500&family=Outfit:wght@400;500&display=swap");
-  </style>
 </head>
 <body style="margin:0;padding:0;background:#08090c;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#08090c;margin:0;padding:32px 12px;">
@@ -143,43 +140,46 @@ export async function sendContactEmails(lead: {
           </tr>
           <tr>
             <td style="padding:36px 40px 40px;">
-              <p style="margin:0 0 18px;font-family:Cinzel,Times New Roman,serif;font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:#c9a44a;">
+              <p style="margin:0 0 18px;font-family:Georgia,Times New Roman,Times,serif;font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:#c9a44a;">
                 Adam Tourlakes
               </p>
-              <h1 style="margin:0 0 22px;font-family:'Cormorant Garamond',Georgia,Times New Roman,serif;font-size:36px;line-height:1.15;font-weight:600;color:#f3efe6;">
+              <h1 style="margin:0 0 22px;font-family:Georgia,Times New Roman,Times,serif;font-size:32px;line-height:1.2;font-weight:600;color:#f3efe6;">
                 Thank you for your inquiry.
               </h1>
-              <p style="margin:0 0 16px;font-family:Outfit,system-ui,Segoe UI,sans-serif;font-size:16px;line-height:1.65;color:#f3efe6;">
+              <p style="margin:0 0 16px;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.65;color:#f3efe6;">
                 Hi ${escapeHtml(first)},
               </p>
-              <p style="margin:0 0 16px;font-family:Outfit,system-ui,Segoe UI,sans-serif;font-size:16px;line-height:1.65;color:#c4bfb4;">
+              <p style="margin:0 0 16px;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.65;color:#c4bfb4;">
                 I've received your inquiry. I will review what you sent over and will reach out to you within 24 hours. You will hear from me personally.
               </p>
-              <p style="margin:0 0 16px;font-family:Outfit,system-ui,Segoe UI,sans-serif;font-size:16px;line-height:1.65;color:#c4bfb4;">
+              <p style="margin:0 0 16px;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.65;color:#c4bfb4;">
                 I'll be your main point of contact from our first conversation through the whole process. If you'd like to reach out sooner, call our Cape Coral office and ask for Adam.
               </p>
-              <p style="margin:0 0 28px;font-family:Outfit,system-ui,Segoe UI,sans-serif;font-size:16px;line-height:1.65;color:#c4bfb4;">
+              <p style="margin:0 0 28px;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.65;color:#c4bfb4;">
                 Thank you, and I look forward to working with you!
               </p>
               <table role="presentation" cellpadding="0" cellspacing="0">
                 <tr>
                   <td>
-                    <a href="tel:+1-239-994-2100" clicktracking="off" style="display:inline-block;background:#c9a44a;padding:12px 22px;font-family:Outfit,system-ui,sans-serif;font-size:14px;font-weight:500;letter-spacing:0.04em;color:#16120a;text-decoration:none;">
+                    <a href="tel:+1-239-994-2100" clicktracking="off" style="display:inline-block;background:#c9a44a;padding:12px 22px;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:500;letter-spacing:0.04em;color:#16120a;text-decoration:none;">
                       Call (239) 994-2100
                     </a>
                   </td>
                 </tr>
               </table>
-              <p style="margin:12px 0 0;font-family:Outfit,system-ui,sans-serif;font-size:14px;line-height:1.6;color:#9a958a;">
+              <p style="margin:12px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#9a958a;">
                 Or tap <a href="tel:+12399942100" clicktracking="off" style="color:#c9a44a;text-decoration:underline;">(239) 994-2100</a>
               </p>
-              <p style="margin:32px 0 0;font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-style:italic;color:#c9a44a;">
+              <p style="margin:32px 0 0;font-family:Georgia,Times New Roman,Times,serif;font-size:22px;font-style:italic;color:#c9a44a;">
                 — Adam
               </p>
-              <p style="margin:10px 0 0;font-family:Outfit,system-ui,sans-serif;font-size:13px;line-height:1.6;color:#9a958a;">
+              <p style="margin:10px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.6;color:#9a958a;">
                 Sales Manager<br/>
                 ${COMPANY.name}<br/>
                 ${COMPANY.addressLine}, ${COMPANY.cityStateZip}
+              </p>
+              <p style="margin:24px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.5;color:#6f6a62;">
+                You received this because you submitted the contact form at adamtourlakes.com. This is not a marketing list.
               </p>
             </td>
           </tr>
@@ -192,7 +192,7 @@ export async function sendContactEmails(lead: {
   </table>
 </body>
 </html>`;
-  const thanksText = `Thank you for your inquiry.\n\nHi ${first},\n\nI've received your inquiry. I will review what you sent over and will reach out to you within 24 hours. You will hear from me personally.\n\nI'll be your main point of contact from our first conversation through the whole process. If you'd like to reach out sooner, call our Cape Coral office at ${COMPANY.phoneDisplay} and ask for Adam.\n\nThank you, and I look forward to working with you!\n\n— Adam\nSales Manager\n${COMPANY.name}\n${COMPANY.addressLine}, ${COMPANY.cityStateZip}\n`;
+  const thanksText = `Thank you for your inquiry.\n\nHi ${first},\n\nI've received your inquiry. I will review what you sent over and will reach out to you within 24 hours. You will hear from me personally.\n\nI'll be your main point of contact from our first conversation through the whole process. If you'd like to reach out sooner, call our Cape Coral office at ${COMPANY.phoneDisplay} and ask for Adam.\n\nThank you, and I look forward to working with you!\n\n— Adam\nSales Manager\n${COMPANY.name}\n${COMPANY.addressLine}, ${COMPANY.cityStateZip}\n\nYou received this because you submitted the contact form at adamtourlakes.com. This is not a marketing list.\n`;
 
   const results = await Promise.allSettled([
     sendEmail({
