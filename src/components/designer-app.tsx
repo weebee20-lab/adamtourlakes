@@ -5,7 +5,7 @@ import { SavingsCard } from "@/components/savings-card";
 
 export function DesignerApp() {
   return (
-    <div className="mx-auto flex w-full max-w-6xl min-w-0 flex-col gap-4 px-4 py-5 sm:px-6">
+    <div className="solar-calc mx-auto flex w-full max-w-6xl min-w-0 flex-col gap-4 px-4 py-5 sm:px-6">
       <HelioCredit />
       <div className="grid min-w-0 items-stretch gap-4 lg:grid-cols-[minmax(0,1.15fr)_minmax(20rem,0.85fr)]">
         <RoofCanvas />
