@@ -109,6 +109,12 @@ export function HomePage() {
                   <ArrowRight className="size-4" />
                 </Link>
               </Button>
+              <Button asChild size="lg" variant="outline">
+                <Link to="/calculator">
+                  Size your system for free
+                  <ArrowRight className="size-4" />
+                </Link>
+              </Button>
             </div>
             <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">
               Office {COMPANY.phoneDisplay} · Ask for Adam · {COMPANY.cityStateZip}
