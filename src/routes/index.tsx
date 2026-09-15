@@ -79,7 +79,7 @@ export function HomePage() {
             decoding="async"
           />
         </div>
-        <div className="hero-copy relative z-30 mx-auto flex min-h-0 max-w-7xl flex-col justify-end gap-8 px-4 pt-28 pb-16 sm:px-6 lg:min-h-[800px] lg:justify-start lg:gap-6 lg:pt-20 lg:pb-12">
+        <div className="hero-copy relative z-30 mx-auto flex min-h-0 max-w-7xl flex-col justify-end gap-8 px-4 pt-28 pb-16 sm:px-6 lg:min-h-[800px] lg:justify-start lg:gap-6 lg:pt-32 lg:pb-12">
           <div className="max-w-2xl lg:max-w-3xl">
             <img
               src="/brand/signature-gold.png?v=3"
@@ -130,9 +130,6 @@ export function HomePage() {
                 </Link>
               </Button>
             </div>
-            <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">
-              Office {COMPANY.phoneDisplay} · Ask for Adam · {COMPANY.cityStateZip}
-            </p>
           </div>
         </div>
         </div>
