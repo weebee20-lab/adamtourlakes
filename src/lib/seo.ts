@@ -19,6 +19,11 @@ export function canonicalUrl(path: string, host = publicShareHost()) {
   return `https://${host}${raw.replace(/\/+$/, "")}`;
 }
 
+function shareImage(path: string) {
+  const host = publicShareHost();
+  return host ? `https://${host}${path}` : path;
+}
+
 export function seoHead(title: string, description: string, path = "/") {
   const host = publicShareHost();
   const canonical = canonicalUrl(path, host);
@@ -54,7 +59,7 @@ export const PERSON_JSON_LD = {
   jobTitle: "Sales Manager",
   description:
     "Sales Manager at Solar Energy Solutions of America, helping Southwest Florida homeowners design and install rooftop solar.",
-  image: "/portraits/adam-studio.jpg",
+  image: shareImage("/portraits/adam-studio.jpg"),
   worksFor: {
     "@type": "Organization",
     name: "Solar Energy Solutions of America",
@@ -86,7 +91,7 @@ export const ORG_JSON_LD = {
   name: "Solar Energy Solutions of America",
   url: "https://solarenergysolutionsofamerica.com",
   telephone: "+1-239-994-2100",
-  image: "/images/waterfront-solar.jpg",
+  image: shareImage("/images/waterfront-solar.jpg"),
   address: {
     "@type": "PostalAddress",
     streetAddress: "2528 Andalusia Blvd",
