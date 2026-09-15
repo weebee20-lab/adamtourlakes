@@ -176,6 +176,12 @@ async function createSql(): Promise<Sql> {
         "or a server route loader, never from client code.",
     );
   }
+  if (!databaseUrl) {
+    const { isWorkspacePreview } = await import("@/lib/env.server");
+    if (!isWorkspacePreview()) {
+      throw new Error("DATABASE_URL required in production");
+    }
+  }
   return dbSource === "neon" ? createNeonSql() : createPgliteSql();
 }
 

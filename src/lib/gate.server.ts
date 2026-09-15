@@ -4,22 +4,16 @@ import { envFileValue } from "@/lib/solar/guard.server";
 
 const COOKIE = "adam_preview";
 
-// Env wins. Bundled fallback is preview-only so the lock works before Publish env is set.
-// Rotate SITE_GATE_PASSWORD before go-live and remove the bundled value.
 function envStr(key: string) {
   return String(process.env[key] ?? "").trim() || envFileValue(key);
 }
 
 function gatePassword() {
-  return envStr("SITE_GATE_PASSWORD") || "AJTSolarPanelZ1990$";
+  return envStr("SITE_GATE_PASSWORD");
 }
 
 function gateSecret() {
-  return (
-    envStr("SITE_GATE_SECRET") ||
-    envStr("ADAM_ADMIN_SECRET") ||
-    "a9d8bfc9f6de459905eea92b382835e7eea29dbd5f09a7cbaa62c6139915d8f0"
-  );
+  return envStr("SITE_GATE_SECRET");
 }
 
 function sign(exp: number) {
@@ -36,6 +30,7 @@ function safeEqual(a: string, b: string) {
 }
 
 export function isSiteOpen() {
+  if (!gateSecret()) return false;
   const raw = getCookie(COOKIE) ?? "";
   const [expRaw, sig] = raw.split(".");
   const exp = Number(expRaw);
@@ -45,7 +40,8 @@ export function isSiteOpen() {
 
 export function unlockSite(password: string) {
   const expected = gatePassword();
-  if (!expected) return false;
+  const secret = gateSecret();
+  if (!expected || !secret) return false;
   if (!safeEqual(password, expected)) return false;
   const exp = Math.floor(Date.now() / 1000) + 7 * 24 * 60 * 60;
   let proto = "";
@@ -57,7 +53,7 @@ export function unlockSite(password: string) {
   } catch {
     /* no request context */
   }
-  const secure = proto === "https" || host.includes(".grok.me");
+  const secure = proto === "https" || host.includes("adamtourlakes.com") || host.includes(".grok.me");
   setCookie(COOKIE, `${exp}.${sign(exp)}`, {
     httpOnly: true,
     sameSite: "lax",

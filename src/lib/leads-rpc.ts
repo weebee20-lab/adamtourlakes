@@ -86,7 +86,7 @@ export const adminLeadLogin = createServerFn({ method: "POST" })
   .validator((d: { password: string }) => ({ password: text(d?.password, 120) }))
   .handler(async ({ data }) => {
     const { allowRateLimit } = await import("@/lib/solar/guard.server");
-    if (!allowRateLimit("admin-unlock", 12, 15 * 60 * 1000)) {
+    if (!allowRateLimit("admin-unlock", 5, 15 * 60 * 1000)) {
       return { ok: false as const };
     }
     const { loginAdmin } = await import("@/lib/leads.server");
@@ -107,7 +107,7 @@ export const adminListLeads = createServerFn({ method: "POST" }).handler(async (
     const leads = await mod.listLeads();
     return { ok: true as const, leads };
   } catch {
-    return { ok: true as const, leads: [] as ContactLead[] };
+    return { ok: false as const, error: "db" as const, leads: [] as ContactLead[] };
   }
 });
 

@@ -10,9 +10,7 @@ declare global {
 }
 
 /** Public v3 site key (safe in the browser). Secret stays server-only. */
-const SITE_KEY =
-  String(import.meta.env.VITE_RECAPTCHA_SITE_KEY ?? "").trim() ||
-  "6Lce9rstAAAAAAsLRF-bsHp5PDLDUGjBCYEm_N0D";
+const SITE_KEY = String(import.meta.env.VITE_RECAPTCHA_SITE_KEY ?? "").trim();
 
 function siteKey() {
   return SITE_KEY.startsWith("6L") ? SITE_KEY : "";
