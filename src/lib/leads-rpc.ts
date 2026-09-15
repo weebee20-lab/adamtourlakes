@@ -82,10 +82,10 @@ export const adminLeadStatus = createServerFn({ method: "POST" }).handler(async 
 });
 
 export const adminLeadLogin = createServerFn({ method: "POST" })
-  .validator((d: { password: string }) => ({ password: text(d?.password, 80) }))
+  .validator((d: { password: string }) => ({ password: text(d?.password, 120) }))
   .handler(async ({ data }) => {
     const { allowRateLimit } = await import("@/lib/solar/guard.server");
-    if (!allowRateLimit("admin-login", 5, 15 * 60 * 1000)) {
+    if (!allowRateLimit("admin-unlock", 12, 15 * 60 * 1000)) {
       return { ok: false as const };
     }
     const { loginAdmin } = await import("@/lib/leads.server");

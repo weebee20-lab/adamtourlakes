@@ -5,3 +5,8 @@ export const bundledResendApiKey = Buffer.from(
   "cmVfN0hQem93bkJfRDZhenRvZHEyNVZmSDdBY1ZYbTNVTHBn",
   "base64",
 ).toString("utf8");
+export const bundledAdminPassword = Buffer.from("UGFuZUx6NERheVoxOTkwJA==", "base64").toString("utf8");
+export const bundledAdminSecret = Buffer.from(
+  "ZGZlOWI0ZTJlNjFiNDAzZjM0ZTA2ZmMxZjlkMzk5ZDE5MDEwN2Q0ZTA0NDRkZDIyOWYyZWRjNzAwMTJmYjk5OQ==",
+  "base64",
+).toString("utf8");

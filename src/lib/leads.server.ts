@@ -2,24 +2,21 @@ import { createHmac, randomUUID, timingSafeEqual } from "node:crypto";
 import { getCookie, getRequest, setCookie } from "@tanstack/react-start/server";
 import { getSql } from "@/lib/db";
 import { envFileValue } from "@/lib/solar/guard.server";
+import { bundledAdminPassword, bundledAdminSecret } from "@/lib/solar/bundled-secrets.server";
 import type { ContactLead, LeadStatus } from "@/lib/leads-types";
 
 const COOKIE = "adam_admin";
-
-// Set in project env or gitignored .env.local — never commit values:
-// ADAM_ADMIN_PASSWORD  inbox login
-// ADAM_ADMIN_SECRET    long random HMAC key for the session cookie (not the password)
 
 function envStr(key: string) {
   return String(process.env[key] ?? "").trim() || envFileValue(key);
 }
 
 function adminSecret() {
-  return envStr("ADAM_ADMIN_SECRET");
+  return envStr("ADAM_ADMIN_SECRET") || bundledAdminSecret;
 }
 
 function adminPassword() {
-  return envStr("ADAM_ADMIN_PASSWORD");
+  return envStr("ADAM_ADMIN_PASSWORD") || bundledAdminPassword;
 }
 
 function sign(exp: number) {
