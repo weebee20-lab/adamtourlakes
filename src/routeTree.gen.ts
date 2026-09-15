@@ -23,6 +23,8 @@ import { Route as FloridaCharlotteCountyRouteImport } from './routes/florida.cha
 import { Route as FloridaCollierCountyRouteImport } from './routes/florida.collier-county'
 import { Route as FloridaLeeCountyRouteImport } from './routes/florida.lee-county'
 import { Route as FloridaSarasotaCountyRouteImport } from './routes/florida.sarasota-county'
+import { Route as SolarIndexRouteImport } from './routes/solar.index'
+import { Route as SolarVideosRouteImport } from './routes/solar.videos'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -94,6 +96,16 @@ const FloridaSarasotaCountyRoute = FloridaSarasotaCountyRouteImport.update({
   path: '/sarasota-county',
   getParentRoute: () => FloridaRoute,
 } as any)
+const SolarIndexRoute = SolarIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SolarRoute,
+} as any)
+const SolarVideosRoute = SolarVideosRouteImport.update({
+  id: '/videos',
+  path: '/videos',
+  getParentRoute: () => SolarRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -104,12 +116,14 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/florida': typeof FloridaRouteWithChildren
   '/privacy': typeof PrivacyRoute
-  '/solar': typeof SolarRoute
+  '/solar': typeof SolarRouteWithChildren
   '/terms': typeof TermsRoute
   '/florida/charlotte-county': typeof FloridaCharlotteCountyRoute
   '/florida/collier-county': typeof FloridaCollierCountyRoute
   '/florida/lee-county': typeof FloridaLeeCountyRoute
   '/florida/sarasota-county': typeof FloridaSarasotaCountyRoute
+  '/solar/videos': typeof SolarVideosRoute
+  '/solar/': typeof SolarIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -120,12 +134,13 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/florida': typeof FloridaRouteWithChildren
   '/privacy': typeof PrivacyRoute
-  '/solar': typeof SolarRoute
   '/terms': typeof TermsRoute
   '/florida/charlotte-county': typeof FloridaCharlotteCountyRoute
   '/florida/collier-county': typeof FloridaCollierCountyRoute
   '/florida/lee-county': typeof FloridaLeeCountyRoute
   '/florida/sarasota-county': typeof FloridaSarasotaCountyRoute
+  '/solar/videos': typeof SolarVideosRoute
+  '/solar': typeof SolarIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -137,12 +152,14 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/florida': typeof FloridaRouteWithChildren
   '/privacy': typeof PrivacyRoute
-  '/solar': typeof SolarRoute
+  '/solar': typeof SolarRouteWithChildren
   '/terms': typeof TermsRoute
   '/florida/charlotte-county': typeof FloridaCharlotteCountyRoute
   '/florida/collier-county': typeof FloridaCollierCountyRoute
   '/florida/lee-county': typeof FloridaLeeCountyRoute
   '/florida/sarasota-county': typeof FloridaSarasotaCountyRoute
+  '/solar/videos': typeof SolarVideosRoute
+  '/solar/': typeof SolarIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -161,6 +178,8 @@ export interface FileRouteTypes {
     | '/florida/collier-county'
     | '/florida/lee-county'
     | '/florida/sarasota-county'
+    | '/solar/videos'
+    | '/solar/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -171,12 +190,13 @@ export interface FileRouteTypes {
     | '/contact'
     | '/florida'
     | '/privacy'
-    | '/solar'
     | '/terms'
     | '/florida/charlotte-county'
     | '/florida/collier-county'
     | '/florida/lee-county'
     | '/florida/sarasota-county'
+    | '/solar/videos'
+    | '/solar'
   id:
     | '__root__'
     | '/'
@@ -193,6 +213,8 @@ export interface FileRouteTypes {
     | '/florida/collier-county'
     | '/florida/lee-county'
     | '/florida/sarasota-county'
+    | '/solar/videos'
+    | '/solar/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -204,7 +226,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   FloridaRoute: typeof FloridaRouteWithChildren
   PrivacyRoute: typeof PrivacyRoute
-  SolarRoute: typeof SolarRoute
+  SolarRoute: typeof SolarRouteWithChildren
   TermsRoute: typeof TermsRoute
 }
 
@@ -308,6 +330,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FloridaSarasotaCountyRouteImport
       parentRoute: typeof FloridaRoute
     }
+    '/solar/': {
+      id: '/solar/'
+      path: '/'
+      fullPath: '/solar/'
+      preLoaderRoute: typeof SolarIndexRouteImport
+      parentRoute: typeof SolarRoute
+    }
+    '/solar/videos': {
+      id: '/solar/videos'
+      path: '/videos'
+      fullPath: '/solar/videos'
+      preLoaderRoute: typeof SolarVideosRouteImport
+      parentRoute: typeof SolarRoute
+    }
   }
 }
 
@@ -328,6 +364,18 @@ const FloridaRouteChildren: FloridaRouteChildren = {
 const FloridaRouteWithChildren =
   FloridaRoute._addFileChildren(FloridaRouteChildren)
 
+interface SolarRouteChildren {
+  SolarVideosRoute: typeof SolarVideosRoute
+  SolarIndexRoute: typeof SolarIndexRoute
+}
+
+const SolarRouteChildren: SolarRouteChildren = {
+  SolarVideosRoute: SolarVideosRoute,
+  SolarIndexRoute: SolarIndexRoute,
+}
+
+const SolarRouteWithChildren = SolarRoute._addFileChildren(SolarRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   Admin1776Route: Admin1776Route,
@@ -337,7 +385,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   FloridaRoute: FloridaRouteWithChildren,
   PrivacyRoute: PrivacyRoute,
-  SolarRoute: SolarRoute,
+  SolarRoute: SolarRouteWithChildren,
   TermsRoute: TermsRoute,
 }
 export const routeTree = rootRouteImport

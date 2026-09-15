@@ -33,6 +33,11 @@ export function SiteFooter() {
               </li>
             ))}
             <li>
+              <Link to="/solar/videos" className="text-muted transition-colors hover:text-fg">
+                Solar videos
+              </Link>
+            </li>
+            <li>
               <Link to="/contact" className="text-muted transition-colors hover:text-fg">
                 Contact Adam
               </Link>
