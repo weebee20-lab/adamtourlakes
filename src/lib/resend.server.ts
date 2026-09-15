@@ -1,18 +1,27 @@
 import { envFileValue } from "@/lib/solar/guard.server";
+import { bundledResendApiKey } from "@/lib/solar/bundled-secrets.server";
 import { COMPANY } from "@/lib/site";
 
 const FROM = "Adam Tourlakes <adam@adamtourlakes.com>";
+const DEFAULT_NOTIFY = "atourlakes@yahoo.com";
 
 function envStr(key: string) {
   return String(process.env[key] ?? "").trim() || envFileValue(key);
 }
 
 function apiKey() {
-  return envStr("RESEND_API_KEY");
+  for (const value of [process.env["RESEND_API_KEY"], bundledResendApiKey, envFileValue("RESEND_API_KEY")]) {
+    const key = String(value ?? "").trim();
+    if (key.startsWith("re_")) return key;
+  }
+  return "";
 }
 
 function notifyTo() {
-  return envStr("ADAM_NOTIFY_EMAIL") || "atourlakes@yahoo.com";
+  const raw = envStr("ADAM_NOTIFY_EMAIL") || DEFAULT_NOTIFY;
+  // adamtourlakes.com is send-only in Resend — mail to that domain bounces.
+  if (raw.toLowerCase().endsWith("@adamtourlakes.com")) return DEFAULT_NOTIFY;
+  return raw;
 }
 
 function escapeHtml(value: string) {
@@ -47,7 +56,7 @@ async function sendEmail(payload: {
       text: payload.text,
       reply_to: payload.replyTo,
       headers: {
-        "X-Entity-Ref-ID": `${Date.now()}-${payload.to.slice(0, 40)}`,
+        "X-Entity-Ref-ID": `${Date.now()}`,
       },
     }),
   });
