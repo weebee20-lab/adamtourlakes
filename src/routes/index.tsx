@@ -60,6 +60,26 @@ const QUOTES = [
   },
 ];
 
+function PurposeCard({ item }: { item: (typeof PURPOSES)[number] }) {
+  return (
+    <article className="flex h-full flex-col rounded-lg bg-surface p-5 shadow-[var(--shadow-border)]">
+      <item.icon className="size-5 text-gold" />
+      <h3 className="mt-4 font-display text-2xl font-semibold">{item.title}</h3>
+      <p className="mt-2 flex-1 text-base leading-relaxed text-muted sm:text-lg">{item.body}</p>
+      <div className="mt-5 flex flex-wrap gap-3">
+        {item.links.map((link) => (
+          <Button key={link.to} asChild variant="outline">
+            <Link to={link.to}>
+              {link.label}
+              <ArrowRight className="size-4" />
+            </Link>
+          </Button>
+        ))}
+      </div>
+    </article>
+  );
+}
+
 export function HomePage() {
   return (
     <main>
@@ -140,27 +160,16 @@ export function HomePage() {
         <h2 className="max-w-xl font-display text-4xl font-semibold tracking-tight">
           Who is this website for?
         </h2>
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
-          {PURPOSES.map((item) => (
-            <article
-              key={item.title}
-              className="flex flex-col rounded-lg bg-surface p-5 shadow-[var(--shadow-border)]"
-            >
-              <item.icon className="size-5 text-gold" />
-              <h3 className="mt-4 font-display text-2xl font-semibold">{item.title}</h3>
-              <p className="mt-2 flex-1 text-base leading-relaxed text-muted sm:text-lg">{item.body}</p>
-              <div className="mt-5 flex flex-wrap gap-3">
-                {item.links.map((link) => (
-                  <Button key={link.to} asChild variant="outline">
-                    <Link to={link.to}>
-                      {link.label}
-                      <ArrowRight className="size-4" />
-                    </Link>
-                  </Button>
-                ))}
-              </div>
-            </article>
-          ))}
+        <div className="mt-10 grid items-stretch gap-8 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:gap-10 lg:gap-12">
+          <PurposeCard item={PURPOSES[0]!} />
+          <p
+            className="flex items-center justify-center font-display text-7xl font-semibold leading-none text-gold md:text-8xl lg:text-[7.5rem]"
+            style={{ textShadow: "0 0 28px color-mix(in oklab, var(--color-gold) 45%, transparent)" }}
+            aria-hidden
+          >
+            &
+          </p>
+          <PurposeCard item={PURPOSES[1]!} />
         </div>
       </section>
 
