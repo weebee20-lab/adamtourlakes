@@ -3,6 +3,7 @@ import { AuthProvider } from "@/lib/auth/provider";
 import { KeepAliveOutlet } from "@/components/keep-alive-outlet";
 import { PreviewHostBridge } from "@/components/preview-host-bridge";
 import { SiteFooter } from "@/components/site-footer";
+import { SiteGate } from "@/components/site-gate";
 import { SiteHeader } from "@/components/site-header";
 import { AppErrorComponent } from "@/lib/error-component";
 import { PERSON_JSON_LD, seoHead } from "@/lib/seo";
@@ -50,9 +51,11 @@ function RootDocument() {
       <body className="flex min-h-dvh flex-col bg-bg text-fg">
         <PreviewHostBridge />
         <AuthProvider>
-          <SiteHeader />
-          <KeepAliveOutlet />
-          <SiteFooter />
+          <SiteGate>
+            <SiteHeader />
+            <KeepAliveOutlet />
+            <SiteFooter />
+          </SiteGate>
         </AuthProvider>
         <script
           type="application/ld+json"
