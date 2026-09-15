@@ -163,11 +163,11 @@
     width: min(45rem, 128%);
     max-width: calc(100vw - 3rem);
     margin-left: -1rem;
-    margin-bottom: -3.6rem;
+    margin-bottom: -5.5rem;
   }
 
   .hero-copy-panel {
-    padding-top: 2.7rem;
+    padding-top: 4.25rem;
   }
 }
 

@@ -65,7 +65,7 @@ export function HomePage() {
         <div className="hero-veil" aria-hidden />
         <div className="hero-dither" aria-hidden />
         <div className="hero-cutline" aria-hidden />
-        <div className="hero-copy relative z-30 mx-auto flex min-h-svh max-w-7xl flex-col justify-end gap-8 px-4 pt-28 pb-16 sm:px-6 lg:justify-between lg:pt-32 lg:pb-16">
+        <div className="hero-copy relative z-30 mx-auto flex min-h-svh max-w-7xl flex-col justify-end gap-8 px-4 pt-28 pb-16 sm:px-6 lg:justify-between lg:pt-8 lg:pb-16">
           <div className="max-w-2xl lg:max-w-3xl">
             <img
               src="/brand/signature-gold.png?v=3"
