@@ -66,7 +66,7 @@ export function HomePage() {
         <div className="hero-veil" aria-hidden />
         <div className="hero-dither" aria-hidden />
         <div className="hero-cutline" aria-hidden />
-        <div className="hero-copy relative z-30 mx-auto flex min-h-0 max-w-7xl flex-col justify-end gap-8 px-4 pt-28 pb-16 sm:px-6 lg:min-h-[920px] lg:justify-start lg:gap-6 lg:pt-20 lg:pb-12">
+        <div className="hero-copy relative z-30 mx-auto flex min-h-0 max-w-7xl flex-col justify-end gap-8 px-4 pt-28 pb-16 sm:px-6 lg:min-h-[800px] lg:justify-start lg:gap-6 lg:pt-20 lg:pb-12">
           <div className="max-w-2xl lg:max-w-3xl">
             <img
               src="/brand/signature-gold.png?v=3"
@@ -89,12 +89,6 @@ export function HomePage() {
               I'm <span className="text-gold">Adam Tourlakes</span>, Head of Sales at Solar Energy Solutions by Ecosmart. I help
               homeowners in Southwest Florida own their power — with a veteran-ran and operated
               crew that designs, permits, and installs in-house.
-            </p>
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
-              For too long, bad actors, sleazy salesmen, and “solar bros” have given this industry a
-              rotten name. That’s how solar picked up labels it doesn’t deserve: scam, money grab,
-              too pricey. If you’ve been burned or lied to by someone in this industry, I take that
-              personally, as I believe there’s no better way to power your home than solar.
             </p>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
               Like any trade, solar needs professionals as the face of it — not a script-reciting
