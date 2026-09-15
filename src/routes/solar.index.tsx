@@ -191,7 +191,7 @@ function SolarPage() {
           Original videos, on their own page.
         </h2>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">
-          Intro, basics, cost, roof types, batteries, and installer red flags — the topics people ask
+          Who I am, the basics, cost, roof types, batteries, and installer red flags — the topics people ask
           me about the most. Placeholders for now; I am filming these myself.
         </p>
         <Button asChild className="mt-6" size="lg">
