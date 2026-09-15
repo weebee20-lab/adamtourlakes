@@ -74,31 +74,33 @@ export function HomePage() {
               width={2533}
               height={883}
             />
-            <p className="hero-copy-nudge relative z-10 mt-2 text-xs font-medium tracking-[0.2em] text-gold uppercase lg:text-[0.975rem]">
+            <div className="hero-copy-panel hero-copy-nudge">
+            <p className="relative z-10 mt-2 text-xs font-medium tracking-[0.2em] text-gold uppercase lg:text-[0.975rem]">
               Solar Expert · Southwest Florida
             </p>
-            <h1 className="hero-copy-nudge relative z-10 mt-4 font-display text-5xl font-semibold tracking-tight text-fg sm:text-6xl lg:text-7xl">
+            <h1 className="relative z-10 mt-4 font-display text-5xl font-semibold tracking-tight text-fg sm:text-6xl lg:text-7xl">
               Honest solar.
               <span className="helio-credit mt-1 block font-medium italic text-gold">No runaround.</span>
             </h1>
-            <p className="hero-copy-nudge mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
               I'm <span className="text-gold">Adam Tourlakes</span>, Head of Sales at Solar Energy Solutions by Ecosmart. I help
               homeowners in Southwest Florida own their power — with a veteran-ran and operated
               crew that designs, permits, and installs in-house.
             </p>
-            <p className="hero-copy-nudge mt-4 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
               For too long, bad actors, sleazy salesmen, and “solar bros” have given this industry a
               rotten name. That’s how solar picked up labels it doesn’t deserve: scam, money grab,
               too pricey. If you’ve been burned or lied to by someone in this industry, I take that
               personally, as I believe there’s no better way to power your home than solar.
             </p>
-            <p className="hero-copy-nudge mt-4 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
               Like any trade, solar needs professionals as the face of it — not a script-reciting
               salesman or a door knocker saying he’s there to give you a “free energy audit.” My team
               and I are the solar professionals you’ve been hoping for. We’re trained, experienced,
               and we put honesty, integrity, fair pricing, and transparency first. No door knockers.
               Strict pricing. Our reviews speak for themselves.
             </p>
+            </div>
           </div>
           <div className="hero-copy-nudge max-w-2xl lg:max-w-3xl">
             <div className="flex flex-wrap gap-3">

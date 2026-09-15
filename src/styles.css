@@ -144,6 +144,15 @@
     margin-left: -0.65rem;
     margin-bottom: -2.1rem;
   }
+
+  .hero-copy-panel {
+    padding: 1.15rem 1.35rem 1.35rem;
+    border-radius: 0.85rem;
+    background: color-mix(in oklab, var(--color-bg) 82%, transparent);
+    box-shadow: 0 0 0 1px color-mix(in oklab, var(--color-gold) 22%, transparent);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
 }
 
 @media (min-width: 1024px) {
