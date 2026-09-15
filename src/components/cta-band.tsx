@@ -17,7 +17,7 @@ export function CtaBand({
         </div>
         <div className="flex flex-wrap gap-3">
           <Button asChild size="lg">
-            <Link to="/contact">Talk to Adam</Link>
+            <Link to="/contact">Contact Adam</Link>
           </Button>
           <Button asChild size="lg" variant="outline">
             <Link to="/contact">Send Adam a note</Link>

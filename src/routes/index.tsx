@@ -101,7 +101,7 @@ export function HomePage() {
           <div className="max-w-2xl lg:max-w-3xl">
             <div className="flex flex-wrap gap-3">
               <Button asChild size="lg">
-                <Link to="/contact">Talk to Adam</Link>
+                <Link to="/contact">Contact Adam</Link>
               </Button>
               <Button asChild size="lg" variant="outline">
                 <Link to="/solar">
