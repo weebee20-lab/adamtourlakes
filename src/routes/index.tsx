@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, BarChart3, PenTool, Phone, Timer } from "lucide-react";
+import { ArrowRight, BarChart3, PenTool, Timer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { seoHead } from "@/lib/seo";
 import { COMPANY, SITE_NAME } from "@/lib/site";
@@ -199,73 +199,44 @@ export function HomePage() {
                 </footer>
               </blockquote>
             ))}
-            <article className="h-fit rounded-lg bg-bg p-5 shadow-[var(--shadow-border)]">
-              <p className="text-xs font-medium tracking-[0.16em] text-gold uppercase">
-                Cape Coral office
-              </p>
-              <p className="mt-3 font-display text-xl leading-snug">
-                Hundreds of installs. I’m still the number they call.
-              </p>
-              <p className="mt-2 text-base leading-relaxed text-muted sm:text-lg">
-                If you want the same kind of process — bill first, no door knockers — send it over.
-              </p>
-              <Button asChild variant="outline" className="mt-4">
-                <Link to="/contact">
-                  Contact Adam
-                  <ArrowRight className="size-4" />
-                </Link>
-              </Button>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <div className="grid gap-4 lg:grid-cols-2">
-          <article className="flex flex-col justify-between rounded-xl bg-surface px-6 py-8 shadow-[var(--shadow-border)] sm:px-8">
-            <div>
-              <h2 className="font-display text-3xl font-semibold tracking-tight text-fg">
+            <article className="flex h-fit flex-col rounded-lg bg-bg p-5 shadow-[var(--shadow-border)]">
+              <h2 className="font-display text-2xl font-semibold tracking-tight text-fg">
                 Want a straight answer on your system?
               </h2>
               <p className="mt-2 text-base leading-relaxed text-muted sm:text-lg">
                 Call the Cape Coral office and ask for Adam. Bring a recent electric bill if you have
                 one — that is the fastest way to see whether solar actually pays on your house.
               </p>
-            </div>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Button asChild size="lg">
-                <a href={COMPANY.phoneHref}>
-                  <Phone className="size-4" />
-                  Call {COMPANY.phoneDisplay}
-                </a>
-              </Button>
-              <Button asChild size="lg" variant="outline">
-                <Link to="/contact">Send Adam a note</Link>
-              </Button>
-            </div>
-            <p className="mt-4 text-xs text-muted">
-              Ask for Adam Tourlakes at the Cape Coral office.
-            </p>
-          </article>
-          <article className="flex flex-col justify-between rounded-xl bg-surface px-6 py-8 shadow-[var(--shadow-border)] sm:px-8">
-            <div>
-              <h2 className="font-display text-3xl font-semibold tracking-tight text-fg">
+              <div className="mt-4 flex flex-wrap gap-3">
+                <Button asChild size="lg">
+                  <a href={COMPANY.phoneHref}>Call {COMPANY.phoneDisplay}</a>
+                </Button>
+                <Button asChild size="lg" variant="outline">
+                  <Link to="/contact">Send Adam a note</Link>
+                </Button>
+              </div>
+              <p className="mt-3 text-xs text-muted">
+                Ask for Adam Tourlakes at the Cape Coral office.
+              </p>
+            </article>
+            <article className="flex h-fit flex-col rounded-lg bg-bg p-5 shadow-[var(--shadow-border)]">
+              <h2 className="font-display text-2xl font-semibold tracking-tight text-fg">
                 Just here for solar information?
               </h2>
               <p className="mt-2 text-base leading-relaxed text-muted sm:text-lg">
                 How a system works, what it does to a bill, and what a battery actually buys you —
                 no sales call required.
               </p>
-            </div>
-            <div className="mt-6">
-              <Button asChild size="lg">
-                <Link to="/solar">
-                  Solar Education
-                  <ArrowRight className="size-4" />
-                </Link>
-              </Button>
-            </div>
-          </article>
+              <div className="mt-4">
+                <Button asChild size="lg">
+                  <Link to="/solar">
+                    Solar Education
+                    <ArrowRight className="size-4" />
+                  </Link>
+                </Button>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
     </main>
