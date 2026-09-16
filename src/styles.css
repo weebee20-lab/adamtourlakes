@@ -602,7 +602,7 @@
   }
 
   .hero-copy {
-    transform: translateX(0.625rem);
+    transform: translateX(-1.25rem);
   }
 }
 
