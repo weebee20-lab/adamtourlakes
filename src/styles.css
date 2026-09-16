@@ -514,7 +514,7 @@
     top: 0;
     bottom: 0;
     z-index: 28;
-    width: max(10rem, calc((100% - 1440px) / 2 + 8rem));
+    width: max(10rem, calc((100% - 1600px) / 2 + 8rem));
     pointer-events: none;
   }
 
@@ -538,11 +538,16 @@
     );
   }
 
+  /* Desktop widen — revert: 1440px lock, 72rem shells, 1152px videos. */
+  .max-w-6xl {
+    max-width: 80rem;
+  }
+
   .hero-lock {
-    width: 1440px;
-    max-width: 1440px;
+    width: 1600px;
+    max-width: 1600px;
     margin-inline: auto;
-    zoom: min(1, calc(100vw / 1440));
+    zoom: min(1, calc(100vw / 1600));
   }
 
   .hero-copy {
@@ -585,7 +590,7 @@
 @supports not (zoom: 1) {
   @media (min-width: 1024px) {
     .hero-lock {
-      transform: scale(min(1, calc(100vw / 1440)));
+      transform: scale(min(1, calc(100vw / 1600)));
       transform-origin: top center;
     }
   }
@@ -690,10 +695,10 @@
 
 @media (min-width: 1024px) {
   .videos-lock {
-    width: 1152px;
-    max-width: 1152px;
+    width: 1280px;
+    max-width: 1280px;
     margin-inline: auto;
-    zoom: min(1, calc(100vw / 1152));
+    zoom: min(1, calc(100vw / 1280));
   }
 
   .videos-lock .videos-grid {
