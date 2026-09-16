@@ -75,7 +75,7 @@ function CompanyPage() {
       />
       <section className="relative min-h-[28rem] overflow-hidden">
         <img
-          src="/images/waterfront-solar.jpg"
+          src="/images/waterfront-solar.jpg?v=2"
           alt="Southwest Florida waterfront home with a rooftop solar array at golden hour"
           className="absolute inset-0 h-full w-full object-cover"
         />
