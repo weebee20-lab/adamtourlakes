@@ -38,7 +38,7 @@ export const Route = createRootRoute({
         },
         ...page.links,
       ],
-      scripts: [{ src: "/ipad-flag.js?v=2" }],
+      scripts: [{ src: "/ipad-flag.js?v=3" }],
     };
   },
   component: RootDocument,

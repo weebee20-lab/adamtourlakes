@@ -108,6 +108,7 @@ export function SiteFooter() {
         <Link to="/terms" className="text-muted transition-colors hover:text-fg">
           Terms
         </Link>
+        <span className="ml-2 text-[10px] tracking-wide text-muted/50">AT-0916a</span>
       </p>
     </footer>
   );
