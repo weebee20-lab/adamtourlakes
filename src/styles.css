@@ -820,8 +820,8 @@ html.is-ipad-portrait {
     }
 
     .hero-copy h1 {
-      font-size: 4.5rem;
-      line-height: 1;
+      font-size: 3.4rem;
+      line-height: 1.12;
     }
 
     .site-signature-hero {
