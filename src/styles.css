@@ -600,6 +600,10 @@
   .hero-portrait-wrap {
     right: 11rem;
   }
+
+  .hero-copy {
+    margin-left: -2.75rem;
+  }
 }
 
 @supports not (zoom: 1) {
