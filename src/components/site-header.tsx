@@ -52,7 +52,7 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden min-w-0 flex-1 items-center justify-end gap-0.5 sm:flex" aria-label="Primary">
+        <nav className="hidden min-w-0 flex-1 items-center justify-end gap-0.5 lg:flex" aria-label="Primary">
           {NAV.map((item) => {
             const active = pathname === item.to || pathname.startsWith(`${item.to}/`);
             const children = "children" in item ? item.children : undefined;
@@ -137,14 +137,14 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Button asChild size="sm" className="hidden sm:inline-flex">
+          <Button asChild size="sm" className="hidden lg:inline-flex">
             <Link to="/contact">
               Get a quote
             </Link>
           </Button>
           <button
             type="button"
-            className="inline-flex size-10 items-center justify-center rounded-md text-fg sm:hidden"
+            className="inline-flex size-10 items-center justify-center rounded-md text-fg lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             onClick={() => setOpen((v) => !v)}
@@ -158,7 +158,7 @@ export function SiteHeader() {
       {open ? (
         <div
           id="mobile-nav"
-          className="border-t border-border bg-bg px-4 py-4 sm:hidden"
+          className="border-t border-border bg-bg px-4 py-4 lg:hidden"
         >
           <nav className="flex flex-col" aria-label="Mobile">
             {NAV.map((item) => {
