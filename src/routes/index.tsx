@@ -98,7 +98,7 @@ function HeroTagline() {
       el.style.fontSize = "100px";
       const sw = el.scrollWidth;
       const cw = el.clientWidth;
-      if (sw > 0 && cw > 0) el.style.fontSize = `${(100 * cw) / sw}px`;
+      if (sw > 0 && cw > 0) el.style.fontSize = `${(100 * cw * 0.6) / sw}px`;
     };
 
     fit();
