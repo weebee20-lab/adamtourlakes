@@ -80,6 +80,7 @@ export async function sendContactEmails(lead: {
   fromCalculator?: boolean;
   systemKw?: string;
   panelCount?: string;
+  offsetPct?: string;
   batteryName?: string;
   batteryCount?: string;
 }) {
@@ -98,6 +99,7 @@ export async function sendContactEmails(lead: {
     const panels = lead.panelCount ? `${lead.panelCount} panels` : "";
     rows.push(["Source", "Free Solar Calculator"]);
     rows.push(["System sized", panels ? `${kw} (${panels})` : kw]);
+    rows.push(["Offset", lead.offsetPct ? `${lead.offsetPct.replace(/%$/, "")}%` : "—"]);
     rows.push(["Wants batteries", backup]);
     if (lead.backup) {
       const count = lead.batteryCount && lead.batteryCount !== "1" ? `${lead.batteryCount}× ` : "";

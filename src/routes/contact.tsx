@@ -69,6 +69,9 @@ function ContactPage() {
             ? (Math.round(design.systemKw * 100) / 100).toFixed(2)
             : "",
           panelCount: fromCalculator ? String(design?.panelCount || "") : "",
+          offsetPct: fromCalculator && design?.offsetPct
+            ? String(Math.round(design.offsetPct * 100))
+            : "",
           batteryName: fromCalculator && backup ? design?.batteryName || "" : "",
           batteryCount: fromCalculator && backup ? String(design?.batteryCount || "") : "",
         },

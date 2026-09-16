@@ -7,6 +7,7 @@ export type QuoteHandoff = {
   monthlyBill: number;
   systemKw: number;
   panelCount: number;
+  offsetPct: number;
   wantBackup: boolean;
   batteryId: string;
   batteryName: string;
@@ -46,6 +47,7 @@ export function readQuoteHandoff(): QuoteHandoff | null {
       monthlyBill: Number(parsed.monthlyBill) || 0,
       systemKw,
       panelCount,
+      offsetPct: Number(parsed.offsetPct) || 0,
       wantBackup: Boolean(parsed.wantBackup),
       batteryId: String(parsed.batteryId ?? ""),
       batteryName: String(parsed.batteryName ?? ""),

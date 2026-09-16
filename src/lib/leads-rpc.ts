@@ -19,6 +19,7 @@ export const saveContactLead = createServerFn({ method: "POST" })
     fromCalculator: Boolean(d?.fromCalculator),
     systemKw: text(d?.systemKw, 20),
     panelCount: text(d?.panelCount, 10),
+    offsetPct: text(d?.offsetPct, 10),
     batteryName: text(d?.batteryName, 80),
     batteryCount: text(d?.batteryCount, 10),
   }))
@@ -47,6 +48,7 @@ export const saveContactLead = createServerFn({ method: "POST" })
         fromCalculator: data.fromCalculator,
         systemKw: data.systemKw,
         panelCount: data.panelCount,
+        offsetPct: data.offsetPct,
         batteryName: data.backup ? data.batteryName : "",
         batteryCount: data.backup ? data.batteryCount : "",
       });
@@ -64,6 +66,7 @@ export const saveContactLead = createServerFn({ method: "POST" })
           fromCalculator: data.fromCalculator,
           systemKw: data.systemKw,
           panelCount: data.panelCount,
+          offsetPct: data.offsetPct,
           batteryName: data.backup ? data.batteryName : "",
           batteryCount: data.backup ? data.batteryCount : "",
         });

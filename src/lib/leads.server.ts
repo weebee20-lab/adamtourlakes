@@ -107,6 +107,7 @@ function asLead(row: Record<string, unknown>): ContactLead {
     fromCalculator: Boolean(row.from_calculator),
     systemKw: String(row.system_kw ?? ""),
     panelCount: String(row.panel_count ?? ""),
+    offsetPct: String(row.offset_pct ?? ""),
     batteryName: String(row.battery_name ?? ""),
     batteryCount: String(row.battery_count ?? ""),
     status:
@@ -126,15 +127,17 @@ export async function insertLead(input: {
   fromCalculator?: boolean;
   systemKw?: string;
   panelCount?: string;
+  offsetPct?: string;
   batteryName?: string;
   batteryCount?: string;
 }) {
   const sql = await durableSql();
+  await sql`alter table contact_leads add column if not exists offset_pct text not null default ''`;
   const id = randomUUID();
   await sql`
     insert into contact_leads (
       id, name, email, phone, address, zip, bill, backup, message, status,
-      from_calculator, system_kw, panel_count, battery_name, battery_count
+      from_calculator, system_kw, panel_count, offset_pct, battery_name, battery_count
     )
     values (
       ${id},
@@ -150,6 +153,7 @@ export async function insertLead(input: {
       ${Boolean(input.fromCalculator)},
       ${input.systemKw ?? ""},
       ${input.panelCount ?? ""},
+      ${input.offsetPct ?? ""},
       ${input.batteryName ?? ""},
       ${input.batteryCount ?? ""}
     )
@@ -159,6 +163,7 @@ export async function insertLead(input: {
 
 export async function listLeads() {
   const sql = await durableSql();
+  await sql`alter table contact_leads add column if not exists offset_pct text not null default ''`;
   await sql`
     delete from contact_leads
     where deleted_at is not null
@@ -166,7 +171,7 @@ export async function listLeads() {
   `;
   const rows = await sql<Record<string, unknown>>`
     select id, created_at, name, email, phone, address, zip, bill, backup, message, status,
-           from_calculator, system_kw, panel_count, battery_name, battery_count
+           from_calculator, system_kw, panel_count, offset_pct, battery_name, battery_count
     from contact_leads
     order by created_at desc
   `;

@@ -199,7 +199,7 @@ function LeadCard({
   onStatus: (id: string, status: LeadStatus) => void;
   onRemove: (id: string) => void;
 }) {
-  const cols = design ? 11 : 9;
+  const cols = design ? 12 : 9;
   return (
     <section className="mt-8 rounded-xl border border-border bg-surface">
       <div className="border-b border-border px-4 py-4 sm:px-5">
@@ -219,6 +219,7 @@ function LeadCard({
               <th className="px-4 py-3 font-medium">Address</th>
               <th className="px-4 py-3 font-medium">Bill</th>
               {design ? <th className="px-4 py-3 font-medium">System</th> : null}
+              {design ? <th className="px-4 py-3 font-medium">Offset</th> : null}
               {design ? <th className="px-4 py-3 font-medium">Batteries</th> : null}
               <th className="px-4 py-3 font-medium">Note</th>
               <th className="px-4 py-3 font-medium">Status</th>
@@ -258,6 +259,11 @@ function LeadCard({
                       {lead.systemKw
                         ? `${lead.systemKw} kW${lead.panelCount ? ` (${lead.panelCount} panels)` : ""}`
                         : "—"}
+                    </td>
+                  ) : null}
+                  {design ? (
+                    <td className="font-num px-4 py-3 whitespace-nowrap">
+                      {lead.offsetPct ? `${lead.offsetPct.replace(/%$/, "")}%` : "—"}
                     </td>
                   ) : null}
                   {design ? (

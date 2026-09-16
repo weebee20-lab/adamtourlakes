@@ -56,6 +56,7 @@ function persistHandoff(state: {
     monthlyBill: state.monthlyBill,
     systemKw: savings.systemKw,
     panelCount: savings.panelCount,
+    offsetPct: savings.offsetPct,
     wantBackup: state.wantBackup,
     batteryId: state.batteryId,
     batteryName: batt.name,

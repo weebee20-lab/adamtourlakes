@@ -15,6 +15,7 @@ export type ContactLead = {
   fromCalculator: boolean;
   systemKw: string;
   panelCount: string;
+  offsetPct: string;
   batteryName: string;
   batteryCount: string;
 };
