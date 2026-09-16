@@ -24,7 +24,9 @@ export const saveContactLead = createServerFn({ method: "POST" })
     batteryCount: text(d?.batteryCount, 10),
   }))
   .handler(async ({ data }) => {
-    if (!data.name || !data.email) return { ok: false as const, error: "Name and email are required." };
+    if (!data.name || !data.email || !data.phone) {
+      return { ok: false as const, error: "Name, email, and phone are required." };
+    }
     const zip = zipFromText(data.address);
     if (isSwflZip(zip) === false) return { ok: false as const, error: "out_of_area" as const };
     const { allowRateLimit } = await import("@/lib/solar/guard.server");

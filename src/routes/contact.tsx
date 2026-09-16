@@ -48,6 +48,10 @@ function ContactPage() {
       setOutOfArea(true);
       return;
     }
+    if (!phone.trim()) {
+      setError("Phone is required.");
+      return;
+    }
     setBusy(true);
     setError(null);
     try {
@@ -152,11 +156,12 @@ function ContactPage() {
                     className="min-h-11"
                   />
                 </Field>
-                <Field label="Phone" htmlFor="contact-phone">
+                <Field label="Phone" htmlFor="contact-phone" required>
                   <Input
                     id="contact-phone"
-                    type="text"
+                    type="tel"
                     inputMode="tel"
+                    required
                     autoComplete="tel"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
