@@ -233,14 +233,12 @@ export function HomePage() {
                 Want real answers about a system for your home?
               </h2>
               <p className="mt-2 text-base leading-relaxed text-muted sm:text-lg">
-                Call the Cape Coral office and ask for Adam. Have a recent electric bill handy if you can.
+                Call the Cape Coral office and ask for Adam, or reach out to me directly through this
+                site.
               </p>
               <div className="mt-4 flex flex-wrap gap-3">
                 <Button asChild size="lg">
                   <a href={COMPANY.phoneHref}>Call {COMPANY.phoneDisplay}</a>
-                </Button>
-                <Button asChild size="lg" variant="outline">
-                  <Link to="/contact">Contact Adam</Link>
                 </Button>
               </div>
             </article>
