@@ -598,7 +598,7 @@
    making 3/2 fail so the last nudge never applied. Laptop 14"/16" widths stay out. */
 @media (min-width: 1080px) and (max-width: 1376px) {
   .hero-portrait-wrap {
-    right: 14rem;
+    right: 11rem;
   }
 }
 
