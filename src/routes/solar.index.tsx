@@ -84,11 +84,11 @@ const FAQS = [
   },
   {
     q: "How do you size a system?",
-    a: "From the bill and the roof. Twelve months of kilowatt-hours, the rate, shade, azimuth, and whether there is a pool or an EV in the driveway. Then we look at what the roof can physically hold. I would rather undersell a clean design than pack modules into a bad plane.",
+    a: "I base all my designs on the current electric consumption of the home and any future changes the homeowner has planned. I look at the roof — things like shade, azimuth, pitch, and orientation — then I 3D model the home and size the system to maximize output. If a homeowner doesn't want panels on a certain section of the roof, or if they know usage will change in the future, I tailor the system appropriately.",
   },
   {
     q: "What about solar pool heating?",
-    a: "Different technology from photovoltaic. Pool solar circulates water through collectors on the roof to extend the swim season. SES of America is also a licensed pool contractor, so that job does not get split across two companies.",
+    a: "We do that, too! Solar pool heat is a different technology than solar electric (photovoltaic). There's no inherent electrical power with pool solar. Pool solar panels circulate water through the panels on the roof to extend the swim season without needing a standalone pool heater.",
   },
 ];
 
