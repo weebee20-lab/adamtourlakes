@@ -115,7 +115,7 @@ export function HomePage() {
             <p className="relative z-10 mt-2 text-xs font-medium tracking-[0.2em] text-gold uppercase lg:text-[0.975rem]">
               Solar Expert · Southwest Florida
             </p>
-            <h1 className="relative z-10 mt-4 max-w-3xl font-display text-4xl font-semibold tracking-tight text-fg sm:text-5xl lg:text-[3.4rem] lg:leading-[1.12]">
+            <h1 className="relative z-10 mt-4 max-w-3xl text-center font-display text-4xl font-semibold tracking-tight text-fg sm:text-5xl lg:text-[3.4rem] lg:leading-[1.12]">
               Honest solar{" "}
               <span className="helio-credit font-medium italic text-gold">without the runaround</span>
             </h1>
