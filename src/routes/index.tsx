@@ -117,7 +117,7 @@ export function HomePage() {
             </p>
             <h1 className="relative z-10 mt-4 max-w-3xl text-center font-display text-4xl font-semibold tracking-tight text-fg sm:text-5xl lg:text-[3.4rem] lg:leading-[1.12]">
               Honest solar{" "}
-              <span className="helio-credit font-medium italic text-gold">without the runaround</span>
+              <span className="helio-credit helio-credit-line font-medium italic text-gold">without the runaround</span>
             </h1>
             <div className="hero-copy-panel mt-6">
             <p className="max-w-2xl text-base leading-relaxed text-muted sm:text-lg">

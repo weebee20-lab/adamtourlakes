@@ -246,6 +246,18 @@
     0 0 36px color-mix(in oklab, var(--color-gold) 28%, transparent);
 }
 
+.helio-credit-line {
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, var(--color-gold) 92%, white);
+  text-decoration-thickness: 0.07em;
+  text-underline-offset: 0.14em;
+  text-shadow:
+    0 0 8px color-mix(in oklab, var(--color-gold) 70%, transparent),
+    0 0 18px color-mix(in oklab, var(--color-gold) 45%, transparent),
+    0 0 36px color-mix(in oklab, var(--color-gold) 28%, transparent),
+    0 6px 10px color-mix(in oklab, var(--color-gold) 40%, transparent);
+}
+
 .nav-glow-hover {
   transition: color 150ms ease, text-shadow 150ms ease;
 }
