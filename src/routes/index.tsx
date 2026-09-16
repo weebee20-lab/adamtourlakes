@@ -243,9 +243,6 @@ export function HomePage() {
                   <Link to="/contact">Contact Adam</Link>
                 </Button>
               </div>
-              <p className="mt-3 text-xs text-muted">
-                Ask for Adam Tourlakes at the Cape Coral office.
-              </p>
             </article>
             <article className="flex h-fit flex-col rounded-lg bg-bg p-5 shadow-[var(--shadow-border)]">
               <h2 className="font-display text-2xl font-semibold tracking-tight text-fg">

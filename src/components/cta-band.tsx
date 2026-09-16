@@ -21,9 +21,6 @@ export function CtaBand({
           </Button>
         </div>
       </div>
-      <p className="mt-4 text-xs text-muted">
-        Ask for Adam Tourlakes at the Cape Coral office. In-house crew — sales through install.
-      </p>
     </section>
   );
 }
