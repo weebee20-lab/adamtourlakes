@@ -8,13 +8,21 @@
     if (!ipad) return;
     var root = document.documentElement;
     function apply() {
-      var land = window.innerWidth > window.innerHeight;
+      var portrait = false;
+      try {
+        portrait = window.matchMedia("(orientation: portrait)").matches;
+      } catch (e) {
+        portrait = window.innerHeight >= window.innerWidth;
+      }
       root.classList.add("is-ipad");
-      root.classList.toggle("is-ipad-landscape", land);
-      root.classList.toggle("is-ipad-portrait", !land);
+      root.classList.toggle("is-ipad-portrait", portrait);
+      root.classList.toggle("is-ipad-landscape", !portrait);
     }
     apply();
     window.addEventListener("resize", apply, { passive: true });
     window.addEventListener("orientationchange", apply, { passive: true });
+    try {
+      window.matchMedia("(orientation: portrait)").addEventListener("change", apply);
+    } catch (e) {}
   } catch (e) {}
 })();

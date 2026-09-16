@@ -8,14 +8,17 @@ export const IPAD_FLAG_SCRIPT = `(function(){
     if (!ipad) return;
     var root = document.documentElement;
     function apply() {
-      var land = window.innerWidth > window.innerHeight;
+      var portrait = false;
+      try { portrait = window.matchMedia("(orientation: portrait)").matches; }
+      catch (e) { portrait = window.innerHeight >= window.innerWidth; }
       root.classList.add("is-ipad");
-      root.classList.toggle("is-ipad-landscape", land);
-      root.classList.toggle("is-ipad-portrait", !land);
+      root.classList.toggle("is-ipad-portrait", portrait);
+      root.classList.toggle("is-ipad-landscape", !portrait);
     }
     apply();
     window.addEventListener("resize", apply, { passive: true });
     window.addEventListener("orientationchange", apply, { passive: true });
+    try { window.matchMedia("(orientation: portrait)").addEventListener("change", apply); } catch (e) {}
   } catch (e) {}
 })();`;
 
@@ -29,17 +32,30 @@ export function IpadFlag() {
     if (!ipad) return;
     const root = document.documentElement;
     const apply = () => {
-      const land = window.innerWidth > window.innerHeight;
+      let portrait = false;
+      try {
+        portrait = window.matchMedia("(orientation: portrait)").matches;
+      } catch {
+        portrait = window.innerHeight >= window.innerWidth;
+      }
       root.classList.add("is-ipad");
-      root.classList.toggle("is-ipad-landscape", land);
-      root.classList.toggle("is-ipad-portrait", !land);
+      root.classList.toggle("is-ipad-portrait", portrait);
+      root.classList.toggle("is-ipad-landscape", !portrait);
     };
     apply();
     window.addEventListener("resize", apply);
     window.addEventListener("orientationchange", apply);
+    let mq: MediaQueryList | null = null;
+    try {
+      mq = window.matchMedia("(orientation: portrait)");
+      mq.addEventListener("change", apply);
+    } catch {
+      mq = null;
+    }
     return () => {
       window.removeEventListener("resize", apply);
       window.removeEventListener("orientationchange", apply);
+      mq?.removeEventListener("change", apply);
     };
   }, []);
   return null;
