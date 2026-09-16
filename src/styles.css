@@ -970,3 +970,160 @@ html.is-ipad-portrait {
   }
 }
 
+/* Tablet last-wins: portrait = phone, landscape = scaled desktop.
+   Regular iPads often report a fake desktop width; !important beats that. */
+@media (orientation: portrait) and (max-width: 1366px) {
+  .hero-stage {
+    min-height: 0 !important;
+    overflow-x: hidden !important;
+  }
+
+  .hero-lock {
+    width: auto !important;
+    max-width: none !important;
+    zoom: 1 !important;
+    transform: none !important;
+    margin-inline: auto !important;
+  }
+
+  .hero-stage .hero-aura {
+    display: none !important;
+  }
+
+  .hero-stage .hero-portrait-wrap {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    display: block !important;
+    width: fit-content !important;
+    max-width: min(18.5rem, 82vw) !important;
+    max-height: none !important;
+    margin: 4.35rem auto 0.35rem !important;
+    transform: none !important;
+    pointer-events: none !important;
+  }
+
+  .hero-stage .hero-portrait {
+    position: relative !important;
+    display: block !important;
+    width: auto !important;
+    height: auto !important;
+    max-height: 28svh !important;
+    max-width: min(18.5rem, 82vw) !important;
+    margin: 0 auto !important;
+    object-fit: contain !important;
+    object-position: top center !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .hero-stage .hero-veil,
+  .hero-stage .hero-cutline {
+    display: none !important;
+  }
+
+  .hero-copy {
+    min-height: 0 !important;
+    padding-top: 1rem !important;
+    transform: none !important;
+  }
+
+  .site-signature-hero {
+    width: min(32rem, 96vw) !important;
+    max-width: calc(100vw - 2.5rem) !important;
+    margin-left: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .calc-board {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .calc-side,
+  .calc-savings {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+  }
+
+  .calc-desk-video {
+    display: none !important;
+  }
+}
+
+@media (orientation: landscape) and (min-height: 500px) and (max-width: 1400px) {
+  .hero-stage {
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .hero-lock {
+    width: 1600px !important;
+    max-width: 1600px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    zoom: 1 !important;
+    transform: scale(min(1, calc(100vw / 1600))) !important;
+    transform-origin: top left !important;
+  }
+
+  .hero-stage .hero-aura {
+    display: block !important;
+  }
+
+  .hero-stage .hero-portrait-wrap {
+    position: absolute !important;
+    top: auto !important;
+    right: 11rem !important;
+    bottom: 0 !important;
+    left: auto !important;
+    z-index: 10 !important;
+    display: block !important;
+    width: auto !important;
+    max-width: 900px !important;
+    max-height: 800px !important;
+    margin: 0 !important;
+    transform: scale(0.86) !important;
+    transform-origin: bottom right !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .hero-stage .hero-portrait {
+    position: relative !important;
+    display: block !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: 100% !important;
+    max-height: 800px !important;
+    margin: 0 !important;
+    object-fit: contain !important;
+    object-position: bottom right !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .hero-copy {
+    min-height: 800px !important;
+    padding-top: 8rem !important;
+    transform: translateX(-1.25rem) !important;
+  }
+
+  .calc-board {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.15fr) minmax(20rem, 0.85fr) !important;
+  }
+
+  .calc-side {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+  }
+
+  .calc-savings {
+    grid-column: 1 / -1 !important;
+  }
+}
+
+
