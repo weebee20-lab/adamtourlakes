@@ -23,7 +23,7 @@ const PURPOSES = [
     body: "This site showcases the company I'm proud to work for — Solar Energy Solutions by EcoSmart — and the installs our crew make happen. If you’re a homeowner here, you can learn a bit about me and reach me easily right through this site. Keep in mind, I only work in Southwest Florida right now." as ReactNode,
     links: [
       { to: "/company" as const, label: "Meet the company" },
-      { to: "/contact" as const, label: "Contact Adam" },
+      { to: "/contact" as const, label: "Contact Adam", variant: "gold" as const },
     ],
   },
   {
@@ -68,7 +68,11 @@ function PurposeCard({ item }: { item: (typeof PURPOSES)[number] }) {
       <p className="mt-2 flex-1 text-base leading-relaxed text-muted sm:text-lg">{item.body}</p>
       <div className="mt-5 flex flex-wrap gap-3">
         {item.links.map((link) => (
-          <Button key={link.to} asChild variant="outline">
+          <Button
+            key={link.to}
+            asChild
+            variant={"variant" in link ? link.variant : "outline"}
+          >
             <Link to={link.to}>
               {link.label}
               <ArrowRight className="size-4" />
