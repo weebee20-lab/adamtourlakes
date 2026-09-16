@@ -131,8 +131,8 @@ export function HomePage() {
               Like any trade, solar needs professionals as the face of it — not a script-reciting
               salesman or a door knocker saying he’s there to give you a “free energy audit.” My team
               and I are the solar professionals you’ve been hoping for. We’re trained, experienced,
-              and we put honesty, integrity, fair pricing, and transparency first. No door knockers.
-              Strict pricing. Our reviews speak for themselves.
+              and we put honesty, integrity, fair pricing, and transparency above all else. No door
+              knockers. No pushy salesmen. Our reviews speak for themselves.
             </p>
             </div>
           </div>
