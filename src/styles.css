@@ -971,23 +971,29 @@ html.is-ipad-portrait {
 }
 
 /* LAST WINS — iPad classes only. Ignores fake desktop widths. Laptops untouched. */
-html.is-ipad-portrait .hero-stage {
+html.is-ipad-portrait .hero-stage,
+body.is-ipad-portrait .hero-stage {
   min-height: 0 !important;
   overflow-x: hidden !important;
 }
 html.is-ipad-portrait .hero-stage .hero-aura,
+body.is-ipad-portrait .hero-stage .hero-aura,
 html.is-ipad-portrait .hero-stage .hero-veil,
-html.is-ipad-portrait .hero-stage .hero-cutline {
+body.is-ipad-portrait .hero-stage .hero-veil,
+html.is-ipad-portrait .hero-stage .hero-cutline,
+body.is-ipad-portrait .hero-stage .hero-cutline {
   display: none !important;
 }
-html.is-ipad-portrait .hero-lock {
+html.is-ipad-portrait .hero-lock,
+body.is-ipad-portrait .hero-lock {
   width: auto !important;
   max-width: none !important;
   zoom: 1 !important;
   transform: none !important;
   margin-inline: auto !important;
 }
-html.is-ipad-portrait .hero-stage .hero-portrait-wrap {
+html.is-ipad-portrait .hero-stage .hero-portrait-wrap,
+body.is-ipad-portrait .hero-stage .hero-portrait-wrap {
   position: relative !important;
   top: auto !important;
   right: auto !important;
@@ -1004,7 +1010,8 @@ html.is-ipad-portrait .hero-stage .hero-portrait-wrap {
   visibility: visible !important;
   pointer-events: none !important;
 }
-html.is-ipad-portrait .hero-stage .hero-portrait {
+html.is-ipad-portrait .hero-stage .hero-portrait,
+body.is-ipad-portrait .hero-stage .hero-portrait {
   position: relative !important;
   display: block !important;
   width: auto !important;
@@ -1017,34 +1024,42 @@ html.is-ipad-portrait .hero-stage .hero-portrait {
   opacity: 1 !important;
   visibility: visible !important;
 }
-html.is-ipad-portrait .hero-copy {
+html.is-ipad-portrait .hero-copy,
+body.is-ipad-portrait .hero-copy {
   min-height: 0 !important;
   padding-top: 1rem !important;
   transform: none !important;
 }
-html.is-ipad-portrait .site-signature-hero {
+html.is-ipad-portrait .site-signature-hero,
+body.is-ipad-portrait .site-signature-hero {
   width: min(32rem, 96vw) !important;
   max-width: calc(100vw - 2.5rem) !important;
   margin-left: 0 !important;
   margin-bottom: 0 !important;
 }
-html.is-ipad-portrait .calc-board {
+html.is-ipad-portrait .calc-board,
+body.is-ipad-portrait .calc-board {
   display: grid !important;
   grid-template-columns: minmax(0, 1fr) !important;
 }
 html.is-ipad-portrait .calc-side,
-html.is-ipad-portrait .calc-savings {
+body.is-ipad-portrait .calc-side,
+html.is-ipad-portrait .calc-savings,
+body.is-ipad-portrait .calc-savings {
   grid-column: 1 !important;
   grid-row: auto !important;
 }
-html.is-ipad-portrait .calc-desk-video {
+html.is-ipad-portrait .calc-desk-video,
+body.is-ipad-portrait .calc-desk-video {
   display: none !important;
 }
-html.is-ipad-landscape .hero-stage {
+html.is-ipad-landscape .hero-stage,
+body.is-ipad-landscape .hero-stage {
   min-height: 0 !important;
   overflow: hidden !important;
 }
-html.is-ipad-landscape .hero-lock {
+html.is-ipad-landscape .hero-lock,
+body.is-ipad-landscape .hero-lock {
   width: 1600px !important;
   max-width: 1600px !important;
   margin-left: 0 !important;
@@ -1053,10 +1068,12 @@ html.is-ipad-landscape .hero-lock {
   transform: scale(min(1, calc(100vw / 1600))) !important;
   transform-origin: top left !important;
 }
-html.is-ipad-landscape .hero-stage .hero-aura {
+html.is-ipad-landscape .hero-stage .hero-aura,
+body.is-ipad-landscape .hero-stage .hero-aura {
   display: block !important;
 }
-html.is-ipad-landscape .hero-stage .hero-portrait-wrap {
+html.is-ipad-landscape .hero-stage .hero-portrait-wrap,
+body.is-ipad-landscape .hero-stage .hero-portrait-wrap {
   position: absolute !important;
   top: auto !important;
   right: 1rem !important;
@@ -1073,7 +1090,8 @@ html.is-ipad-landscape .hero-stage .hero-portrait-wrap {
   opacity: 1 !important;
   visibility: visible !important;
 }
-html.is-ipad-landscape .hero-stage .hero-portrait {
+html.is-ipad-landscape .hero-stage .hero-portrait,
+body.is-ipad-landscape .hero-stage .hero-portrait {
   position: relative !important;
   display: block !important;
   width: auto !important;
@@ -1086,20 +1104,24 @@ html.is-ipad-landscape .hero-stage .hero-portrait {
   opacity: 1 !important;
   visibility: visible !important;
 }
-html.is-ipad-landscape .hero-copy {
+html.is-ipad-landscape .hero-copy,
+body.is-ipad-landscape .hero-copy {
   min-height: 800px !important;
   padding-top: 8rem !important;
   transform: translateX(-1.25rem) !important;
 }
-html.is-ipad-landscape .calc-board {
+html.is-ipad-landscape .calc-board,
+body.is-ipad-landscape .calc-board {
   display: grid !important;
   grid-template-columns: minmax(0, 1.15fr) minmax(20rem, 0.85fr) !important;
 }
-html.is-ipad-landscape .calc-side {
+html.is-ipad-landscape .calc-side,
+body.is-ipad-landscape .calc-side {
   grid-column: 2 !important;
   grid-row: 1 !important;
 }
-html.is-ipad-landscape .calc-savings {
+html.is-ipad-landscape .calc-savings,
+body.is-ipad-landscape .calc-savings {
   grid-column: 1 / -1 !important;
 }
 .keep-alive-off,

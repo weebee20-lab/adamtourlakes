@@ -1,19 +1,49 @@
 import { useEffect } from "react";
 
-/** iPadOS 13+ reports as Macintosh. Class the document so CSS can split landscape/portrait. */
+function flagIpad() {
+  const ua = navigator.userAgent || "";
+  return (
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) ||
+    /iPad/i.test(ua) ||
+    (/Macintosh/i.test(ua) && navigator.maxTouchPoints > 1)
+  );
+}
+
+function applyIpadClasses() {
+  const root = document.documentElement;
+  const body = document.body;
+  let portrait = false;
+  try {
+    portrait = window.matchMedia("(orientation: portrait)").matches;
+  } catch {
+    portrait = window.innerHeight >= window.innerWidth;
+  }
+  for (const el of [root, body]) {
+    if (!el) continue;
+    el.classList.add("is-ipad");
+    el.classList.toggle("is-ipad-portrait", portrait);
+    el.classList.toggle("is-ipad-landscape", !portrait);
+  }
+}
+
+/** iPadOS 13+ reports as Macintosh. Class html AND body so React hydrate cannot wipe both. */
 export const IPAD_FLAG_SCRIPT = `(function(){
   try {
     var ua = navigator.userAgent || "";
     var ipad = (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) || /iPad/i.test(ua) || (/Macintosh/i.test(ua) && navigator.maxTouchPoints > 1);
     if (!ipad) return;
-    var root = document.documentElement;
     function apply() {
       var portrait = false;
       try { portrait = window.matchMedia("(orientation: portrait)").matches; }
       catch (e) { portrait = window.innerHeight >= window.innerWidth; }
-      root.classList.add("is-ipad");
-      root.classList.toggle("is-ipad-portrait", portrait);
-      root.classList.toggle("is-ipad-landscape", !portrait);
+      var nodes = [document.documentElement, document.body];
+      for (var i = 0; i < nodes.length; i++) {
+        var el = nodes[i];
+        if (!el) continue;
+        el.classList.add("is-ipad");
+        el.classList.toggle("is-ipad-portrait", portrait);
+        el.classList.toggle("is-ipad-landscape", !portrait);
+      }
     }
     apply();
     window.addEventListener("resize", apply, { passive: true });
@@ -24,38 +54,21 @@ export const IPAD_FLAG_SCRIPT = `(function(){
 
 export function IpadFlag() {
   useEffect(() => {
-    const ua = navigator.userAgent || "";
-    const ipad =
-      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) ||
-      /iPad/i.test(ua) ||
-      (/Macintosh/i.test(ua) && navigator.maxTouchPoints > 1);
-    if (!ipad) return;
-    const root = document.documentElement;
-    const apply = () => {
-      let portrait = false;
-      try {
-        portrait = window.matchMedia("(orientation: portrait)").matches;
-      } catch {
-        portrait = window.innerHeight >= window.innerWidth;
-      }
-      root.classList.add("is-ipad");
-      root.classList.toggle("is-ipad-portrait", portrait);
-      root.classList.toggle("is-ipad-landscape", !portrait);
-    };
-    apply();
-    window.addEventListener("resize", apply);
-    window.addEventListener("orientationchange", apply);
+    if (!flagIpad()) return;
+    applyIpadClasses();
+    window.addEventListener("resize", applyIpadClasses);
+    window.addEventListener("orientationchange", applyIpadClasses);
     let mq: MediaQueryList | null = null;
     try {
       mq = window.matchMedia("(orientation: portrait)");
-      mq.addEventListener("change", apply);
+      mq.addEventListener("change", applyIpadClasses);
     } catch {
       mq = null;
     }
     return () => {
-      window.removeEventListener("resize", apply);
-      window.removeEventListener("orientationchange", apply);
-      mq?.removeEventListener("change", apply);
+      window.removeEventListener("resize", applyIpadClasses);
+      window.removeEventListener("orientationchange", applyIpadClasses);
+      mq?.removeEventListener("change", applyIpadClasses);
     };
   }, []);
   return null;

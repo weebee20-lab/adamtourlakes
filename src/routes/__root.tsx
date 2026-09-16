@@ -38,7 +38,7 @@ export const Route = createRootRoute({
         },
         ...page.links,
       ],
-      scripts: [{ src: "/ipad-flag.js?v=4" }],
+      scripts: [{ src: "/ipad-flag.js?v=5" }],
     };
   },
   component: RootDocument,
@@ -46,12 +46,12 @@ export const Route = createRootRoute({
 
 function RootDocument() {
   return (
-    <html lang="en" className="antialiased" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <HeadContent />
         <script dangerouslySetInnerHTML={{ __html: IPAD_FLAG_SCRIPT }} />
       </head>
-      <body className="flex min-h-dvh flex-col bg-bg text-fg">
+      <body className="antialiased flex min-h-dvh flex-col bg-bg text-fg">
         <PreviewHostBridge />
         <IpadFlag />
         <AuthProvider>
