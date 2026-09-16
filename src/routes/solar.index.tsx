@@ -188,7 +188,7 @@ function SolarPage() {
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <p className="text-xs font-medium tracking-[0.2em] text-gold uppercase">Watch</p>
         <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight">
-          Original videos, on their own page.
+          Check out some of my videos on the next page
         </h2>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">
           Who I am, the basics, cost, loan vs lease vs cash, roof types, batteries, and installer red flags — the topics people ask
