@@ -719,7 +719,7 @@ html.is-ipad-portrait {
     }
   }
 
-  html.is-ipad-landscape {
+@media (orientation: landscape) and (min-width: 700px) and (max-width: 1400px) and (min-height: 480px) {
     .site-desk-nav {
       display: flex;
     }
