@@ -7,12 +7,12 @@ export function DesignerApp() {
   return (
     <div className="solar-calc mx-auto flex w-full max-w-6xl min-w-0 flex-col gap-4 px-4 py-5 sm:px-6">
       <HelioCredit />
-      <div className="grid min-w-0 items-stretch gap-4 lg:grid-cols-[minmax(0,1.15fr)_minmax(20rem,0.85fr)]">
+      <div className="grid min-w-0 items-stretch gap-4 xl:grid-cols-[minmax(0,1.15fr)_minmax(20rem,0.85fr)]">
         <RoofCanvas />
-        <div className="relative z-10 flex min-h-0 min-w-0 lg:col-start-2 lg:row-start-1">
+        <div className="relative z-10 flex min-h-0 min-w-0 xl:col-start-2 xl:row-start-1">
           <LocationCard />
         </div>
-        <div className="lg:col-span-2">
+        <div className="xl:col-span-2">
           <SavingsCard />
         </div>
       </div>

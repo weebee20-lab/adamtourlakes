@@ -69,7 +69,7 @@ export function InstallReel() {
           <source src="/videos/swfl-installs.mp4?v=3" type="video/mp4" />
         </video>
       </div>
-      <div className="hidden lg:block">
+      <div className="hidden xl:block">
         <HelioCredit />
       </div>
     </div>

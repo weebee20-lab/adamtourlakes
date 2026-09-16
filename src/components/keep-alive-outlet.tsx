@@ -7,7 +7,12 @@ const CACHED = new Set(["/", "/calculator"]);
 
 function Pane({ active, children }: { active: boolean; children: ReactNode }) {
   return (
-    <div hidden={!active} className={active ? undefined : "hidden"} inert={!active} aria-hidden={!active}>
+    <div
+      hidden={!active}
+      className={active ? undefined : "keep-alive-off hidden"}
+      inert={!active}
+      aria-hidden={!active}
+    >
       {children}
     </div>
   );
