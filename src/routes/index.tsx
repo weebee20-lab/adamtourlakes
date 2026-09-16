@@ -230,7 +230,7 @@ export function HomePage() {
             ))}
             <article className="flex h-fit flex-col rounded-lg bg-bg p-5 shadow-[var(--shadow-border)]">
               <h2 className="font-display text-2xl font-semibold tracking-tight text-fg">
-                Want real answers for a system for your home?
+                Want real answers about a system for your home?
               </h2>
               <p className="mt-2 text-base leading-relaxed text-muted sm:text-lg">
                 Call the Cape Coral office and ask for Adam. Have a recent electric bill handy if you can.
