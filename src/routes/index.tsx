@@ -104,7 +104,7 @@ export function HomePage() {
           />
         </div>
         <div className="hero-copy relative z-30 mx-auto flex min-h-0 max-w-7xl flex-col justify-end gap-8 px-4 pt-28 pb-16 sm:px-6 lg:min-h-[800px] lg:justify-start lg:gap-6 lg:pt-32 lg:pb-12">
-          <div className="max-w-2xl lg:max-w-3xl">
+          <div className="hero-intro max-w-2xl lg:max-w-3xl">
             <img
               src="/brand/signature-gold.png?v=3"
               alt={SITE_NAME}
@@ -115,7 +115,7 @@ export function HomePage() {
             <p className="relative z-10 mt-2 text-xs font-medium tracking-[0.2em] text-gold uppercase lg:text-[0.975rem]">
               Solar Expert · Southwest Florida
             </p>
-            <h1 className="relative z-10 mt-4 max-w-3xl text-center font-display text-4xl font-semibold tracking-tight text-fg sm:text-5xl lg:text-[3.4rem] lg:leading-[1.12]">
+            <h1 className="hero-tagline relative z-10 mt-4 w-full font-display text-4xl font-semibold tracking-tight text-fg sm:text-5xl">
               Honest solar{" "}
               <span className="helio-credit helio-credit-line font-medium italic text-gold">without the runaround</span>
             </h1>

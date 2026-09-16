@@ -258,6 +258,18 @@
     0 6px 10px color-mix(in oklab, var(--color-gold) 40%, transparent);
 }
 
+.hero-intro {
+  container-type: inline-size;
+}
+
+@media (min-width: 1024px) {
+  .hero-tagline {
+    font-size: 5.35cqw;
+    line-height: 1.15;
+    white-space: nowrap;
+  }
+}
+
 .nav-glow-hover {
   transition: color 150ms ease, text-shadow 150ms ease;
 }
