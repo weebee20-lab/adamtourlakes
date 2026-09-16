@@ -1,6 +1,7 @@
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { AuthProvider } from "@/lib/auth/provider";
 import { KeepAliveOutlet } from "@/components/keep-alive-outlet";
+import { IPAD_FLAG_SCRIPT } from "@/components/ipad-flag";
 import { PreviewHostBridge } from "@/components/preview-host-bridge";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteGate } from "@/components/site-gate";
@@ -47,6 +48,7 @@ function RootDocument() {
     <html lang="en" className="antialiased" suppressHydrationWarning>
       <head>
         <HeadContent />
+        <script dangerouslySetInnerHTML={{ __html: IPAD_FLAG_SCRIPT }} />
       </head>
       <body className="flex min-h-dvh flex-col bg-bg text-fg">
         <PreviewHostBridge />

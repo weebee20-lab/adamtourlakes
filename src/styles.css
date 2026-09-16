@@ -603,8 +603,7 @@
 }
 
 /* iPadOS: landscape = locked desktop, portrait = phone. Laptops unaffected. */
-@supports (-webkit-touch-callout: none) {
-  @media (orientation: portrait) {
+html.is-ipad-portrait {
     .hero-stage {
       min-height: 0;
       overflow-x: hidden;
@@ -720,7 +719,7 @@
     }
   }
 
-  @media (orientation: landscape) and (min-height: 500px) {
+  html.is-ipad-landscape {
     .site-desk-nav {
       display: flex;
     }
@@ -849,7 +848,6 @@
       display: block;
     }
   }
-}
 
 @supports not (zoom: 1) {
   @media (min-width: 1080px) {
