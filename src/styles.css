@@ -602,9 +602,138 @@
   pointer-events: none !important;
 }
 
-/* Locked landscape hero on iPadOS only (mini / Air / regular / Pro). */
+/* iPadOS: landscape = locked desktop, portrait = phone. Laptops unaffected. */
 @supports (-webkit-touch-callout: none) {
-  @media (orientation: landscape) and (min-width: 700px) and (min-height: 500px) {
+  @media (orientation: portrait) {
+    .hero-stage {
+      min-height: 0;
+      overflow-x: hidden;
+    }
+
+    .hero-stage .hero-aura {
+      display: none;
+    }
+
+    .hero-lock {
+      width: auto;
+      max-width: none;
+      zoom: 1;
+      transform: none;
+      margin-inline: auto;
+    }
+
+    .hero-stage .hero-portrait-wrap {
+      position: relative;
+      top: auto;
+      right: auto;
+      bottom: auto;
+      left: auto;
+      display: block;
+      width: fit-content;
+      max-width: min(18.5rem, 82vw);
+      max-height: none;
+      margin: 4.35rem auto 0.35rem;
+      transform: none;
+    }
+
+    .hero-stage .hero-portrait-wrap::before {
+      content: "";
+      position: absolute;
+      top: 8%;
+      left: 50%;
+      z-index: -1;
+      width: 140%;
+      height: 95%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      filter: blur(28px);
+      background:
+        radial-gradient(
+          ellipse 72% 68% at 50% 35%,
+          color-mix(in oklab, var(--color-gold) 22%, transparent) 0%,
+          color-mix(in oklab, var(--color-gold) 8%, transparent) 46%,
+          transparent 78%
+        ),
+        radial-gradient(
+          ellipse 75% 70% at 50% 70%,
+          color-mix(in oklab, var(--color-blue) 24%, transparent) 0%,
+          color-mix(in oklab, var(--color-blue) 8%, transparent) 48%,
+          transparent 80%
+        );
+      background-repeat: no-repeat;
+    }
+
+    .hero-stage .hero-portrait {
+      position: relative;
+      top: auto;
+      right: auto;
+      left: auto;
+      display: block;
+      width: auto;
+      height: auto;
+      max-height: 28svh;
+      max-width: min(18.5rem, 82vw);
+      margin: 0 auto;
+      object-position: top center;
+      filter:
+        drop-shadow(0 14px 18px color-mix(in oklab, var(--color-bg) 70%, transparent))
+        drop-shadow(-10px 6px 20px color-mix(in oklab, var(--color-blue) 40%, transparent))
+        drop-shadow(10px 8px 18px color-mix(in oklab, var(--color-gold) 34%, transparent));
+    }
+
+    .hero-stage .hero-veil,
+    .hero-stage .hero-cutline {
+      display: none;
+    }
+
+    .hero-copy {
+      min-height: 0;
+      justify-content: flex-start;
+      padding-top: 1rem;
+      transform: none;
+    }
+
+    .hero-copy h1 {
+      font-size: 2.35rem;
+      line-height: 1.05;
+    }
+
+    .site-signature-hero {
+      width: min(32rem, 96vw);
+      max-width: calc(100vw - 2.5rem);
+      margin-left: 0;
+      margin-bottom: 0;
+    }
+
+    .calc-board {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .calc-side,
+    .calc-savings {
+      grid-column: auto;
+      grid-row: auto;
+    }
+
+    .calc-desk-video {
+      display: none;
+    }
+  }
+
+  @media (orientation: landscape) and (min-height: 500px) {
+    .site-desk-nav {
+      display: flex;
+    }
+
+    .site-desk-quote {
+      display: inline-flex;
+    }
+
+    .site-menu-btn,
+    .site-mobile-nav {
+      display: none;
+    }
+
     .hero-stage {
       min-height: 0;
       overflow: hidden;
@@ -701,6 +830,23 @@
       max-width: none;
       margin-left: -0.5rem;
       margin-bottom: -9.5rem;
+    }
+
+    .calc-board {
+      grid-template-columns: minmax(0, 1.15fr) minmax(20rem, 0.85fr);
+    }
+
+    .calc-side {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .calc-savings {
+      grid-column: 1 / -1;
+    }
+
+    .calc-desk-video {
+      display: block;
     }
   }
 }
