@@ -1,5 +1,5 @@
 export const WATTAGE_MIN = 400;
-export const WATTAGE_MAX = 450;
+export const WATTAGE_MAX = 480;
 export const DEFAULT_WATTAGE = 425;
 export const DEFAULT_BRAND_ID = "generic";
 export const PANEL_EFFICIENCY = 0.218;
