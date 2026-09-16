@@ -594,6 +594,13 @@
   }
 }
 
+/* iPad landscape — same locked desktop, photo pulled in so it doesn't sit off the right edge */
+@media (min-width: 1080px) and (max-width: 1440px) and (max-aspect-ratio: 3/2) {
+  .hero-portrait-wrap {
+    right: 6rem;
+  }
+}
+
 @supports not (zoom: 1) {
   @media (min-width: 1080px) {
     .hero-lock {
