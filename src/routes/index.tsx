@@ -230,11 +230,10 @@ export function HomePage() {
             ))}
             <article className="flex h-fit flex-col rounded-lg bg-bg p-5 shadow-[var(--shadow-border)]">
               <h2 className="font-display text-2xl font-semibold tracking-tight text-fg">
-                Want a straight answer on your system?
+                Want real answers for a system for your home?
               </h2>
               <p className="mt-2 text-base leading-relaxed text-muted sm:text-lg">
-                Call the Cape Coral office and ask for Adam. Bring a recent electric bill if you have
-                one — that is the fastest way to see whether solar actually pays on your house.
+                Call the Cape Coral office and ask for Adam. Have a recent electric bill handy if you can.
               </p>
               <div className="mt-4 flex flex-wrap gap-3">
                 <Button asChild size="lg">
