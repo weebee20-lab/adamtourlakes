@@ -28,7 +28,7 @@ function ContactPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [place, setPlace] = useState(handoff?.label || handoff?.zip || "");
+  const [place, setPlace] = useState("");
   const [bill, setBill] = useState(handoff?.monthlyBill ? String(handoff.monthlyBill) : "");
   const [backup, setBackup] = useState(Boolean(handoff?.wantBackup));
   const [message, setMessage] = useState("");
