@@ -13,17 +13,17 @@ export function SiteFooter() {
             width={2533}
             height={883}
           />
-          <p className="mt-2 text-xs tracking-[0.14em] text-gold/80 uppercase">
+          <p className="mt-2 text-xs tracking-[0.14em] text-gold/80">
             © {new Date().getFullYear()} {SITE_NAME}
           </p>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted">
-            Sales Manager at {COMPANY.name}. Cape Coral office. Honest numbers,
-            in-house installs, Southwest Florida roofs.
+            Sales Manager at {COMPANY.name}. Cape Coral Office. Honest Numbers,
+            In-House Installs, Southwest Florida Roofs.
           </p>
         </div>
 
         <div>
-          <p className="text-xs font-medium tracking-[0.16em] text-gold uppercase">Pages</p>
+          <p className="text-xs font-medium tracking-[0.16em] text-gold">Pages</p>
           <ul className="mt-3 flex flex-col gap-2 text-sm">
             {NAV.map((item) => (
               <li key={item.to}>
@@ -34,7 +34,7 @@ export function SiteFooter() {
             ))}
             <li>
               <Link to="/solar/videos" className="text-muted transition-colors hover:text-fg">
-                Solar videos
+                Solar Videos
               </Link>
             </li>
             <li>
@@ -44,7 +44,7 @@ export function SiteFooter() {
             </li>
             <li>
               <Link to="/florida" className="text-muted transition-colors hover:text-fg">
-                Florida solar
+                Florida Solar
               </Link>
             </li>
             <li>
@@ -71,7 +71,7 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <p className="text-xs font-medium tracking-[0.16em] text-gold uppercase">Office</p>
+          <p className="text-xs font-medium tracking-[0.16em] text-gold">Office</p>
           <address className="mt-3 not-italic text-sm leading-relaxed text-muted">
             {COMPANY.name}
             <br />
@@ -89,7 +89,7 @@ export function SiteFooter() {
               rel="noreferrer"
               target="_blank"
             >
-              Company website
+              Company Website
             </a>
           </address>
           <p className="mt-4 text-xs leading-relaxed text-muted">
@@ -99,8 +99,8 @@ export function SiteFooter() {
       </div>
       <div className="h-px w-full hairline" />
       <p className="mx-auto max-w-6xl px-4 py-5 text-xs text-muted sm:px-6">
-        Independent personal site for {SITE_NAME}. Not the official{" "}
-        {COMPANY.short} corporate website.{" "}
+        Independent Personal Site for {SITE_NAME}. Not the Official{" "}
+        {COMPANY.short} Corporate Website.{" "}
         <Link to="/privacy" className="text-muted transition-colors hover:text-fg">
           Privacy
         </Link>
