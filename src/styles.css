@@ -158,7 +158,7 @@
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1080px) {
   .site-signature-hero {
     width: 45rem;
     max-width: none;
@@ -414,7 +414,7 @@
   );
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 1079px) {
   html,
   body {
     overflow-x: hidden;
@@ -508,7 +508,7 @@
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1080px) {
   .hero-stage {
     min-height: 0;
     overflow-x: hidden;
@@ -595,7 +595,7 @@
 }
 
 @supports not (zoom: 1) {
-  @media (min-width: 1024px) {
+  @media (min-width: 1080px) {
     .hero-lock {
       transform: scale(min(1, calc(100vw / 1600)));
       transform-origin: top center;
