@@ -264,6 +264,7 @@
 
 @media (min-width: 1024px) {
   .hero-tagline {
+    font-size: 3.1rem;
     line-height: 1.15;
     white-space: nowrap;
   }

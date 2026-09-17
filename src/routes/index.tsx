@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, BookOpen, Building2 } from "lucide-react";
-import { useLayoutEffect, useRef, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { seoHead } from "@/lib/seo";
 import { COMPANY, SITE_NAME } from "@/lib/site";
@@ -84,44 +84,6 @@ function PurposeCard({ item }: { item: (typeof PURPOSES)[number] }) {
   );
 }
 
-function HeroTagline() {
-  const ref = useRef<HTMLHeadingElement>(null);
-
-  useLayoutEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const fit = () => {
-      el.style.fontSize = "";
-      if (!window.matchMedia("(min-width: 1024px)").matches) return;
-      el.style.whiteSpace = "nowrap";
-      el.style.fontSize = "100px";
-      const sw = el.scrollWidth;
-      const cw = el.clientWidth;
-      if (sw > 0 && cw > 0) el.style.fontSize = `${(100 * cw * 0.6) / sw}px`;
-    };
-
-    fit();
-    const ro = new ResizeObserver(fit);
-    ro.observe(el);
-    window.addEventListener("resize", fit);
-    return () => {
-      ro.disconnect();
-      window.removeEventListener("resize", fit);
-    };
-  }, []);
-
-  return (
-    <h1
-      ref={ref}
-      className="hero-tagline relative z-10 mt-4 w-full font-display text-4xl font-semibold tracking-tight text-fg sm:text-5xl"
-    >
-      Honest solar{" "}
-      <span className="helio-credit helio-credit-line font-medium italic text-gold">without the runaround</span>
-    </h1>
-  );
-}
-
 export function HomePage() {
   return (
     <main>
@@ -153,7 +115,10 @@ export function HomePage() {
             <p className="relative z-10 mt-2 text-xs font-medium tracking-[0.2em] text-gold uppercase lg:text-[0.975rem]">
               Solar Expert · Southwest Florida
             </p>
-            <HeroTagline />
+            <h1 className="hero-tagline relative z-10 mt-4 w-full font-display text-4xl font-semibold tracking-tight text-fg sm:text-5xl">
+              Honest solar{" "}
+              <span className="helio-credit helio-credit-line font-medium italic text-gold">without the runaround</span>
+            </h1>
             <div className="hero-copy-panel mt-6">
             <p className="max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
               I'm <span className="text-gold">Adam Tourlakes</span>, Head of Sales at Solar Energy Solutions by Ecosmart. I help
