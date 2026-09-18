@@ -100,8 +100,7 @@ export function SiteFooter() {
       </div>
       <div className="h-px w-full hairline" />
       <p className="mx-auto max-w-6xl px-4 py-5 text-xs text-muted sm:px-6">
-        Independent Personal Site for {SITE_NAME}. Not the Official{" "}
-        {COMPANY.short} Corporate Website.{" "}
+        Independent Personal Site for {SITE_NAME}. Not the Official EcoSmart Website.{" "}
         <Link to="/privacy" className="text-muted transition-colors hover:text-fg">
           Privacy
         </Link>
