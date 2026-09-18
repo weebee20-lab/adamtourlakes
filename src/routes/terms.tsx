@@ -35,7 +35,7 @@ function TermsPage() {
             </a>
             , you agree to these terms. This is my personal site. It is{" "}
             <strong className="font-medium text-fg">not</strong> the official Solar Energy Solutions
-            of America corporate website.
+            corporate website.
           </p>
         </div>
 
@@ -43,7 +43,7 @@ function TermsPage() {
           <p>
             Educational content about rooftop solar, batteries, and Southwest Florida context; a
             free calculator for homework; and a contact path to talk with me about a possible
-            install through SES of America.
+            install through Solar Energy Solutions.
           </p>
         </Section>
 
@@ -104,7 +104,7 @@ function TermsPage() {
 
         <Section title="Limitation">
           <p>
-            To the fullest extent allowed by law, I and SES of America are not liable for decisions
+            To the fullest extent allowed by law, I and Solar Energy Solutions are not liable for decisions
             you make solely from website estimates or educational pages. The site is provided
             as-is. Some limitations may not apply where local law says otherwise.
           </p>

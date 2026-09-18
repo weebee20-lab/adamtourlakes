@@ -3,8 +3,10 @@ export const SITE_TAGLINE = "Solar for Southwest Florida";
 export const JOB_TITLE = "Sales Manager";
 
 export const COMPANY = {
-  name: "Solar Energy Solutions of America",
-  short: "SES of America",
+  name: "Solar Energy Solutions",
+  byline: "Powered by EcoSmart",
+  legal: "Solar Energy Solutions Powered by EcoSmart",
+  short: "Solar Energy Solutions",
   url: "https://solarenergysolutionsofamerica.com",
   contactUrl: "https://solarenergysolutionsofamerica.com/contact-us/",
   phone: "239-994-2100",
@@ -20,7 +22,7 @@ export const COMPANY = {
 } as const;
 
 export const NAV = [
-  { to: "/company", label: "Solar Energy Solutions by EcoSmart", match: "prefix" as const },
+  { to: "/company", label: "Solar Energy Solutions", match: "prefix" as const },
   {
     to: "/solar",
     label: "Solar Education",

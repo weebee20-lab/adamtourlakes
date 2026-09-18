@@ -29,9 +29,9 @@ function PrivacyPage() {
         <h1 className="mt-3 font-display text-4xl font-semibold tracking-tight">Privacy Policy</h1>
         <div className="mt-4 max-w-3xl space-y-3 text-sm leading-relaxed text-muted">
           <p>
-            This is my personal site — Adam Tourlakes, Sales Manager at Solar Energy Solutions of
-            America in Cape Coral. It is <strong className="font-medium text-fg">not</strong> the
-            official SES of America corporate website. This page explains what information shows up
+            This is my personal site — Adam Tourlakes, Sales Manager at Solar Energy Solutions
+            Powered by EcoSmart in Cape Coral. It is <strong className="font-medium text-fg">not</strong> the
+            official Solar Energy Solutions corporate website. This page explains what information shows up
             when you use{" "}
             <a href="https://adamtourlakes.com" className="text-gold hover:text-fg">
               adamtourlakes.com
@@ -93,7 +93,7 @@ function PrivacyPage() {
           </ul>
           <p>
             I do <strong className="font-medium text-fg">not</strong> sell contact forms to blast
-            lists. SWFL-focused outreach only. If you contacted me, I (or the SES of America office
+            lists. SWFL-focused outreach only. If you contacted me, I (or the Solar Energy Solutions office
             when we are working your job) may reach you by email, phone, or text about that inquiry.
           </p>
         </Section>
@@ -114,7 +114,7 @@ function PrivacyPage() {
             Final pricing, equipment, permits, and contracts come from a real site visit and a
             written proposal through{" "}
             <Link to="/company" className="text-gold hover:text-fg">
-              SES of America
+              Solar Energy Solutions
             </Link>
             . Educational content is not a bid.
           </p>

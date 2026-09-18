@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { CompanyLockup } from "@/components/company-lockup";
 import { COMPANY, NAV, SITE_NAME } from "@/lib/site";
 
 export function SiteFooter() {
@@ -17,7 +18,7 @@ export function SiteFooter() {
             © {new Date().getFullYear()} {SITE_NAME}
           </p>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted">
-            Sales Manager at {COMPANY.name}. Cape Coral Office. Honest Numbers,
+            Sales Manager at <CompanyLockup />. Cape Coral Office. Honest Numbers,
             In-House Installs, Southwest Florida Roofs.
           </p>
         </div>
@@ -73,7 +74,7 @@ export function SiteFooter() {
         <div>
           <p className="text-xs font-medium tracking-[0.16em] text-gold">Office</p>
           <address className="mt-3 not-italic text-sm leading-relaxed text-muted">
-            {COMPANY.name}
+            <CompanyLockup stacked />
             <br />
             {COMPANY.addressLine}
             <br />

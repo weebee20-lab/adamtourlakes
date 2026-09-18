@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, BookOpen, Building2 } from "lucide-react";
 import type { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
+import { CompanyLockup } from "@/components/company-lockup";
 import { seoHead } from "@/lib/seo";
 import { COMPANY, SITE_NAME } from "@/lib/site";
 
@@ -9,8 +10,8 @@ export const Route = createFileRoute("/")({
   shouldReload: false,
   head: () =>
     seoHead(
-      `${SITE_NAME} | Sales Manager, Solar Energy Solutions of America`,
-      "Meet Adam Tourlakes, Sales Manager at Solar Energy Solutions of America in Cape Coral. Straight answers on rooftop solar for Southwest Florida homes.",
+      `${SITE_NAME} | Sales Manager, Solar Energy Solutions`,
+      "Meet Adam Tourlakes, Sales Manager at Solar Energy Solutions Powered by EcoSmart in Cape Coral. Straight answers on rooftop solar for Southwest Florida homes.",
       "/",
     ),
   component: HomePage,
@@ -20,7 +21,14 @@ const PURPOSES = [
   {
     icon: Building2,
     title: "Southwest Florida Homeowners",
-    body: "This site showcases the company I'm proud to work for — Solar Energy Solutions by EcoSmart — and the installs our crew make happen. If you’re a homeowner here, you can learn a bit about me and reach me easily right through this site. Keep in mind, I only work in Southwest Florida right now." as ReactNode,
+    body: (
+      <>
+        This site showcases the company I'm proud to work for — <CompanyLockup /> — and the
+        installs our crew make happen. If you’re a homeowner here, you can learn a bit about me
+        and reach me easily right through this site. Keep in mind, I only work in Southwest Florida
+        right now.
+      </>
+    ) as ReactNode,
     links: [
       { to: "/company" as const, label: "Meet the company" },
       { to: "/contact" as const, label: "Contact Adam", variant: "gold" as const },
@@ -95,7 +103,7 @@ export function HomePage() {
           <div className="hero-aura" aria-hidden />
           <img
             src="/portraits/adam-user.png"
-            alt="Adam Tourlakes, Sales Manager at Solar Energy Solutions of America"
+            alt="Adam Tourlakes, Sales Manager at Solar Energy Solutions Powered by EcoSmart"
             className="hero-portrait portrait-cutout portrait-glow"
             width={1483}
             height={1800}
@@ -121,7 +129,7 @@ export function HomePage() {
             </h1>
             <div className="hero-copy-panel mt-6">
             <p className="max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
-              I'm <span className="text-gold">Adam Tourlakes</span>, Head of Sales at Solar Energy Solutions by Ecosmart. I help
+              I'm <span className="text-gold">Adam Tourlakes</span>, Head of Sales at <CompanyLockup />. I help
               homeowners in Southwest Florida own their power — with a veteran-run and operated
               crew that designs, permits, and installs in-house.
             </p>

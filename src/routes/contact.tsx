@@ -17,7 +17,7 @@ export const Route = createFileRoute("/contact")({
   head: () =>
     seoHead(
       `Contact ${SITE_NAME} | Solar Quote, Cape Coral`,
-      "Ask Adam Tourlakes for a rooftop solar conversation. Cape Coral office, Solar Energy Solutions of America.",
+      "Ask Adam Tourlakes for a rooftop solar conversation. Cape Coral office, Solar Energy Solutions Powered by EcoSmart.",
       "/contact",
     ),
   component: ContactPage,
@@ -100,7 +100,7 @@ function ContactPage() {
         <div className="relative mx-auto w-full max-w-md lg:max-w-none">
           <img
             src="/portraits/adam-user.png"
-            alt={`${SITE_NAME}, ${JOB_TITLE} at ${COMPANY.name}`}
+            alt={`${SITE_NAME}, ${JOB_TITLE} at ${COMPANY.legal}`}
             className="portrait-cutout portrait-glow mx-auto block h-auto max-h-[58vh] w-auto object-contain object-bottom lg:max-h-[78vh]"
             width={1483}
             height={1800}

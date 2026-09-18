@@ -16,7 +16,7 @@ export const Route = createRootRoute({
   head: () => {
     const page = seoHead(
       `${SITE_NAME} | Solar for Southwest Florida`,
-      "Adam Tourlakes, Sales Manager at Solar Energy Solutions of America in Cape Coral. Honest rooftop solar for Southwest Florida homeowners — plus a clear guide to how systems work.",
+      "Adam Tourlakes, Sales Manager at Solar Energy Solutions Powered by EcoSmart in Cape Coral. Honest rooftop solar for Southwest Florida homeowners — plus a clear guide to how systems work.",
     );
     return {
       meta: [

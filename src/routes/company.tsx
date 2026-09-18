@@ -13,11 +13,12 @@ import { Button } from "@/components/ui/button";
 import { CtaBand } from "@/components/cta-band";
 import { ORG_JSON_LD, seoHead } from "@/lib/seo";
 import { COMPANY } from "@/lib/site";
+import { CompanyLockup } from "@/components/company-lockup";
 
 export const Route = createFileRoute("/company")({
   head: () =>
     seoHead(
-      `Solar Energy Solutions of America | Cape Coral, FL — with Adam Tourlakes`,
+      `Solar Energy Solutions | Cape Coral, FL — with Adam Tourlakes`,
       "Veteran-owned, in-house solar company in Cape Coral. Photovoltaic, solar pool heating, and home batteries. Licensed CVC57062. Sales Manager Adam Tourlakes.",
       "/company",
     ),
@@ -85,7 +86,7 @@ function CompanyPage() {
             The company I sell for
           </p>
           <h1 className="mt-3 max-w-3xl font-display text-4xl font-semibold tracking-tight text-fg sm:text-6xl">
-            {COMPANY.name}
+            <CompanyLockup stacked />
           </h1>
           <p className="mt-4 max-w-xl text-base leading-relaxed text-fg/85">
             Southwest Florida’s veteran-owned, in-house solar shop. Cape Coral headquarters.
@@ -102,7 +103,7 @@ function CompanyPage() {
           </h2>
           <div className="mt-6 space-y-4 text-sm leading-relaxed text-muted">
             <p>
-              {COMPANY.name} was established in 2018 in Cape Coral. Founder and CEO Jordon
+              <CompanyLockup /> was established in 2018 in Cape Coral. Founder and CEO Jordon
               Gilewski built it as a veteran-owned, fully licensed turnkey company — photovoltaic
               solar and solar pool heating, with the technicians on payroll.
             </p>
