@@ -19,7 +19,7 @@ export const Route = createFileRoute("/company")({
   head: () =>
     seoHead(
       `Solar Energy Solutions | Cape Coral, FL — with Adam Tourlakes`,
-      "Veteran-owned, in-house solar company in Cape Coral. Photovoltaic, solar pool heating, and home batteries. Licensed CVC57062. Sales Manager Adam Tourlakes.",
+      "Veteran-owned, in-house solar company in Cape Coral. Photovoltaic, solar pool heating, and home batteries. Licensed CVC57062. Head of Solar Sales Adam Tourlakes.",
       "/company",
     ),
   component: CompanyPage,

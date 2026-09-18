@@ -1,6 +1,6 @@
 export const SITE_NAME = "Adam Tourlakes";
 export const SITE_TAGLINE = "Solar for Southwest Florida";
-export const JOB_TITLE = "Sales Manager";
+export const JOB_TITLE = "Head of Solar Sales";
 
 export const COMPANY = {
   name: "Solar Energy Solutions",

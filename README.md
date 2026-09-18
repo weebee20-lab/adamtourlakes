@@ -1,6 +1,6 @@
 # Adam Tourlakes
 
-Personal site for [Adam Tourlakes](https://github.com/weebee20-lab/adamtourlakes), Sales Manager at Solar Energy Solutions Powered by EcoSmart in Cape Coral, Florida.
+Personal site for [Adam Tourlakes](https://github.com/weebee20-lab/adamtourlakes), Head of Solar Sales at Solar Energy Solutions Powered by EcoSmart in Cape Coral, Florida.
 
 ```
 npm install

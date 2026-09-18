@@ -18,7 +18,7 @@ export function SiteFooter() {
             © {new Date().getFullYear()} {SITE_NAME}
           </p>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted">
-            Sales Manager at <CompanyLockup />. Cape Coral Office. Honest Numbers,
+            Head of Solar Sales at <CompanyLockup />. Cape Coral Office. Honest Numbers,
             In-House Installs, Southwest Florida Roofs.
           </p>
         </div>

@@ -185,7 +185,7 @@ export async function sendContactEmails(lead: {
                 — Adam
               </p>
               <p style="margin:10px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.6;color:#9a958a;">
-                Sales Manager<br/>
+                Head of Solar Sales<br/>
                 ${COMPANY.legal}<br/>
                 ${COMPANY.addressLine}, ${COMPANY.cityStateZip}
               </p>
@@ -203,7 +203,7 @@ export async function sendContactEmails(lead: {
   </table>
 </body>
 </html>`;
-  const thanksText = `Thank you for your inquiry.\n\nHi ${first},\n\nI've received your inquiry. I will review what you sent over and will reach out to you within 24 hours. You will hear from me personally.\n\nI'll be your main point of contact from our first conversation through the whole process. If you'd like to reach out sooner, call our Cape Coral office at ${COMPANY.phoneDisplay} and ask for Adam.\n\nThank you, and I look forward to working with you!\n\n— Adam\nSales Manager\n${COMPANY.legal}\n${COMPANY.addressLine}, ${COMPANY.cityStateZip}\n\nYou received this because you submitted the contact form at adamtourlakes.com. This is not a marketing list.\n`;
+  const thanksText = `Thank you for your inquiry.\n\nHi ${first},\n\nI've received your inquiry. I will review what you sent over and will reach out to you within 24 hours. You will hear from me personally.\n\nI'll be your main point of contact from our first conversation through the whole process. If you'd like to reach out sooner, call our Cape Coral office at ${COMPANY.phoneDisplay} and ask for Adam.\n\nThank you, and I look forward to working with you!\n\n— Adam\nHead of Solar Sales\n${COMPANY.legal}\n${COMPANY.addressLine}, ${COMPANY.cityStateZip}\n\nYou received this because you submitted the contact form at adamtourlakes.com. This is not a marketing list.\n`;
 
   const results = await Promise.allSettled([
     sendEmail({

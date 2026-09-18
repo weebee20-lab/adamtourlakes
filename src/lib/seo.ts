@@ -56,9 +56,9 @@ export const PERSON_JSON_LD = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Adam Tourlakes",
-  jobTitle: "Sales Manager",
+  jobTitle: "Head of Solar Sales",
   description:
-    "Sales Manager at Solar Energy Solutions Powered by EcoSmart, helping Southwest Florida homeowners design and install rooftop solar.",
+    "Head of Solar Sales at Solar Energy Solutions Powered by EcoSmart, helping Southwest Florida homeowners design and install rooftop solar.",
   image: shareImage("/portraits/adam-studio.jpg"),
   worksFor: {
     "@type": "Organization",
@@ -105,6 +105,6 @@ export const ORG_JSON_LD = {
   employee: {
     "@type": "Person",
     name: "Adam Tourlakes",
-    jobTitle: "Sales Manager",
+    jobTitle: "Head of Solar Sales",
   },
 };

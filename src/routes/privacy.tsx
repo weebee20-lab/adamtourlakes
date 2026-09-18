@@ -29,7 +29,7 @@ function PrivacyPage() {
         <h1 className="mt-3 font-display text-4xl font-semibold tracking-tight">Privacy Policy</h1>
         <div className="mt-4 max-w-3xl space-y-3 text-sm leading-relaxed text-muted">
           <p>
-            This is my personal site — Adam Tourlakes, Sales Manager at Solar Energy Solutions
+            This is my personal site — Adam Tourlakes, Head of Solar Sales at Solar Energy Solutions
             Powered by EcoSmart in Cape Coral. It is <strong className="font-medium text-fg">not</strong> the
             official Solar Energy Solutions corporate website. This page explains what information shows up
             when you use{" "}
