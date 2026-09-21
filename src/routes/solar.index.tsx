@@ -123,7 +123,7 @@ function SolarPage() {
           <h1 className="mt-3 max-w-3xl font-display text-4xl font-semibold tracking-tight sm:text-6xl">
             How a home solar system actually works.
           </h1>
-          <p className="solar-edu-lead mt-4 max-w-2xl text-lg leading-relaxed text-fg/85 sm:text-xl">
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-fg/85">
             Solar is remarkably simple and straightforward. It's not a scam, and it doesn't take 20
             years to reach a net-zero payback. This page is what I talk about with my clients. I've
             got{" "}

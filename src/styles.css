@@ -939,62 +939,6 @@ html.is-ipad-portrait {
   }
 }
 
-.solar-edu {
-  font-size: 1.0625rem;
-}
-.solar-edu .text-xs {
-  font-size: 0.875rem;
-  line-height: 1.4;
-}
-.solar-edu .text-sm {
-  font-size: 1.0625rem;
-  line-height: 1.45;
-}
-.solar-edu .text-base {
-  font-size: 1.1875rem;
-}
-.solar-edu .text-lg {
-  font-size: 1.5rem;
-}
-.solar-edu .text-xl {
-  font-size: 1.75rem;
-}
-.solar-edu .text-2xl {
-  font-size: 2rem;
-}
-.solar-edu .text-3xl {
-  font-size: 2.25rem;
-}
-.solar-edu h2.text-4xl,
-.solar-edu .text-4xl:not(h1) {
-  font-size: 2.75rem;
-}
-.solar-edu .text-\[10px\] {
-  font-size: 0.75rem;
-}
-.solar-edu h1,
-.solar-edu h1.text-4xl {
-  font-size: 2.25rem;
-}
-.solar-edu .solar-edu-lead {
-  font-size: 1.125rem;
-}
-@media (min-width: 640px) {
-  .solar-edu .sm\:text-sm {
-    font-size: 1.125rem;
-  }
-  .solar-edu .sm\:text-xl {
-    font-size: 1.85rem;
-  }
-  .solar-edu h1,
-  .solar-edu h1.sm\:text-6xl {
-    font-size: 3.75rem;
-  }
-  .solar-edu .solar-edu-lead {
-    font-size: 1.25rem;
-  }
-}
-
 @media (min-width: 1024px) {
   .videos-lock {
     width: 1280px;
