@@ -5,7 +5,7 @@ import { COMPANY, NAV, SITE_NAME } from "@/lib/site";
 export function SiteFooter() {
   return (
     <footer className="mt-auto border-t border-border bg-surface">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr]">
+      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-8 sm:px-6 md:grid-cols-[1.3fr_1.4fr_1fr]">
         <div>
           <img
             src="/brand/signature-gold.png?v=3"
@@ -25,7 +25,7 @@ export function SiteFooter() {
 
         <div>
           <p className="text-xs font-medium tracking-[0.16em] text-gold">Pages</p>
-          <ul className="mt-3 flex flex-col gap-2 text-sm">
+          <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
             {NAV.map((item) => (
               <li key={item.to}>
                 <Link to={item.to} className="text-muted transition-colors hover:text-fg">
