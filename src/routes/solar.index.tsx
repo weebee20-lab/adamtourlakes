@@ -125,11 +125,12 @@ function SolarPage() {
           </h1>
           <p className="solar-edu-lead mt-4 max-w-2xl text-lg leading-relaxed text-fg/85 sm:text-xl">
             Solar is remarkably simple and straightforward. It's not a scam, and it doesn't take 20
-            years to reach a net-zero payback. This page is what I talk about with my clients. The{" "}
+            years to reach a net-zero payback. This page is what I talk about with my clients. I've
+            got{" "}
             <Link to="/solar/videos" className="font-medium text-gold hover:text-fg">
-              videos
+              educational solar videos
             </Link>{" "}
-            live on their own page.
+            as well for you to check out.
           </p>
         </div>
         <div className="hero-cutline hero-cutline-from-left" aria-hidden />
