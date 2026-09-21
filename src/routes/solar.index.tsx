@@ -250,8 +250,8 @@ function SolarPage() {
           .
         </p>
         <CtaBand
-          heading="If this briefing clicked, the next step is your bill."
-          body="Call the Cape Coral office, ask for Adam, and we will look at twelve months of usage before anyone talks modules."
+          heading="Ready for a custom quote?"
+          body="Call our Cape Coral office and ask for me. I'll get to work designing a system based on what you need and want."
         />
       </section>
     </main>
