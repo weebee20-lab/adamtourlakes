@@ -68,6 +68,17 @@ function yearKwhFromFactors(watts: number, ghi: number, climate: Climate, poa: n
   if (!(ghi > 0.5)) return 0;
   return (watts / 1000) * ghi * 365 * performanceRatio(climate) * poa * azF;
 }
+function yearsToPayback(cost: number, yearOneSavings: number) {
+  if (!(yearOneSavings > 0) || !(cost > 0)) return Infinity;
+  let cum = 0;
+  for (let y = 0; y < LIFETIME; y++) {
+    const yearSave = yearOneSavings * (1 - DEGRADATION) ** y * (1 + UTILITY_INFLATION) ** y;
+    if (cum + yearSave >= cost) return y + (cost - cum) / yearSave;
+    cum += yearSave;
+  }
+  return Infinity;
+}
+
 export function completeMonthlyKwh(
   input: Array<number | null>,
   lat: number,
@@ -152,8 +163,8 @@ function finishSavings(opts: {
   }
   const lifetimeNet = lifetimeGross - costMid;
   const offsetPct = annualUse > 0 ? Math.min(1.2, opts.annualKwh / annualUse) : 0;
-  const paybackLow = yearOneSavings > 0 ? costLow / yearOneSavings : Infinity;
-  const paybackHigh = yearOneSavings > 0 ? costHigh / yearOneSavings : Infinity;
+  const paybackLow = yearsToPayback(costLow, yearOneSavings);
+  const paybackHigh = yearsToPayback(costHigh, yearOneSavings);
 
   return {
     panelCount: opts.panelCount,
