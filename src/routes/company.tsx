@@ -86,7 +86,7 @@ function CompanyPage() {
             The company I sell for
           </p>
           <h1 className="mt-3 max-w-3xl font-display text-4xl font-semibold tracking-tight text-fg sm:text-6xl">
-            <CompanyLockup stacked />
+            <CompanyLockup stacked byline="by EcoSmart" />
           </h1>
           <p className="mt-4 max-w-xl text-base leading-relaxed text-fg/85">
             Southwest Florida’s veteran-owned, in-house solar shop. Cape Coral headquarters.
@@ -103,7 +103,7 @@ function CompanyPage() {
           </h2>
           <div className="mt-6 space-y-4 text-sm leading-relaxed text-muted">
             <p>
-              <CompanyLockup /> was established in 2018 in Cape Coral. Founder and CEO Jordon
+              <CompanyLockup byline="by EcoSmart" /> was established in 2018 in Cape Coral. Founder and CEO Jordon
               Gilewski built it as a veteran-owned, fully licensed turnkey company — photovoltaic
               solar and solar pool heating, with the technicians on payroll.
             </p>
