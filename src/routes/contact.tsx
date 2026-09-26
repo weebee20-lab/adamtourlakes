@@ -17,7 +17,7 @@ export const Route = createFileRoute("/contact")({
   head: () =>
     seoHead(
       `Contact ${SITE_NAME} | Solar Quote, Cape Coral`,
-      "Ask Adam Tourlakes for a rooftop solar conversation. Cape Coral office, Solar Energy Solutions Powered by EcoSmart.",
+      "Ask Adam Tourlakes for a rooftop solar conversation. Cape Coral office, Solar Energy Solutions by EcoSmart.",
       "/contact",
     ),
   component: ContactPage,

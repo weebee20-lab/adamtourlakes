@@ -63,7 +63,7 @@ function FloridaPage() {
 
         <SeoBlock title="Southwest Florida vs the rest of the state">
           <p>
-            I work Lee, Collier, Charlotte, and Sarasota counties from the Cape Coral shop — Solar Energy Solutions Powered by EcoSmart.
+            I work Lee, Collier, Charlotte, and Sarasota counties from the Cape Coral shop — Solar Energy Solutions by EcoSmart.
             If your roof is in that territory, size it here and{" "}
             <Link to="/contact" className="font-medium text-gold hover:text-fg">
               contact Adam

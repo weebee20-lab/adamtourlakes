@@ -58,11 +58,11 @@ export const PERSON_JSON_LD = {
   name: "Adam Tourlakes",
   jobTitle: "Head of Solar Sales",
   description:
-    "Head of Solar Sales at Solar Energy Solutions Powered by EcoSmart, helping Southwest Florida homeowners design and install rooftop solar.",
+    "Head of Solar Sales at Solar Energy Solutions by EcoSmart, helping Southwest Florida homeowners design and install rooftop solar.",
   image: shareImage("/portraits/adam-studio.jpg"),
   worksFor: {
     "@type": "Organization",
-    name: "Solar Energy Solutions Powered by EcoSmart",
+    name: "Solar Energy Solutions by EcoSmart",
     url: "https://solarenergysolutionsofamerica.com",
     address: {
       "@type": "PostalAddress",
@@ -88,7 +88,7 @@ export const ORG_JSON_LD = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "@id": "https://solarenergysolutionsofamerica.com/#org",
-  name: "Solar Energy Solutions Powered by EcoSmart",
+  name: "Solar Energy Solutions by EcoSmart",
   url: "https://solarenergysolutionsofamerica.com",
   telephone: "+1-239-994-2100",
   image: shareImage("/images/waterfront-solar.jpg"),

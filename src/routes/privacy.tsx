@@ -30,7 +30,7 @@ function PrivacyPage() {
         <div className="mt-4 max-w-3xl space-y-3 text-sm leading-relaxed text-muted">
           <p>
             This is my personal site — Adam Tourlakes, Head of Solar Sales at Solar Energy Solutions
-            Powered by EcoSmart in Cape Coral. It is <strong className="font-medium text-fg">not</strong> the
+            by EcoSmart in Cape Coral. It is <strong className="font-medium text-fg">not</strong> the
             official Solar Energy Solutions corporate website. This page explains what information shows up
             when you use{" "}
             <a href="https://adamtourlakes.com" className="text-gold hover:text-fg">

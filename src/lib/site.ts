@@ -4,8 +4,8 @@ export const JOB_TITLE = "Head of Solar Sales";
 
 export const COMPANY = {
   name: "Solar Energy Solutions",
-  byline: "Powered by EcoSmart",
-  legal: "Solar Energy Solutions Powered by EcoSmart",
+  byline: "by EcoSmart",
+  legal: "Solar Energy Solutions by EcoSmart",
   short: "Solar Energy Solutions",
   url: "https://solarenergysolutionsofamerica.com",
   contactUrl: "https://solarenergysolutionsofamerica.com/contact-us/",

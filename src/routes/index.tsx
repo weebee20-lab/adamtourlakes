@@ -11,7 +11,7 @@ export const Route = createFileRoute("/")({
   head: () =>
     seoHead(
       `${SITE_NAME} | Head of Solar Sales, Solar Energy Solutions`,
-      "Meet Adam Tourlakes, Head of Solar Sales at Solar Energy Solutions Powered by EcoSmart in Cape Coral. Straight answers on rooftop solar for Southwest Florida homes.",
+      "Meet Adam Tourlakes, Head of Solar Sales at Solar Energy Solutions by EcoSmart in Cape Coral. Straight answers on rooftop solar for Southwest Florida homes.",
       "/",
     ),
   component: HomePage,
@@ -103,7 +103,7 @@ export function HomePage() {
           <div className="hero-aura" aria-hidden />
           <img
             src="/portraits/adam-user.png"
-            alt="Adam Tourlakes, Head of Solar Sales at Solar Energy Solutions Powered by EcoSmart"
+            alt="Adam Tourlakes, Head of Solar Sales at Solar Energy Solutions by EcoSmart"
             className="hero-portrait portrait-cutout portrait-glow"
             width={1483}
             height={1800}
